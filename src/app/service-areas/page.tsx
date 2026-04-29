@@ -27,31 +27,38 @@ export default function ServiceAreas() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {Object.entries(SERVICE_AREAS).map(([region, data], i) => (
             <Reveal key={region} delay={i * 0.1}>
-              <div className="group relative overflow-hidden rounded-3xl border border-subtle bg-card-lux">
-                <div className="relative aspect-[4/3]">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white shadow-soft transition-all duration-500 hover:-translate-y-0.5 hover:shadow-soft-lg hover:border-brand-200">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={data.hero}
                     alt={region}
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover opacity-65 transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                  <div className="absolute inset-0 flex items-end p-8 md:p-10">
-                    <h3 className="font-display text-5xl tracking-tight md:text-6xl">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-tr from-brand-700/15 via-transparent to-transparent mix-blend-multiply"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/55 to-transparent"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end p-8 md:p-10">
+                    <h3 className="font-display text-5xl tracking-tight text-foreground md:text-6xl">
                       {region}
                     </h3>
                   </div>
                 </div>
 
                 <div className="p-8 md:p-10">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                     Areas covered
                   </div>
-                  <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-foreground/85">
+                  <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-foreground">
                     {data.cities.map((c) => (
                       <li key={c} className="flex items-center gap-2">
-                        <span className="h-1 w-1 rounded-full bg-brand-400" />
+                        <span className="h-1 w-1 rounded-full bg-brand-500" />
                         {c}
                       </li>
                     ))}
@@ -59,9 +66,9 @@ export default function ServiceAreas() {
                   <div className="mt-8 flex flex-wrap items-center gap-4 justify-between">
                     <a
                       href={`tel:${data.phone.replace(/\D/g, "")}`}
-                      className="inline-flex items-center gap-2 text-foreground/90 hover:text-foreground transition"
+                      className="inline-flex items-center gap-2 text-foreground hover:text-brand-700 transition"
                     >
-                      <Phone className="h-4 w-4 text-brand-400" />
+                      <Phone className="h-4 w-4 text-brand-500" />
                       {data.phone}
                     </a>
                     <LuxButton href="/contact" size="sm" withArrow>
@@ -75,12 +82,12 @@ export default function ServiceAreas() {
         </div>
 
         <Reveal>
-          <div className="mt-16 rounded-3xl border border-subtle bg-card-lux p-8 md:p-12 text-center">
+          <div className="mt-16 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-8 md:p-12 text-center">
             <h3 className="font-display text-3xl md:text-4xl">
               Outside our current regions?
             </h3>
-            <p className="mt-4 max-w-2xl mx-auto text-muted leading-relaxed">
-              We're expanding carefully and thoughtfully. Reach out — in select
+            <p className="mt-4 max-w-2xl mx-auto text-[color:var(--muted-strong)] leading-relaxed">
+              We&apos;re expanding carefully and thoughtfully. Reach out — in select
               cases we offer event bookings and travel service for our existing
               clients.
             </p>

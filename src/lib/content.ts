@@ -136,7 +136,7 @@ export const SERVICE_AREAS = {
   Florida: {
     phone: BRAND.phoneFL,
     cities: ["Miami-Dade", "Broward", "Palm Beach"],
-    hero: "https://images.unsplash.com/photo-1513415277900-a62401e19be4?auto=format&fit=crop&w=1600&q=80",
+    hero: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&w=1600&q=80",
   },
   "New York": {
     phone: BRAND.phoneNY,

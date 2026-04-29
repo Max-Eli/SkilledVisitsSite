@@ -18,16 +18,18 @@ export function Process() {
     <section className="relative overflow-hidden py-28 md:py-40">
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-60"
+        className="absolute inset-0 -z-10 opacity-70"
         style={{
           background:
-            "radial-gradient(45% 35% at 50% 50%, color-mix(in oklab, var(--brand-700) 22%, transparent) 0%, transparent 70%)",
+            "radial-gradient(45% 35% at 50% 50%, color-mix(in oklab, var(--brand-200) 55%, transparent) 0%, transparent 70%)",
         }}
       />
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="text-center">
           <Reveal>
-            <Eyebrow>The Experience</Eyebrow>
+            <div className="inline-flex">
+              <Eyebrow>The Experience</Eyebrow>
+            </div>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="font-display mt-5 text-4xl leading-[1.05] tracking-tight md:text-6xl">
@@ -38,10 +40,10 @@ export function Process() {
         </div>
 
         <div ref={ref} className="relative mt-20">
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-white/[0.06] md:left-1/2 md:-translate-x-1/2" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-[color:var(--border)] md:left-1/2 md:-translate-x-1/2" />
           <motion.div
             style={{ height: lineHeight }}
-            className="absolute left-6 top-0 w-px bg-gradient-to-b from-brand-400 via-violet to-brand-700 md:left-1/2 md:-translate-x-1/2"
+            className="absolute left-6 top-0 w-px bg-gradient-to-b from-brand-300 via-brand-500 to-brand-700 md:left-1/2 md:-translate-x-1/2"
           />
 
           <ol className="relative space-y-16">
@@ -61,12 +63,12 @@ export function Process() {
                     {step.step}
                   </div>
                   <h3 className="mt-4 font-display text-2xl md:text-3xl">{step.title}</h3>
-                  <p className="mt-3 text-muted leading-relaxed">{step.body}</p>
+                  <p className="mt-3 text-[color:var(--muted-strong)] leading-relaxed">{step.body}</p>
                 </div>
                 <div className="relative hidden md:block" />
                 <div
                   aria-hidden
-                  className="absolute left-6 top-3 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-background bg-brand-500 shadow-[0_0_24px_color-mix(in_oklab,var(--brand-500)_70%,transparent)] md:left-1/2"
+                  className="absolute left-6 top-3 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-white bg-brand-500 shadow-[0_0_0_4px_color-mix(in_oklab,var(--brand-200)_55%,transparent),0_6px_18px_-4px_color-mix(in_oklab,var(--brand-500)_45%,transparent)] md:left-1/2"
                 />
               </motion.li>
             ))}

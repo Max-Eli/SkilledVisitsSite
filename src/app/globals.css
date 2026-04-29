@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0713;
-  --surface: #13101e;
-  --surface-2: #1a152a;
-  --border: #2a2440;
-  --foreground: #edeaf7;
-  --muted: #a8a0c4;
+  --background: #ffffff;
+  --surface: #fbfafd;
+  --surface-2: #f5ecfc;
+  --border: #ebe6f0;
+  --border-strong: #d8cee2;
+  --foreground: #14111c;
+  --foreground-soft: #2a2438;
+  --muted: #6b6480;
+  --muted-strong: #4a4459;
 
-  --brand-50: #f5f3ff;
-  --brand-100: #ede9fe;
-  --brand-200: #ddd6fe;
-  --brand-300: #c4b5fd;
-  --brand-400: #a78bfa;
-  --brand-500: #8b5cf6;
-  --brand-600: #7c3aed;
-  --brand-700: #605be5;
-  --brand-800: #4c1d95;
-  --brand-900: #2e1065;
+  --brand-50: #faf5ff;
+  --brand-100: #f5ecfc;
+  --brand-200: #e9d5fb;
+  --brand-300: #d4b3f5;
+  --brand-400: #b884ed;
+  --brand-500: #9e50e5;
+  --brand-600: #8a3ad4;
+  --brand-700: #7029b3;
+  --brand-800: #591d8f;
+  --brand-900: #3d126b;
 
-  --violet: #9e50e5;
-  --glow: #b794f4;
+  --accent: #9e50e5;
+  --accent-soft: #f5ecfc;
 }
 
 @theme inline {
@@ -28,8 +31,11 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-foreground: var(--foreground);
+  --color-foreground-soft: var(--foreground-soft);
   --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
 
   --color-brand-50: var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -41,8 +47,6 @@
   --color-brand-700: var(--brand-700);
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
-  --color-violet: var(--violet);
-  --color-glow: var(--glow);
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-fraunces);
@@ -53,11 +57,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: var(--brand-700);
-  color: white;
+  background: var(--brand-200);
+  color: var(--brand-800);
 }
 
 .font-display {
@@ -66,31 +71,25 @@ body {
   letter-spacing: -0.02em;
 }
 
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
 .brand-glow {
   background:
-    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--brand-700) 45%, transparent) 0%, transparent 70%),
-    radial-gradient(40% 40% at 90% 20%, color-mix(in oklab, var(--violet) 30%, transparent) 0%, transparent 70%),
-    radial-gradient(50% 40% at 10% 80%, color-mix(in oklab, var(--brand-600) 25%, transparent) 0%, transparent 70%);
+    radial-gradient(55% 45% at 50% 0%, color-mix(in oklab, var(--brand-300) 32%, transparent) 0%, transparent 65%),
+    radial-gradient(40% 35% at 90% 15%, color-mix(in oklab, var(--brand-200) 50%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 40% at 8% 80%, color-mix(in oklab, var(--brand-100) 80%, transparent) 0%, transparent 70%);
+}
+
+.brand-glow-soft {
+  background:
+    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--brand-200) 45%, transparent) 0%, transparent 70%);
 }
 
 .lux-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-400) 45%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-500) 28%, transparent), transparent);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #edeaf7 0%, #c4b5fd 45%, #9e50e5 100%);
+  background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-500) 60%, var(--brand-400) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -98,8 +97,8 @@ body {
 
 .ring-brand {
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--brand-400) 25%, transparent),
-    0 0 40px -10px color-mix(in oklab, var(--brand-500) 60%, transparent);
+    0 0 0 1px color-mix(in oklab, var(--brand-400) 35%, transparent),
+    0 12px 30px -12px color-mix(in oklab, var(--brand-500) 35%, transparent);
 }
 
 @keyframes marquee {
@@ -117,17 +116,37 @@ body {
 .float-slow { animation: float-slow 7s ease-in-out infinite; }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.85; }
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
 }
 .pulse-glow { animation: pulse-glow 3.2s ease-in-out infinite; }
 
 .border-subtle {
-  border-color: color-mix(in oklab, var(--brand-400) 14%, transparent);
+  border-color: var(--border);
 }
 
 .bg-card-lux {
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--brand-900) 25%, transparent) 0%, transparent 40%),
-    linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    linear-gradient(180deg, color-mix(in oklab, var(--brand-100) 45%, transparent) 0%, transparent 55%),
+    #ffffff;
+}
+
+.bg-card-tinted {
+  background: var(--surface-2);
+}
+
+.shadow-soft {
+  box-shadow: 0 1px 2px rgba(20, 17, 28, 0.04), 0 4px 14px rgba(20, 17, 28, 0.05);
+}
+
+.shadow-soft-lg {
+  box-shadow:
+    0 1px 2px rgba(20, 17, 28, 0.04),
+    0 12px 28px -10px rgba(112, 41, 179, 0.18),
+    0 24px 56px -16px rgba(112, 41, 179, 0.12);
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--brand-400) 28%, transparent) 1px, transparent 0);
+  background-size: 24px 24px;
 }

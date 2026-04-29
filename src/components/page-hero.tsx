@@ -19,7 +19,17 @@ export function PageHero({
 }) {
   return (
     <section className="relative isolate overflow-hidden pt-20 pb-20 md:pt-32 md:pb-28">
-      <div aria-hidden className="absolute inset-0 -z-10 brand-glow opacity-70" />
+      <div aria-hidden className="absolute inset-0 -z-10 brand-glow opacity-90" />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 dot-grid opacity-40"
+        style={{
+          maskImage:
+            "radial-gradient(60% 55% at 50% 30%, black 0%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(60% 55% at 50% 30%, black 0%, transparent 75%)",
+        }}
+      />
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -47,7 +57,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-muted"
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-[color:var(--muted-strong)]"
           >
             {description}
           </motion.p>

@@ -48,17 +48,21 @@ export default function ReferralsPage() {
             const Icon = s.icon;
             return (
               <Reveal key={s.title} delay={i * 0.08}>
-                <div className="flex h-full flex-col gap-5 rounded-3xl border border-subtle bg-card-lux p-8 md:p-10">
+                <div className="relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-soft transition hover:shadow-soft-lg hover:-translate-y-0.5">
                   <div className="flex items-center justify-between">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <Icon className="h-5 w-5 text-brand-300" />
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <Icon className="h-5 w-5 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="font-display text-5xl text-gradient leading-none">
                       0{i + 1}
                     </div>
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl">{s.title}</h3>
-                  <p className="text-muted leading-relaxed">{s.body}</p>
+                  <p className="text-[color:var(--muted-strong)] leading-relaxed">{s.body}</p>
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-brand-300 to-transparent md:inset-x-10"
+                  />
                 </div>
               </Reveal>
             );
@@ -68,32 +72,37 @@ export default function ReferralsPage() {
 
       <section className="mx-auto max-w-7xl px-5 pb-28 md:px-8">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[32px] border border-subtle bg-card-lux p-10 md:p-16">
+          <div className="relative overflow-hidden rounded-[28px] md:rounded-[36px] border border-[color:var(--border-strong)] bg-[color:var(--surface-2)] p-10 md:p-16">
             <div
               aria-hidden
-              className="absolute inset-0 opacity-70"
+              className="absolute inset-0 opacity-80"
               style={{
                 background:
-                  "radial-gradient(50% 60% at 50% 0%, color-mix(in oklab, var(--brand-500) 28%, transparent), transparent 70%)",
+                  "radial-gradient(50% 60% at 100% 0%, color-mix(in oklab, var(--brand-300) 45%, transparent), transparent 70%), radial-gradient(40% 50% at 0% 100%, color-mix(in oklab, var(--brand-200) 60%, transparent), transparent 70%)",
               }}
             />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-20 -top-32 h-[500px] w-[500px] rounded-full border border-brand-300/60"
+            />
+
             <div className="relative grid grid-cols-1 items-center gap-10 md:grid-cols-2">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-brand-300">
+                <div className="text-[11px] uppercase tracking-[0.22em] text-brand-700">
                   Influencer program
                 </div>
                 <h3 className="font-display mt-4 text-4xl leading-tight md:text-5xl">
                   Have a platform?<br />
                   <span className="italic text-gradient">Partner with us.</span>
                 </h3>
-                <p className="mt-5 max-w-md text-muted leading-relaxed">
+                <p className="mt-5 max-w-md text-[color:var(--muted-strong)] leading-relaxed">
                   A selective program for creators, athletes, and hosts who
                   embody our standard. Complimentary services, custom protocols,
                   and long-term partnerships.
                 </p>
               </div>
               <div className="flex md:justify-end">
-                <LuxButton href="/contact" size="lg" variant="outline" withArrow>
+                <LuxButton href="/contact" size="lg" withArrow>
                   Apply to partner
                 </LuxButton>
               </div>

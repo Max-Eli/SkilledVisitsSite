@@ -42,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="grain min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col">
         <SmoothScroll />
         <Nav />
         <main className="flex-1 pt-16 md:pt-20">{children}</main>

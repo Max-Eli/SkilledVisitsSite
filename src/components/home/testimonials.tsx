@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Quote } from "lucide-react";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 
@@ -58,24 +57,26 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className="relative overflow-hidden rounded-3xl border border-subtle bg-card-lux p-8 md:p-10"
+              className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-9 md:p-11 shadow-soft"
             >
-              <Quote className="h-8 w-8 text-brand-500/60" strokeWidth={1.25} />
-              <blockquote className="mt-5 font-display text-xl leading-snug text-foreground/90 md:text-2xl">
-                &ldquo;{q.quote}&rdquo;
+              <div
+                aria-hidden
+                className="absolute inset-x-9 top-0 h-px bg-gradient-to-r from-transparent via-brand-300 to-transparent md:inset-x-11"
+              />
+              <span
+                aria-hidden
+                className="font-display text-6xl leading-none text-brand-200 select-none"
+              >
+                &ldquo;
+              </span>
+              <blockquote className="-mt-4 font-display italic text-xl leading-snug text-foreground md:text-[1.6rem] md:leading-[1.35]">
+                {q.quote}
               </blockquote>
-              <figcaption className="mt-6 flex items-center justify-between text-sm">
-                <div>
-                  <div className="text-foreground/90">{q.name}</div>
-                  <div className="text-muted">{q.role}</div>
-                </div>
-                <div className="flex gap-1 text-brand-400">
-                  {"★★★★★".split("").map((s, idx) => (
-                    <span key={idx}>{s}</span>
-                  ))}
-                </div>
+              <figcaption className="mt-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted-strong)]">
+                <span className="text-foreground">{q.name}</span>
+                <span aria-hidden className="text-brand-400">—</span>
+                <span className="text-[color:var(--muted)]">{q.role}</span>
               </figcaption>
-              <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-500/10 blur-3xl" />
             </motion.figure>
           ))}
         </div>

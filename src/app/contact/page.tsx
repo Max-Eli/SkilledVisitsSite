@@ -25,74 +25,74 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
             <Reveal>
-              <div className="rounded-3xl border border-subtle bg-card-lux p-8 md:p-10">
+              <div className="rounded-3xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-soft">
                 <h3 className="font-display text-2xl md:text-3xl">Direct lines</h3>
                 <ul className="mt-8 space-y-6">
                   <li className="flex items-start gap-4">
-                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <Phone className="h-4 w-4 text-brand-300" />
+                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <Phone className="h-4 w-4 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-sm">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                         Florida
                       </div>
                       <a
                         href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-                        className="mt-1 block text-lg text-foreground hover:text-brand-300 transition"
+                        className="mt-1 block text-lg text-foreground hover:text-brand-700 transition"
                       >
                         {BRAND.phoneFL}
                       </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <Phone className="h-4 w-4 text-brand-300" />
+                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <Phone className="h-4 w-4 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-sm">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                         New York
                       </div>
                       <a
                         href={`tel:${BRAND.phoneNY.replace(/\D/g, "")}`}
-                        className="mt-1 block text-lg text-foreground hover:text-brand-300 transition"
+                        className="mt-1 block text-lg text-foreground hover:text-brand-700 transition"
                       >
                         {BRAND.phoneNY}
                       </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <Mail className="h-4 w-4 text-brand-300" />
+                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <Mail className="h-4 w-4 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-sm">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                         Email
                       </div>
                       <a
                         href={`mailto:${BRAND.email}`}
-                        className="mt-1 block text-lg text-foreground hover:text-brand-300 transition"
+                        className="mt-1 block text-lg text-foreground hover:text-brand-700 transition"
                       >
                         {BRAND.email}
                       </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <Clock className="h-4 w-4 text-brand-300" />
+                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <Clock className="h-4 w-4 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-sm">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                         Hours
                       </div>
                       <div className="mt-1 text-lg text-foreground">Available 24 / 7</div>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                      <MapPin className="h-4 w-4 text-brand-300" />
+                    <div className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                      <MapPin className="h-4 w-4 text-brand-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-sm">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                         Regions
                       </div>
                       <div className="mt-1 text-lg text-foreground">

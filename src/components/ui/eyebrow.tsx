@@ -10,11 +10,11 @@ export function Eyebrow({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-subtle bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-brand-300 backdrop-blur-sm",
+        "inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-brand-700 shadow-[0_1px_2px_rgba(20,17,28,0.04)]",
         className,
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-brand-400 pulse-glow" />
+      <span className="h-1.5 w-1.5 rounded-full bg-brand-500 pulse-glow" />
       {children}
     </div>
   );

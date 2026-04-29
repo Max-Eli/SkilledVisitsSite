@@ -23,7 +23,7 @@ import { BRAND, NAV_LINKS, SERVICES } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 border-t border-white/[0.06] bg-surface/60">
+    <footer className="relative mt-24 border-t border-[color:var(--border)] bg-[color:var(--surface-2)]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-px h-px lux-divider"
@@ -37,7 +37,7 @@ export function Footer() {
             height={38}
             className="h-8 w-auto"
           />
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-[color:var(--muted-strong)]">
             Private concierge wellness, delivered to your door. Licensed clinicians,
             FDA-approved protocols, 24/7 across Florida and New York.
           </p>
@@ -45,14 +45,14 @@ export function Footer() {
             <a
               href={BRAND.social.instagram}
               aria-label="Instagram"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-white/[0.03] text-foreground/70 transition hover:border-brand-400/60 hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-white text-[color:var(--muted)] transition hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50"
             >
               <InstagramIcon className="h-4 w-4" />
             </a>
             <a
               href={BRAND.social.facebook}
               aria-label="Facebook"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-white/[0.03] text-foreground/70 transition hover:border-brand-400/60 hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-white text-[color:var(--muted)] transition hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50"
             >
               <FacebookIcon className="h-4 w-4" />
             </a>
@@ -64,7 +64,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-muted hover:text-foreground transition">
+                <Link href={l.href} className="text-[color:var(--muted)] hover:text-brand-700 transition">
                   {l.label}
                 </Link>
               </li>
@@ -79,7 +79,7 @@ export function Footer() {
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="text-muted hover:text-foreground transition"
+                  className="text-[color:var(--muted)] hover:text-brand-700 transition"
                 >
                   {s.name}
                 </Link>
@@ -90,31 +90,31 @@ export function Footer() {
 
         <div className="md:col-span-3">
           <h4 className="font-display text-lg text-foreground">Contact</h4>
-          <ul className="mt-4 space-y-3 text-sm text-muted">
+          <ul className="mt-4 space-y-3 text-sm text-[color:var(--muted-strong)]">
             <li className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
               <div>
-                <div className="text-foreground/90">Florida · {BRAND.phoneFL}</div>
-                <div className="text-foreground/90">New York · {BRAND.phoneNY}</div>
+                <div className="text-foreground">Florida · {BRAND.phoneFL}</div>
+                <div className="text-foreground">New York · {BRAND.phoneNY}</div>
               </div>
             </li>
             <li className="flex items-center gap-3">
-              <Mail className="h-4 w-4 shrink-0 text-brand-400" />
-              <a href={`mailto:${BRAND.email}`} className="hover:text-foreground">
+              <Mail className="h-4 w-4 shrink-0 text-brand-500" />
+              <a href={`mailto:${BRAND.email}`} className="hover:text-brand-700">
                 {BRAND.email}
               </a>
             </li>
-            <li className="text-foreground/60">{BRAND.hours}</li>
+            <li className="text-[color:var(--muted)]">{BRAND.hours}</li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.05]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-muted md:flex-row md:px-8">
+      <div className="border-t border-[color:var(--border)]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-[color:var(--muted)] md:flex-row md:px-8">
           <div>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</div>
           <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
-            <Link href="/terms" className="hover:text-foreground">Terms</Link>
+            <Link href="/privacy" className="hover:text-brand-700">Privacy</Link>
+            <Link href="/terms" className="hover:text-brand-700">Terms</Link>
           </div>
         </div>
       </div>

@@ -52,12 +52,12 @@ export default function HowItWorks() {
             const Icon = d.icon;
             return (
               <Reveal key={d.title} delay={(i % 2) * 0.08}>
-                <div className="flex h-full flex-col gap-4 rounded-3xl border border-subtle bg-card-lux p-8 md:p-10">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/15 border border-brand-400/30">
-                    <Icon className="h-5 w-5 text-brand-300" />
+                <div className="flex h-full flex-col gap-4 rounded-3xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-soft transition hover:shadow-soft-lg hover:-translate-y-0.5">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
+                    <Icon className="h-5 w-5 text-brand-700" strokeWidth={1.75} />
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl">{d.title}</h3>
-                  <p className="text-muted leading-relaxed">{d.body}</p>
+                  <p className="text-[color:var(--muted-strong)] leading-relaxed">{d.body}</p>
                 </div>
               </Reveal>
             );

@@ -29,7 +29,7 @@ export default function ServicesPage() {
             <Reveal key={s.slug} delay={(i % 3) * 0.08}>
               <Link
                 href={`/services/${s.slug}`}
-                className="group relative block h-full overflow-hidden rounded-3xl border border-subtle bg-card-lux"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white shadow-soft transition-all duration-500 hover:-translate-y-0.5 hover:shadow-soft-lg hover:border-brand-200"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -37,19 +37,22 @@ export default function ServicesPage() {
                     alt={s.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                  <div className="absolute left-4 top-4 text-[10px] uppercase tracking-[0.22em] text-brand-200 px-3 py-1 rounded-full bg-background/40 backdrop-blur-sm border border-white/10">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-tr from-brand-700/15 via-transparent to-transparent mix-blend-multiply opacity-60"
+                  />
+                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/90 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-brand-700 backdrop-blur-sm">
                     {s.category}
                   </div>
                 </div>
-                <div className="flex items-start justify-between gap-4 p-6 md:p-7">
+                <div className="flex flex-1 items-start justify-between gap-4 p-6 md:p-7">
                   <div>
                     <h3 className="font-display text-2xl leading-tight">{s.name}</h3>
-                    <p className="mt-2 text-sm text-muted">{s.tagline}</p>
+                    <p className="mt-2 text-sm text-[color:var(--muted-strong)]">{s.tagline}</p>
                   </div>
-                  <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-subtle bg-white/[0.04] transition-all duration-300 group-hover:border-brand-400/70 group-hover:bg-brand-500/20">
+                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[color:var(--border)] bg-white text-brand-700 transition-all duration-300 group-hover:border-brand-400 group-hover:bg-brand-500 group-hover:text-white">
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>

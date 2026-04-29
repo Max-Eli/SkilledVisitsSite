@@ -32,7 +32,7 @@ export function Nav() {
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-500",
         scrolled
-          ? "border-b border-white/[0.06] bg-background/70 backdrop-blur-xl"
+          ? "border-b border-[color:var(--border)] bg-white/80 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -53,7 +53,7 @@ export function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-sm text-foreground/75 transition-colors hover:text-foreground"
+              className="rounded-full px-4 py-2 text-sm text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
             >
               {l.label}
             </Link>
@@ -63,9 +63,9 @@ export function Nav() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-            className="inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
           >
-            <Phone className="h-3.5 w-3.5 text-brand-400" />
+            <Phone className="h-3.5 w-3.5 text-brand-500" />
             {BRAND.phoneFL}
           </a>
           <LuxButton href="/contact" size="sm" withArrow>
@@ -76,20 +76,20 @@ export function Nav() {
         <button
           aria-label="Open menu"
           onClick={() => setOpen(true)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-white/[0.03] lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-white text-foreground lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-background/95 backdrop-blur-2xl lg:hidden">
+        <div className="fixed inset-0 z-[60] flex flex-col bg-white/95 backdrop-blur-2xl lg:hidden">
           <div className="flex h-16 items-center justify-between px-5">
             <Image src="/brand/logo.svg" alt="Skilled Visits" width={140} height={32} className="h-7 w-auto" />
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-white/[0.03]"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-white text-foreground"
             >
               <X className="h-5 w-5" />
             </button>
@@ -100,7 +100,7 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-3xl tracking-tight text-foreground/90 py-3 border-b border-white/[0.05]"
+                className="font-display text-3xl tracking-tight text-foreground py-3 border-b border-[color:var(--border)]"
               >
                 {l.label}
               </Link>
@@ -112,9 +112,9 @@ export function Nav() {
             </LuxButton>
             <a
               href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-subtle py-3 text-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[color:var(--border-strong)] py-3 text-sm text-foreground"
             >
-              <Phone className="h-4 w-4 text-brand-400" /> {BRAND.phoneFL}
+              <Phone className="h-4 w-4 text-brand-500" /> {BRAND.phoneFL}
             </a>
           </div>
         </div>

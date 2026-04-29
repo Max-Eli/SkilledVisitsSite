@@ -13,14 +13,19 @@ export function Spotlight() {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.04, 1.14]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.04, 1.12]);
 
   return (
     <section
       ref={ref}
       className="relative overflow-hidden py-28 md:py-40"
     >
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 brand-glow-soft opacity-50"
+      />
+
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 md:grid-cols-12 md:gap-16 md:px-8">
         <div className="md:col-span-6">
           <Reveal>
@@ -33,7 +38,7 @@ export function Spotlight() {
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="mt-6 max-w-lg text-muted leading-relaxed">
+            <p className="mt-6 max-w-lg text-[color:var(--muted-strong)] leading-relaxed">
               Our private mobile suite brings the tranquility of a high-end
               clinic to your driveway, your hotel, or your event. Climate
               controlled, hospital-grade clean, and finished for comfort — so
@@ -50,9 +55,9 @@ export function Spotlight() {
               ].map((f) => (
                 <li
                   key={f}
-                  className="flex items-center gap-3 rounded-2xl border border-subtle bg-white/[0.02] px-4 py-3 text-sm text-foreground/85"
+                  className="flex items-center gap-3 rounded-2xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm text-foreground shadow-[0_1px_2px_rgba(20,17,28,0.03)]"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
                   {f}
                 </li>
               ))}
@@ -68,36 +73,43 @@ export function Spotlight() {
         </div>
 
         <Reveal delay={0.1} className="md:col-span-6">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-subtle bg-card-lux">
-            <motion.div style={{ y, scale }} className="absolute inset-0">
-              <Image
-                src="/mobilesuite.png"
-                alt="Skilled Visits luxury mobile suite"
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
+          <div className="relative">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 rounded-full border border-brand-200"
+            />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-[color:var(--border-strong)] bg-white shadow-soft-lg">
+              <motion.div style={{ y, scale }} className="absolute inset-0">
+                <Image
+                  src="/mobilesuite.png"
+                  alt="Skilled Visits luxury mobile suite"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </motion.div>
+              <div
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/85 via-white/30 to-transparent"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-background/50 p-5 backdrop-blur-xl"
-            >
-              <div className="flex items-center justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-[color:var(--border)] bg-white/95 p-5 backdrop-blur-sm shadow-soft"
+              >
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-brand-300">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
                     Now serving
                   </div>
-                  <div className="font-display text-2xl">Florida · New York</div>
+                  <div className="font-display text-xl text-foreground">Florida · New York</div>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-subtle bg-white/[0.03]">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 pulse-glow" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 border border-[color:var(--border)]">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-glow" />
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </Reveal>
       </div>
