@@ -83,7 +83,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-white/95 backdrop-blur-2xl lg:hidden">
+        <div className="fixed inset-0 z-[60] flex flex-col bg-white lg:hidden">
           <div className="flex h-16 items-center justify-between px-5">
             <Image src="/brand/logo.svg" alt="Skilled Visits" width={140} height={32} className="h-7 w-auto" />
             <button
