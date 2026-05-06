@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
-type Variant = "primary" | "ghost" | "outline" | "white";
+type Variant = "primary" | "ghost" | "outline" | "white" | "glass";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -18,6 +18,8 @@ const variants: Record<Variant, string> = {
     "text-foreground/85 hover:text-brand-700 hover:bg-brand-50",
   white:
     "bg-white text-brand-700 shadow-[0_8px_24px_-10px_rgba(20,17,28,0.18)] hover:bg-brand-50 hover:-translate-y-0.5",
+  glass:
+    "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:border-white/50 hover:bg-white/20",
 };
 
 const sizes: Record<Size, string> = {

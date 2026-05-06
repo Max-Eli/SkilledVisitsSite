@@ -30,20 +30,20 @@ export function Nav() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500",
+        "fixed top-0 z-50 w-full transition-all duration-500 backdrop-blur-xl",
         scrolled
-          ? "border-b border-[color:var(--border)] bg-white/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
+          ? "border-b border-[color:var(--border)] bg-white/85"
+          : "border-b border-transparent bg-white/65",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:h-20 md:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 md:h-24 md:px-8">
         <Link href="/" className="flex items-center gap-2" aria-label="Skilled Visits home">
           <Image
             src="/brand/logo.svg"
             alt="Skilled Visits"
-            width={160}
-            height={36}
-            className="h-7 w-auto md:h-8"
+            width={220}
+            height={50}
+            className="h-14 w-auto md:h-16"
             priority
           />
         </Link>
@@ -53,7 +53,7 @@ export function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-sm text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
+              className="rounded-full px-4 py-2 text-[15px] text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
             >
               {l.label}
             </Link>
@@ -63,7 +63,7 @@ export function Nav() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-            className="inline-flex items-center gap-2 text-sm text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-2 text-[15px] text-[color:var(--muted-strong)] transition-colors hover:text-foreground"
           >
             <Phone className="h-3.5 w-3.5 text-brand-500" />
             {BRAND.phoneFL}
@@ -84,8 +84,8 @@ export function Nav() {
 
       {open && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-white lg:hidden">
-          <div className="flex h-16 items-center justify-between px-5">
-            <Image src="/brand/logo.svg" alt="Skilled Visits" width={140} height={32} className="h-7 w-auto" />
+          <div className="flex h-20 items-center justify-between px-5">
+            <Image src="/brand/logo.svg" alt="Skilled Visits" width={260} height={58} className="h-14 w-auto" />
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}

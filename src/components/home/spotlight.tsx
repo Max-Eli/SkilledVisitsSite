@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { LuxButton } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
+import { AccentText } from "@/components/ui/accent-text";
 
 export function Spotlight() {
   const ref = useRef<HTMLElement>(null);
@@ -17,24 +18,18 @@ export function Spotlight() {
   const scale = useTransform(scrollYProgress, [0, 1], [1.04, 1.12]);
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden py-28 md:py-40"
-    >
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 brand-glow-soft opacity-50"
-      />
+    <section ref={ref} className="relative overflow-hidden py-28 md:py-40">
+      <div aria-hidden className="absolute inset-0 -z-10 brand-glow-soft opacity-50" />
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 md:grid-cols-12 md:gap-16 md:px-8">
         <div className="md:col-span-6">
           <Reveal>
-            <Eyebrow>The Luxury Mobile Suite</Eyebrow>
+            <Eyebrow>The Mobile Suite</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="font-display mt-5 text-4xl leading-[1.05] tracking-tight md:text-6xl">
               A clinical sanctuary,<br />
-              <span className="text-gradient italic">wherever you are.</span>
+              <AccentText className="text-gradient">wherever you are.</AccentText>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>

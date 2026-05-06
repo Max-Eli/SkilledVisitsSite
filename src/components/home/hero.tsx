@@ -1,10 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { LuxButton } from "@/components/ui/button";
-import { Eyebrow } from "@/components/ui/eyebrow";
+import { Video, Droplets, Zap, FlaskConical, Star, ShieldCheck } from "lucide-react";
+
+const HERO_LINKS = [
+  { icon: Video, label: "Virtual Consult", href: "/services/virtual-consultation" },
+  { icon: Droplets, label: "IV Therapy", href: "/services/iv-therapy" },
+  { icon: Zap, label: "Wellness Shots", href: "/services/wellness-shots" },
+  { icon: FlaskConical, label: "Blood Work", href: "/services/blood-draws" },
+];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -12,154 +19,182 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28"
+      className="relative isolate min-h-[100vh] overflow-hidden"
     >
-      {/* ambient violet wash */}
-      <div aria-hidden className="absolute inset-0 -z-10 brand-glow opacity-90" />
+      <motion.div
+        aria-hidden
+        style={{ y: bgY, scale: bgScale }}
+        className="absolute inset-0 -z-20"
+      >
+        <Image
+          src="/van-side-2.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_bottom]"
+        />
+      </motion.div>
 
-      {/* faint dot-grid texture, masked to fade at edges */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 dot-grid opacity-50"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/15 to-transparent md:from-black/45"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
         style={{
-          maskImage:
-            "radial-gradient(70% 60% at 50% 35%, black 0%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(70% 60% at 50% 35%, black 0%, transparent 75%)",
+          background:
+            "radial-gradient(ellipse 65% 80% at 22% 45%, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 35%, transparent 75%)",
         }}
       />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white/15"
+      />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-5 md:grid-cols-12 md:gap-12 md:px-8 lg:gap-20">
-        <div className="md:col-span-7 md:pt-8 lg:pt-12">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative mx-auto flex min-h-[100vh] max-w-7xl flex-col justify-center px-5 pb-24 pt-12 md:px-8 md:pb-28 md:pt-16"
+      >
+        <div className="mr-auto max-w-2xl text-left">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white backdrop-blur-md"
           >
-            <Eyebrow>Concierge Wellness · FL & NY</Eyebrow>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 pulse-glow" />
+            Concierge Services · FL & NY
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display mt-6 max-w-[14ch] text-5xl leading-[0.96] tracking-tight sm:text-6xl md:text-[5.25rem] lg:text-[6rem]"
+            transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display mt-7 text-5xl leading-[0.95] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[5.75rem]"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.25)" }}
           >
-            <span className="block">Wellness,</span>
-            <span className="block text-gradient italic">delivered to you.</span>
+            <span className="block">Wellness Treatments,</span>
+            <span className="relative inline-block italic text-[color:var(--brand-200)]">
+              Delivered!
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute -bottom-1 left-0 h-3 w-full md:-bottom-2 md:h-4"
+                viewBox="0 0 300 14"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <defs>
+                  <linearGradient id="heroUnderline" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#d4b3f5" stopOpacity="0.35" />
+                    <stop offset="50%" stopColor="#e9d5fb" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#d4b3f5" stopOpacity="0.35" />
+                  </linearGradient>
+                </defs>
+                <motion.path
+                  d="M 4 9 Q 75 3, 150 7 T 296 6"
+                  stroke="url(#heroUnderline)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{
+                    pathLength: { duration: 1.3, delay: 1.3, ease: [0.16, 1, 0.3, 1] },
+                    opacity: { duration: 0.4, delay: 1.3 },
+                  }}
+                />
+              </svg>
+            </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-[color:var(--muted-strong)]"
-          >
-            Private, in-home IV therapy, injectables and diagnostics from
-            licensed clinicians. Step into the comfort of your home — we take
-            care of everything else.
-          </motion.p>
-
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            transition={{ duration: 0.8, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-10"
           >
-            <LuxButton href="/contact" size="lg" withArrow>
-              Book a visit
-            </LuxButton>
-            <LuxButton href="/services" size="lg" variant="outline">
-              Explore services
-            </LuxButton>
+            <div className="inline-flex items-center gap-2.5">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                    strokeWidth={0}
+                  />
+                ))}
+              </div>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85">
+                5-Star Rated
+              </span>
+            </div>
+
+            <div aria-hidden className="hidden h-3.5 w-px bg-white/25 sm:block" />
+
+            <div className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-400" strokeWidth={1.6} />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85">
+                Licensed Nurses Only
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.9 }}
-            className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted)]"
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } },
+            }}
+            className="mt-10 flex flex-nowrap items-center gap-2 overflow-x-auto md:mt-12 md:gap-2.5 md:overflow-visible"
           >
-            <div className="flex -space-x-2">
-              {["1494790108377-be9c29b29330", "1544005313-94ddf0286df2", "1438761681033-6461ffad8d80"].map((id) => (
-                <div
-                  key={id}
-                  className="h-9 w-9 rounded-full border-2 border-white overflow-hidden relative shadow-[0_2px_8px_rgba(20,17,28,0.08)]"
+            {HERO_LINKS.map(({ icon: Icon, label, href }) => (
+              <motion.div
+                key={href}
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Link
+                  href={href}
+                  className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-2 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/20 md:gap-2 md:px-4 md:py-2.5"
                 >
-                  <Image
-                    src={`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=120&q=80`}
-                    alt=""
-                    fill
-                    sizes="36px"
-                    className="object-cover"
+                  <Icon
+                    className="h-4 w-4 text-white/90 transition-colors group-hover:text-white md:h-[18px] md:w-[18px]"
+                    strokeWidth={1.6}
                   />
-                </div>
-              ))}
-            </div>
-            Trusted by clients in Miami, Manhattan & beyond
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-white/90 transition-colors group-hover:text-white md:text-xs">
+                    {label}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative md:col-span-5"
-        >
-          {/* decorative violet ring */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-6 -top-6 h-36 w-36 rounded-full border border-brand-200 md:h-48 md:w-48"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-8 -bottom-8 h-44 w-44 rounded-full bg-brand-100 blur-3xl opacity-70"
-          />
-
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-[color:var(--border-strong)] bg-white shadow-soft-lg">
-            <motion.div style={{ y, scale }} className="absolute inset-0">
-              <Image
-                src="/svahero1.jpg"
-                alt="A Skilled Visits clinician at work"
-                fill
-                priority
-                sizes="(min-width: 768px) 42vw, 100vw"
-                className="object-cover"
-              />
-            </motion.div>
-
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/85 via-white/40 to-transparent"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.6 }}
-              className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-2xl border border-[color:var(--border)] bg-white/95 px-5 py-4 backdrop-blur-sm shadow-soft"
-            >
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
-                  Now serving
-                </div>
-                <div className="font-display text-lg leading-tight text-foreground">
-                  Florida · New York
-                </div>
-              </div>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 border border-[color:var(--border)]">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-glow" />
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex justify-center"
+      >
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/65">
+          <div className="h-px w-10 bg-white/25" />
+          Scroll
+          <div className="h-px w-10 bg-white/25" />
+        </div>
+      </motion.div>
     </section>
   );
 }

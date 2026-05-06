@@ -21,15 +21,147 @@ export const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+export type Cocktail = {
+  name: string;
+  tagline: string;
+  description: string;
+  benefits: string[];
+  image: string;
+};
+
 export type Service = {
   slug: string;
   name: string;
   tagline: string;
   description: string;
   image: string;
-  category: "IV" | "Aesthetic" | "Wellness" | "Diagnostic";
+  category: "IV" | "Wellness" | "Diagnostic";
   highlights: string[];
+  cocktails?: Cocktail[];
 };
+
+export const IV_COCKTAILS: Cocktail[] = [
+  {
+    name: "Original Myers",
+    tagline: "The classic restorative blend.",
+    description:
+      "B-vitamins, magnesium, and calcium — Myers' original formulation, ideal for daily wellness, stress relief, and whole-body restoration.",
+    benefits: ["B-Complex", "Magnesium", "Daily Wellness"],
+    image: "/original-myers.jpeg",
+  },
+  {
+    name: "NAD+ Revive",
+    tagline: "Cellular restoration at depth.",
+    description:
+      "High-dose NAD+ targeting mitochondrial repair, cognitive clarity, and longevity protocols. Ideal for serious recovery and anti-aging.",
+    benefits: ["Mitochondrial Repair", "Cognitive", "Longevity"],
+    image: "/nad-revive.jpeg",
+  },
+  {
+    name: "Hangover Hero",
+    tagline: "Same-morning recovery.",
+    description:
+      "Aggressive hydration paired with anti-nausea, anti-inflammatory medication, and a B-complex boost. Reset and back to your day in under an hour.",
+    benefits: ["Rapid Hydration", "Anti-Inflammatory", "B-Complex"],
+    image: "/hangover-hero.jpeg",
+  },
+  {
+    name: "Immunity Shield",
+    tagline: "Reinforce your defenses.",
+    description:
+      "Mega-dose vitamin C, zinc, and glutathione for immune support before travel, after exposure, or during seasonal stress.",
+    benefits: ["Vitamin C", "Zinc", "Glutathione"],
+    image: "/immunity-shield.jpeg",
+  },
+  {
+    name: "Athletic Performance",
+    tagline: "Muscle repair & hydration.",
+    description:
+      "Amino acids, magnesium, and electrolyte balance to accelerate post-training recovery, reduce soreness, and replenish what you lost.",
+    benefits: ["Amino Acids", "Electrolytes", "Recovery"],
+    image: "/athletic-performance.jpeg",
+  },
+  {
+    name: "Her Beauty",
+    tagline: "Skin, hair, and nails support.",
+    description:
+      "Biotin, glutathione, and high-dose vitamin C for collagen support and a luminous complexion — a favorite before events and shoots.",
+    benefits: ["Biotin", "Glutathione", "Collagen"],
+    image: "/her-beauty.jpeg",
+  },
+  {
+    name: "Energy Charge",
+    tagline: "Sharp focus, sustained drive.",
+    description:
+      "B12, taurine, and amino blends for sustained mental and physical energy — without the caffeine crash.",
+    benefits: ["B12", "Taurine", "Amino Blend"],
+    image: "/energy-charge.jpeg",
+  },
+  {
+    name: "Custom+",
+    tagline: "Designed for you, by your clinician.",
+    description:
+      "A fully bespoke protocol formulated during your consultation around your goals, lab results, and biology. The premium tier.",
+    benefits: ["Bespoke", "Lab-Informed", "Premium"],
+    image: "/custom-plus.jpeg",
+  },
+  {
+    name: "Her Monthly",
+    tagline: "Cycle support & balance.",
+    description:
+      "Magnesium, B-complex, and calming amino acids designed to ease cramps, fatigue, and other cycle-related symptoms.",
+    benefits: ["Magnesium", "B-Complex", "Cycle Support"],
+    image: "/her-monthly.jpeg",
+  },
+  {
+    name: "Post-Surgery Recovery",
+    tagline: "Heal faster, feel better.",
+    description:
+      "Vitamin C, zinc, and amino acids to support tissue repair, reduce inflammation, and accelerate post-operative recovery.",
+    benefits: ["Tissue Repair", "Anti-Inflammatory", "Amino Acids"],
+    image: "/post-surgery-recovery.jpeg",
+  },
+  {
+    name: "Prenatal Support",
+    tagline: "Gentle nourishment for two.",
+    description:
+      "Pregnancy-safe formulation focused on hydration, B-vitamins, and key prenatal micronutrients. Always cleared with your OB.",
+    benefits: ["Pregnancy-Safe", "B-Complex", "Hydration"],
+    image: "/prenatal-support.jpeg",
+  },
+  {
+    name: "Pure Hydration",
+    tagline: "Replenish, simply.",
+    description:
+      "Pure electrolyte and saline replenishment for dehydration, jet lag, or post-exercise recovery — no additives, no extras.",
+    benefits: ["Electrolytes", "Saline", "Jet Lag"],
+    image: "/pure-hydration.jpeg",
+  },
+  {
+    name: "Stomach Rescue",
+    tagline: "Settle and reset.",
+    description:
+      "Anti-nausea medication paired with hydration and B-complex to settle stomach issues, food poisoning, or motion sickness.",
+    benefits: ["Anti-Nausea", "Hydration", "B-Complex"],
+    image: "/stomach-rescue.jpeg",
+  },
+  {
+    name: "Stress Relief",
+    tagline: "Calm the nervous system.",
+    description:
+      "Magnesium, taurine, and calming amino acids designed to reduce stress, improve sleep, and restore nervous-system balance.",
+    benefits: ["Magnesium", "Taurine", "Calming"],
+    image: "/stress-relief.jpeg",
+  },
+  {
+    name: "Ultra Flush",
+    tagline: "Detox at the cellular level.",
+    description:
+      "Glutathione, vitamin C, and antioxidants to support liver function, neutralize free radicals, and reset after toxin exposure.",
+    benefits: ["Glutathione", "Antioxidants", "Liver Support"],
+    image: "/ultra-flush.jpeg",
+  },
+];
 
 export const SERVICES: Service[] = [
   {
@@ -45,26 +177,7 @@ export const SERVICES: Service[] = [
       "Immune • Hydration • Beauty",
       "Detox • Athletic Recovery",
     ],
-  },
-  {
-    slug: "botox",
-    name: "Botox",
-    tagline: "Subtle refinement. Unmistakable results.",
-    description:
-      "Precision neuromodulator treatments from board-certified providers. We emphasize natural movement, gentle softening of lines, and results that feel like a better version of you — never frozen.",
-    image: "/botox.png",
-    category: "Aesthetic",
-    highlights: ["Forehead & frown lines", "Crow's feet", "Preventative dosing"],
-  },
-  {
-    slug: "dermal-fillers",
-    name: "Dermal Fillers",
-    tagline: "Restore volume. Honor your features.",
-    description:
-      "Hyaluronic acid fillers placed with a surgeon's eye for proportion and balance. Lips, cheeks, jawline, under-eyes — artistry in millimeters, refined over a private in-home consultation.",
-    image: "/dermalfiller.png",
-    category: "Aesthetic",
-    highlights: ["Lip enhancement", "Cheek & jawline contouring", "Tear-trough refinement"],
+    cocktails: IV_COCKTAILS,
   },
   {
     slug: "wellness-shots",

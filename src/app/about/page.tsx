@@ -78,8 +78,8 @@ export default function About() {
             <Reveal delay={0.18}>
               <p className="mt-4 text-[color:var(--muted-strong)] leading-relaxed">
                 Whether you&apos;re looking to recover from a long week, optimize for
-                a demanding schedule, or explore aesthetic refinement with an
-                artist&apos;s hand — we design protocols around your life, not ours.
+                a demanding schedule, or invest in long-term wellness — we
+                design protocols around your life, not ours.
               </p>
             </Reveal>
             <Reveal delay={0.26}>

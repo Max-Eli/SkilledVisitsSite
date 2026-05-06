@@ -3,35 +3,44 @@
 import { motion } from "motion/react";
 import { LuxButton } from "@/components/ui/button";
 import { BRAND } from "@/lib/content";
+import { AccentText } from "@/components/ui/accent-text";
 
 export function CTA() {
   return (
     <section className="relative mx-auto max-w-7xl px-5 py-28 md:px-8">
-      <div className="relative overflow-hidden rounded-[28px] md:rounded-[36px] border border-[color:var(--border-strong)] bg-[color:var(--surface-2)] p-8 sm:p-10 md:p-20">
+      <div className="relative overflow-hidden rounded-[28px] border border-[color:var(--border-strong)] bg-[color:var(--surface-2)] p-8 sm:p-10 md:rounded-[36px] md:p-20">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-80"
+          className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(45% 55% at 100% 0%, color-mix(in oklab, var(--brand-300) 50%, transparent) 0%, transparent 65%), radial-gradient(35% 45% at 0% 100%, color-mix(in oklab, var(--brand-200) 70%, transparent) 0%, transparent 70%)",
+              "radial-gradient(50% 60% at 100% 0%, color-mix(in oklab, var(--brand-400) 55%, transparent) 0%, transparent 65%), radial-gradient(40% 55% at 0% 100%, color-mix(in oklab, var(--brand-300) 70%, transparent) 0%, transparent 70%)",
           }}
         />
 
         <motion.div
           aria-hidden
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.4 }}
-          className="pointer-events-none absolute -right-10 -top-20 h-[420px] w-[420px] rounded-full border border-brand-300/60"
+          className="pointer-events-none absolute -right-10 -top-20 h-[460px] w-[460px] rounded-full border border-brand-300/70"
         />
         <motion.div
           aria-hidden
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.6, delay: 0.15 }}
-          className="pointer-events-none absolute -right-32 -top-32 h-[640px] w-[640px] rounded-full border border-brand-200"
+          className="pointer-events-none absolute -right-32 -top-40 h-[680px] w-[680px] rounded-full border border-brand-200"
+        />
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.8, delay: 0.3 }}
+          className="pointer-events-none absolute -right-52 -top-56 h-[880px] w-[880px] rounded-full border border-brand-200/60"
         />
 
         <div className="relative flex items-start justify-between gap-8">
@@ -41,9 +50,9 @@ export function CTA() {
             </div>
             <h2 className="font-display mt-4 text-5xl leading-[1.02] tracking-tight md:text-7xl">
               Care that comes<br />
-              <span className="italic text-gradient">to you.</span>
+              <AccentText className="text-gradient">to you.</AccentText>
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--muted-strong)]">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-[color:var(--muted-strong)]">
               Book your consultation. We&apos;ll design a protocol, schedule a
               time, and arrive when you&apos;re ready.
             </p>
@@ -63,7 +72,7 @@ export function CTA() {
           <div className="hidden md:block">
             <div className="text-right text-[10px] uppercase tracking-[0.28em] text-brand-700/80">
               By appointment
-              <div className="mt-2 h-px w-12 ml-auto bg-brand-300" />
+              <div className="mt-2 ml-auto h-px w-12 bg-brand-300" />
               <div className="mt-2 normal-case tracking-normal text-[11px] text-[color:var(--muted)]">
                 Available 24 / 7
               </div>

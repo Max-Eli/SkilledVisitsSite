@@ -10,7 +10,7 @@ import { CTA } from "@/components/home/cta";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "IV therapy, injectables, wellness shots, rapid testing and mobile phlebotomy — delivered to your door by licensed clinicians.",
+    "IV therapy, wellness shots, rapid testing and mobile phlebotomy — delivered to your door by licensed clinicians.",
 };
 
 export default function ServicesPage() {

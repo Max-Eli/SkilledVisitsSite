@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Star } from "lucide-react";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
+import { AccentText } from "@/components/ui/accent-text";
 
 const QUOTES = [
   {
@@ -19,7 +21,7 @@ const QUOTES = [
   },
   {
     quote:
-      "My botox has never looked more natural. Their injector is an artist and the entire process was so relaxed.",
+      "Their IV protocol completely changed how I prepare for travel. The clinician was thorough, the visit felt unhurried, and I felt a noticeable difference within hours.",
     name: "Priya D.",
     role: "Brooklyn",
   },
@@ -35,7 +37,7 @@ export function Testimonials() {
   return (
     <section className="relative overflow-hidden py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div>
             <Reveal>
               <Eyebrow>Reviews</Eyebrow>
@@ -43,10 +45,26 @@ export function Testimonials() {
             <Reveal delay={0.08}>
               <h2 className="font-display mt-5 text-4xl leading-[1.05] tracking-tight md:text-6xl">
                 Loved by people who<br />
-                <span className="text-gradient italic">expect more.</span>
+                <AccentText className="text-gradient">expect more.</AccentText>
               </h2>
             </Reveal>
           </div>
+          <Reveal delay={0.15}>
+            <div className="flex items-center gap-3 rounded-full border border-[color:var(--border)] bg-white px-4 py-2.5 shadow-soft">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                    strokeWidth={0}
+                  />
+                ))}
+              </div>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-foreground">
+                5-Star Rated
+              </span>
+            </div>
+          </Reveal>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -57,7 +75,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-9 md:p-11 shadow-soft"
+              className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-9 md:p-11 shadow-soft transition hover:shadow-soft-lg hover:-translate-y-0.5"
             >
               <div
                 aria-hidden

@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     template: "%s · Skilled Visits",
   },
   description:
-    "Private in-home IV therapy, injectables, wellness shots, and diagnostics from licensed clinicians. 24/7 across Florida and New York.",
+    "Private in-home IV therapy, wellness shots, rapid testing and mobile phlebotomy from licensed clinicians. 24/7 across Florida and New York.",
   icons: { icon: "/brand/favicon.svg" },
   openGraph: {
     title: "Skilled Visits — Concierge Wellness, Delivered.",
     description:
-      "Private in-home IV therapy, injectables, wellness shots, and diagnostics. 24/7 across Florida and New York.",
+      "Private in-home IV therapy, wellness shots, rapid testing and mobile phlebotomy. 24/7 across Florida and New York.",
     type: "website",
   },
 };
@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SmoothScroll />
         <Nav />
-        <main className="flex-1 pt-16 md:pt-20">{children}</main>
+        <main className="flex-1 pt-20 md:pt-24">{children}</main>
         <Footer />
       </body>
     </html>

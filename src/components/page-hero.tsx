@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Eyebrow } from "@/components/ui/eyebrow";
+import { AccentText } from "@/components/ui/accent-text";
 import type { ReactNode } from "react";
 
 export function PageHero({
@@ -48,7 +49,7 @@ export function PageHero({
           {accent && (
             <>
               <br />
-              <span className="italic text-gradient">{accent}</span>
+              <AccentText className="text-gradient">{accent}</AccentText>
             </>
           )}
         </motion.h1>

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { HOW_IT_WORKS } from "@/lib/content";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
+import { AccentText } from "@/components/ui/accent-text";
 
 export function Process() {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,7 +35,7 @@ export function Process() {
           <Reveal delay={0.08}>
             <h2 className="font-display mt-5 text-4xl leading-[1.05] tracking-tight md:text-6xl">
               From consult to care<br />
-              <span className="text-gradient italic">in four considered steps.</span>
+              <AccentText className="text-gradient">in four considered steps.</AccentText>
             </h2>
           </Reveal>
         </div>
@@ -59,11 +60,15 @@ export function Process() {
                 }`}
               >
                 <div className={`pl-14 md:pl-0 ${i % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
-                  <div className="font-display text-5xl leading-none text-gradient md:text-7xl">
+                  <div className="font-display italic text-5xl leading-none text-gradient md:text-7xl">
                     {step.step}
                   </div>
-                  <h3 className="mt-4 font-display text-2xl md:text-3xl">{step.title}</h3>
-                  <p className="mt-3 text-[color:var(--muted-strong)] leading-relaxed">{step.body}</p>
+                  <h3 className="mt-4 font-display text-2xl tracking-tight md:text-3xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-[color:var(--muted-strong)] leading-relaxed">
+                    {step.body}
+                  </p>
                 </div>
                 <div className="relative hidden md:block" />
                 <div
