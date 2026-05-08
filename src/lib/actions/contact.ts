@@ -19,13 +19,7 @@
 
 import { Resend } from "resend";
 import { BRAND } from "@/lib/content";
-
-export type ContactFormState =
-  | { status: "idle" }
-  | { status: "ok" }
-  | { status: "error"; message: string };
-
-export const initialContactState: ContactFormState = { status: "idle" };
+import type { ContactFormState } from "@/lib/contact-types";
 
 type Submission = {
   name: string;

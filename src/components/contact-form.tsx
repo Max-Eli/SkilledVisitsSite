@@ -5,10 +5,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Check, AlertCircle } from "lucide-react";
 import { LuxButtonBtn } from "@/components/ui/button";
-import {
-  initialContactState,
-  submitContactForm,
-} from "@/lib/actions/contact";
+import { submitContactForm } from "@/lib/actions/contact";
+import { initialContactState } from "@/lib/contact-types";
 
 export function ContactForm({ services }: { services: string[] }) {
   const [state, formAction, isPending] = useActionState(
