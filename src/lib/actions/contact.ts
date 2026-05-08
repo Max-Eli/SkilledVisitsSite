@@ -5,15 +5,17 @@
 // Required env vars:
 //   RESEND_API_KEY      — get one at https://resend.com (free tier: 3K emails/mo)
 //
-// Optional env vars:
-//   CONTACT_TO_EMAIL    — recipient (defaults to BRAND.email)
+// Strongly recommended in production:
 //   CONTACT_FROM_EMAIL  — sender, e.g. "Skilled Visits <hello@skilledvisits.com>"
-//                         (defaults to "Skilled Visits Site <onboarding@resend.dev>",
-//                         which only delivers to the resend account holder)
+//                         Must be on a verified domain in your Resend dashboard,
+//                         OR Resend will reject the send.
 //
-// In production, the customer must verify their sending domain in Resend
-// and set CONTACT_FROM_EMAIL to a verified address — otherwise emails will
-// only reach the resend account holder.
+// Optional:
+//   CONTACT_TO_EMAIL    — recipient (defaults to BRAND.email).
+//
+// All env vars must be present at build/runtime on the hosting provider.
+// Vercel only injects env vars into NEW deploys after they're added — if you
+// just added a var, trigger a redeploy.
 
 import { Resend } from "resend";
 import { BRAND } from "@/lib/content";
@@ -38,44 +40,50 @@ export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  // Honeypot — bots typically fill every field
-  const honey = (formData.get("company") ?? "").toString().trim();
-  if (honey) return { status: "ok" };
-
-  const data: Submission = {
-    name: ((formData.get("name") ?? "") as string).trim(),
-    email: ((formData.get("email") ?? "") as string).trim(),
-    phone: ((formData.get("phone") ?? "") as string).trim(),
-    region: ((formData.get("region") ?? "") as string).trim(),
-    service: ((formData.get("service") ?? "") as string).trim(),
-    message: ((formData.get("message") ?? "") as string).trim(),
-  };
-
-  if (!data.name || !data.email) {
-    return { status: "error", message: "Name and email are required." };
-  }
-  if (!/^\S+@\S+\.\S+$/.test(data.email)) {
-    return { status: "error", message: "Please enter a valid email address." };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("[contact] RESEND_API_KEY is not set");
-    return {
-      status: "error",
-      message: "The form is offline right now. Please call or email us directly.",
-    };
-  }
-
-  const to = process.env.CONTACT_TO_EMAIL ?? BRAND.email;
-  const from =
-    process.env.CONTACT_FROM_EMAIL ??
-    "Skilled Visits Site <onboarding@resend.dev>";
-  const resend = new Resend(apiKey);
-
-  const subject = `New inquiry — ${data.service || "general"} — ${data.name}`;
-
+  // Wrap EVERYTHING so the form never throws and useActionState always
+  // receives a structured response.
   try {
+    // Honeypot — bots typically fill every field
+    const honey = (formData.get("company") ?? "").toString().trim();
+    if (honey) return { status: "ok" };
+
+    const data: Submission = {
+      name: ((formData.get("name") ?? "") as string).trim(),
+      email: ((formData.get("email") ?? "") as string).trim(),
+      phone: ((formData.get("phone") ?? "") as string).trim(),
+      region: ((formData.get("region") ?? "") as string).trim(),
+      service: ((formData.get("service") ?? "") as string).trim(),
+      message: ((formData.get("message") ?? "") as string).trim(),
+    };
+
+    if (!data.name || !data.email) {
+      return { status: "error", message: "Name and email are required." };
+    }
+    if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+      return {
+        status: "error",
+        message: "Please enter a valid email address.",
+      };
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("[contact] RESEND_API_KEY is not set");
+      return {
+        status: "error",
+        message:
+          "The form is offline right now. Please call or email us directly.",
+      };
+    }
+
+    const to = process.env.CONTACT_TO_EMAIL ?? BRAND.email;
+    const from =
+      process.env.CONTACT_FROM_EMAIL ??
+      "Skilled Visits Site <onboarding@resend.dev>";
+
+    const resend = new Resend(apiKey);
+    const subject = `New inquiry — ${data.service || "general"} — ${data.name}`;
+
     const result = await resend.emails.send({
       from,
       to: [to],
@@ -84,20 +92,24 @@ export async function submitContactForm(
       html: renderEmailHtml(data),
       text: renderEmailText(data),
     });
+
     if (result.error) {
-      console.error("[contact] Resend error:", result.error);
+      console.error("[contact] Resend returned error:", result.error);
       return {
         status: "error",
         message:
           "We couldn't deliver your message right now. Please call us or try again in a moment.",
       };
     }
+
     return { status: "ok" };
   } catch (err) {
-    console.error("[contact] Unexpected error:", err);
+    // Catch-all so the form never 500s.
+    console.error("[contact] Action threw unexpectedly:", err);
     return {
       status: "error",
-      message: "Something went wrong on our end. Please try again.",
+      message:
+        "Something went wrong on our end. Please call us — we answer 24/7.",
     };
   }
 }
