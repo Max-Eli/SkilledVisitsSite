@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative isolate min-h-[100vh] overflow-hidden"
+      className="relative isolate min-h-[100svh] overflow-hidden md:min-h-[100vh]"
     >
       <motion.div
         aria-hidden
@@ -35,12 +35,20 @@ export function Hero() {
         className="absolute inset-0 -z-20"
       >
         <Image
+          src="/van-front.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_bottom] md:hidden"
+        />
+        <Image
           src="/van-side-2.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_bottom]"
+          className="hidden object-cover object-[center_bottom] md:block"
         />
       </motion.div>
 
@@ -50,7 +58,15 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 md:hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse 95% 70% at 50% 40%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.15) 70%, transparent 90%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 hidden md:block"
         style={{
           background:
             "radial-gradient(ellipse 65% 80% at 22% 45%, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 35%, transparent 75%)",
@@ -63,16 +79,16 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative mx-auto flex min-h-[100vh] max-w-7xl flex-col justify-center px-5 pb-24 pt-12 md:px-8 md:pb-28 md:pt-16"
+        className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-24 md:min-h-[100vh] md:px-8 md:pb-28 md:pt-16"
       >
         <div className="mr-auto max-w-2xl text-left">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white backdrop-blur-md"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-2.5 py-1 text-[9px] uppercase tracking-[0.16em] text-white backdrop-blur-md md:gap-2 md:px-3.5 md:py-1.5 md:text-[11px] md:tracking-[0.18em]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 pulse-glow" />
+            <span className="h-1 w-1 rounded-full bg-emerald-400 pulse-glow md:h-1.5 md:w-1.5" />
             Concierge Services · FL & NY
           </motion.div>
 
@@ -80,7 +96,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display mt-7 text-5xl leading-[0.95] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[5.75rem]"
+            className="font-display mt-6 text-[40px] leading-[0.95] tracking-tight text-white sm:text-6xl md:mt-7 md:text-7xl lg:text-[5.75rem]"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.25)" }}
           >
             <span className="block">Wellness Treatments,</span>
@@ -120,28 +136,28 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-10"
+            className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2.5 md:mt-10 md:gap-x-6 md:gap-y-3"
           >
-            <div className="inline-flex items-center gap-2.5">
+            <div className="inline-flex items-center gap-2">
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                    className="h-3 w-3 fill-amber-400 text-amber-400 md:h-3.5 md:w-3.5"
                     strokeWidth={0}
                   />
                 ))}
               </div>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white/85 md:text-[11px]">
                 5-Star Rated
               </span>
             </div>
 
-            <div aria-hidden className="hidden h-3.5 w-px bg-white/25 sm:block" />
+            <div aria-hidden className="h-3 w-px bg-white/25 md:h-3.5" />
 
             <div className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" strokeWidth={1.6} />
-              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400 md:h-4 md:w-4" strokeWidth={1.6} />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white/85 md:text-[11px]">
                 Licensed Nurses Only
               </span>
             </div>
@@ -154,7 +170,7 @@ export function Hero() {
               hidden: {},
               show: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } },
             }}
-            className="mt-10 flex flex-nowrap items-center gap-2 overflow-x-auto md:mt-12 md:gap-2.5 md:overflow-visible"
+            className="mt-10 grid grid-cols-2 gap-2 md:mt-12 md:flex md:flex-nowrap md:items-center md:gap-2.5"
           >
             {HERO_LINKS.map(({ icon: Icon, label, href }) => (
               <motion.div
@@ -167,10 +183,10 @@ export function Hero() {
               >
                 <Link
                   href={href}
-                  className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-2 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/20 md:gap-2 md:px-4 md:py-2.5"
+                  className="group flex w-full items-center justify-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-2.5 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/20 md:w-auto md:justify-start md:gap-2 md:px-4 md:py-2.5"
                 >
                   <Icon
-                    className="h-4 w-4 text-white/90 transition-colors group-hover:text-white md:h-[18px] md:w-[18px]"
+                    className="h-4 w-4 shrink-0 text-white/90 transition-colors group-hover:text-white md:h-[18px] md:w-[18px]"
                     strokeWidth={1.6}
                   />
                   <span className="text-[11px] uppercase tracking-[0.18em] text-white/90 transition-colors group-hover:text-white md:text-xs">

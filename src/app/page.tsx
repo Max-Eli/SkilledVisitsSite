@@ -4,10 +4,14 @@ import { ServicesGrid } from "@/components/home/services-grid";
 import { Spotlight } from "@/components/home/spotlight";
 import { Process } from "@/components/home/process";
 import { Stats } from "@/components/home/stats";
-import { Testimonials } from "@/components/home/testimonials";
+import { GoogleReviews } from "@/components/home/google-reviews";
+import { Instagram } from "@/components/home/instagram";
 import { CTA } from "@/components/home/cta";
+import { getInstagramPosts } from "@/lib/instagram";
 
-export default function Home() {
+export default async function Home() {
+  const instagramPosts = await getInstagramPosts(6);
+
   return (
     <>
       <Hero />
@@ -16,7 +20,8 @@ export default function Home() {
       <Spotlight />
       <Process />
       <Stats />
-      <Testimonials />
+      <GoogleReviews />
+      <Instagram posts={instagramPosts} />
       <CTA />
     </>
   );

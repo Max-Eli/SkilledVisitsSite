@@ -19,7 +19,7 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-import { BRAND, NAV_LINKS, SERVICES } from "@/lib/content";
+import { BRAND, NAV_LINKS, FOOTER_EXTRA_LINKS, SERVICES } from "@/lib/content";
 
 export function Footer() {
   return (
@@ -62,7 +62,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <h4 className="font-display text-lg text-foreground">Explore</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {NAV_LINKS.map((l) => (
+            {[...NAV_LINKS, ...FOOTER_EXTRA_LINKS].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-[color:var(--muted)] hover:text-brand-700 transition">
                   {l.label}

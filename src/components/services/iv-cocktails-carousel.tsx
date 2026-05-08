@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import type { Cocktail } from "@/lib/content";
+import { MENU_PDF } from "@/lib/content";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 import { AccentText } from "@/components/ui/accent-text";
@@ -110,6 +111,19 @@ export function IVCocktailsCarousel({ cocktails }: { cocktails: Cocktail[] }) {
                 biology — these are starting points, not prescriptions.
               </p>
             </Reveal>
+            <Reveal delay={0.2}>
+              <a
+                href={MENU_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-6 inline-flex items-center gap-2 text-sm text-brand-700 transition-colors hover:text-brand-800"
+              >
+                <Download className="h-4 w-4" strokeWidth={1.75} />
+                <span className="border-b border-brand-300/60 group-hover:border-brand-700">
+                  Download full menu (PDF)
+                </span>
+              </a>
+            </Reveal>
           </div>
 
           <Reveal delay={0.2}>
@@ -174,7 +188,10 @@ export function IVCocktailsCarousel({ cocktails }: { cocktails: Cocktail[] }) {
                 />
                 <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-white/90 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.22em] text-brand-700 backdrop-blur-sm">
                   <span className="h-1 w-1 rounded-full bg-brand-500" />
-                  Infusion
+                  {c.category.split(" ")[0]}
+                </div>
+                <div className="absolute right-3 top-3 inline-flex items-center rounded-full border border-[color:var(--border)] bg-white/95 px-2.5 py-0.5 font-display text-[12px] tracking-tight text-foreground backdrop-blur-sm">
+                  {c.price}
                 </div>
               </div>
 

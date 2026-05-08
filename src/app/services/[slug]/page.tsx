@@ -9,6 +9,10 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 import { CTA } from "@/components/home/cta";
 import { IVCocktailsCarousel } from "@/components/services/iv-cocktails-carousel";
+import { IVMenuList } from "@/components/services/iv-menu-list";
+import { WellnessShotsMenu } from "@/components/services/wellness-shots-menu";
+import { BloodPanelsMenu } from "@/components/services/blood-panels-menu";
+import { RapidTestsMenu } from "@/components/services/rapid-tests-menu";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -116,8 +120,14 @@ export default async function ServiceDetail({ params }: Props) {
       </section>
 
       {service.cocktails && service.cocktails.length > 0 && (
-        <IVCocktailsCarousel cocktails={service.cocktails} />
+        <>
+          <IVCocktailsCarousel cocktails={service.cocktails} />
+          <IVMenuList cocktails={service.cocktails} />
+        </>
       )}
+      {service.slug === "wellness-shots" && <WellnessShotsMenu />}
+      {service.slug === "blood-draws" && <BloodPanelsMenu />}
+      {service.slug === "rapid-tests" && <RapidTestsMenu />}
 
       <section className="mx-auto max-w-7xl px-5 pb-28 md:px-8">
         <div className="lux-divider mb-20" />
