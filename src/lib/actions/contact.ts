@@ -40,12 +40,13 @@ export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  // Wrap EVERYTHING so the form never throws and useActionState always
-  // receives a structured response.
+  console.log("[contact] action invoked");
   try {
-    // Honeypot — bots typically fill every field
     const honey = (formData.get("company") ?? "").toString().trim();
-    if (honey) return { status: "ok" };
+    if (honey) {
+      console.log("[contact] honeypot triggered, silently returning ok");
+      return { status: "ok" };
+    }
 
     const data: Submission = {
       name: ((formData.get("name") ?? "") as string).trim(),
@@ -55,6 +56,14 @@ export async function submitContactForm(
       service: ((formData.get("service") ?? "") as string).trim(),
       message: ((formData.get("message") ?? "") as string).trim(),
     };
+    console.log("[contact] form parsed", {
+      name: data.name,
+      email: data.email,
+      phone: data.phone ? "(present)" : "(empty)",
+      region: data.region,
+      service: data.service,
+      messageLength: data.message.length,
+    });
 
     if (!data.name || !data.email) {
       return { status: "error", message: "Name and email are required." };
@@ -67,6 +76,21 @@ export async function submitContactForm(
     }
 
     const apiKey = process.env.RESEND_API_KEY;
+    const to = process.env.CONTACT_TO_EMAIL ?? BRAND.email;
+    const from =
+      process.env.CONTACT_FROM_EMAIL ??
+      "Skilled Visits Site <onboarding@resend.dev>";
+
+    console.log("[contact] env check", {
+      RESEND_API_KEY: apiKey
+        ? `set (${apiKey.slice(0, 5)}…${apiKey.slice(-4)})`
+        : "MISSING",
+      CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL ?? "(default)",
+      CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL ?? "(default → BRAND.email)",
+      effectiveFrom: from,
+      effectiveTo: to,
+    });
+
     if (!apiKey) {
       console.error("[contact] RESEND_API_KEY is not set");
       return {
@@ -76,13 +100,19 @@ export async function submitContactForm(
       };
     }
 
-    const to = process.env.CONTACT_TO_EMAIL ?? BRAND.email;
-    const from =
-      process.env.CONTACT_FROM_EMAIL ??
-      "Skilled Visits Site <onboarding@resend.dev>";
+    let resend: Resend;
+    try {
+      resend = new Resend(apiKey);
+    } catch (err) {
+      console.error("[contact] Resend constructor threw:", err);
+      return {
+        status: "error",
+        message: "Email service is misconfigured. Please call us directly.",
+      };
+    }
 
-    const resend = new Resend(apiKey);
     const subject = `New inquiry — ${data.service || "general"} — ${data.name}`;
+    console.log("[contact] sending via Resend…", { from, to, subject });
 
     const result = await resend.emails.send({
       from,
@@ -91,6 +121,13 @@ export async function submitContactForm(
       subject,
       html: renderEmailHtml(data),
       text: renderEmailText(data),
+    });
+
+    console.log("[contact] Resend result", {
+      hasError: !!result.error,
+      hasData: !!result.data,
+      data: result.data,
+      error: result.error,
     });
 
     if (result.error) {
@@ -102,10 +139,15 @@ export async function submitContactForm(
       };
     }
 
+    console.log("[contact] success", { id: result.data?.id });
     return { status: "ok" };
   } catch (err) {
-    // Catch-all so the form never 500s.
     console.error("[contact] Action threw unexpectedly:", err);
+    if (err instanceof Error) {
+      console.error("[contact] error name:", err.name);
+      console.error("[contact] error message:", err.message);
+      console.error("[contact] error stack:", err.stack);
+    }
     return {
       status: "error",
       message:
