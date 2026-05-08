@@ -133,7 +133,28 @@ export async function submitContactForm(
       };
     }
 
-    console.log("[contact] success", { id: result.data?.id });
+    console.log("[contact] lead email sent", { id: result.data?.id });
+
+    // Auto-reply to the customer. Best-effort — if it fails we still count
+    // the form submission as successful since the lead reached the business.
+    try {
+      const replyResult = await resend.emails.send({
+        from,
+        to: [data.email],
+        replyTo: to,
+        subject: "We got your message — Skilled Visits",
+        html: renderCustomerHtml(data),
+        text: renderCustomerText(data),
+      });
+      if (replyResult.error) {
+        console.error("[contact] Auto-reply Resend error:", replyResult.error);
+      } else {
+        console.log("[contact] auto-reply sent", { id: replyResult.data?.id });
+      }
+    } catch (err) {
+      console.error("[contact] Auto-reply threw:", err);
+    }
+
     return { status: "ok" };
   } catch (err) {
     console.error("[contact] Action threw unexpectedly:", err);
@@ -236,4 +257,107 @@ ${d.message || "—"}
 
 —
 Reply to this email to respond directly to the client.`;
+}
+
+function firstName(full: string): string {
+  return full.split(/\s+/)[0] || full;
+}
+
+function renderCustomerHtml(d: Submission): string {
+  const greeting = `Hi ${escapeHtml(firstName(d.name))},`;
+  const echoed = d.message
+    ? `<div style="margin-top:24px;padding:18px;background:#fbfafd;border:1px solid #ebe6f0;border-radius:12px;">
+         <div style="color:#6b6480;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px;">Your message</div>
+         <div style="color:#14111c;font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(d.message)}</div>
+       </div>`
+    : "";
+
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>We got your message — Skilled Visits</title>
+</head>
+<body style="margin:0;padding:0;background:#f5ecfc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5ecfc;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;background:#ffffff;border-radius:20px;overflow:hidden;border:1px solid #ebe6f0;">
+          <tr>
+            <td style="background:linear-gradient(135deg,#7029b3 0%,#9e50e5 100%);padding:36px 36px 30px;color:#ffffff;text-align:center;">
+              <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;opacity:0.85;">Skilled Visits</div>
+              <div style="font-family:Georgia,serif;font-size:30px;letter-spacing:-0.02em;margin-top:8px;line-height:1.1;">We got your message.</div>
+              <div style="margin-top:8px;font-size:14px;opacity:0.9;font-style:italic;">A clinician will be in touch shortly.</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px 36px 8px;color:#14111c;font-size:16px;line-height:1.6;">
+              <p style="margin:0 0 14px;">${greeting}</p>
+              <p style="margin:0 0 14px;">Thanks for reaching out to Skilled Visits. We've received your inquiry and a member of our clinical team will personally follow up — typically within a few hours, and always within 24.</p>
+              <p style="margin:0;">If something is time-sensitive, please call us directly. We answer 24/7.</p>
+              ${echoed}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 36px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td style="background:#f5ecfc;border-radius:12px;padding:18px 22px;">
+                    <div style="color:#7029b3;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Reach us anytime</div>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding:4px 0;color:#14111c;font-size:14px;">
+                          <strong style="color:#7029b3;">Florida</strong> &nbsp;
+                          <a href="tel:${BRAND.phoneFL.replace(/\D/g, "")}" style="color:#14111c;text-decoration:none;">${BRAND.phoneFL}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#14111c;font-size:14px;">
+                          <strong style="color:#7029b3;">New York</strong> &nbsp;
+                          <a href="tel:${BRAND.phoneNY.replace(/\D/g, "")}" style="color:#14111c;text-decoration:none;">${BRAND.phoneNY}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#14111c;font-size:14px;">
+                          <strong style="color:#7029b3;">Email</strong> &nbsp;
+                          <a href="mailto:${BRAND.email}" style="color:#14111c;text-decoration:none;">${BRAND.email}</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 36px;background:#fbfafd;border-top:1px solid #ebe6f0;color:#6b6480;font-size:12px;line-height:1.6;text-align:center;">
+              Skilled Visits · Concierge mobile wellness · Florida &amp; New York<br />
+              You're receiving this because you contacted us at skilledvisits.com.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+function renderCustomerText(d: Submission): string {
+  const echo = d.message
+    ? `\n\nYour message:\n${d.message}\n`
+    : "";
+  return `Hi ${firstName(d.name)},
+
+Thanks for reaching out to Skilled Visits. We've received your inquiry and a member of our clinical team will personally follow up — typically within a few hours, and always within 24.
+
+If something is time-sensitive, please call us directly. We answer 24/7.
+
+  Florida:  ${BRAND.phoneFL}
+  New York: ${BRAND.phoneNY}
+  Email:    ${BRAND.email}
+${echo}
+— Skilled Visits
+Concierge mobile wellness · Florida & New York`;
 }
