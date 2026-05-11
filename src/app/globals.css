@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 :root {
+  /* Light editorial palette — cool neutral white with violet accent */
   --background: #ffffff;
-  --surface: #fbfafd;
-  --surface-2: #f5ecfc;
-  --border: #ebe6f0;
-  --border-strong: #d8cee2;
+  --surface: #ffffff;
+  --surface-2: #f7f5fb;
+  --surface-3: #f0ebf7;
+  --border: rgba(20, 17, 28, 0.08);
+  --border-strong: rgba(20, 17, 28, 0.16);
   --foreground: #14111c;
-  --foreground-soft: #2a2438;
+  --foreground-muted: #3a3447;
   --muted: #6b6480;
   --muted-strong: #4a4459;
 
+  /* Brand scale — Skilled Visits violet (#9e50e5) */
   --brand-50: #faf5ff;
   --brand-100: #f5ecfc;
   --brand-200: #e9d5fb;
@@ -30,10 +33,11 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-foreground: var(--foreground);
-  --color-foreground-soft: var(--foreground-soft);
+  --color-foreground-muted: var(--foreground-muted);
   --color-muted: var(--muted);
   --color-muted-strong: var(--muted-strong);
 
@@ -50,6 +54,7 @@
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-fraunces);
+  --font-serif: var(--font-cormorant);
 }
 
 body {
@@ -61,35 +66,120 @@ body {
 }
 
 ::selection {
-  background: var(--brand-200);
-  color: var(--brand-800);
+  background: var(--brand-500);
+  color: #ffffff;
 }
+
+/* Snow-white variant — pure white card-grid sections */
+.section-snow {
+  --background: #ffffff;
+  --surface: #fbfafd;
+  --surface-2: #f5ecfc;
+  --surface-3: #f3eef9;
+  --border: #ebe6f0;
+  --border-strong: #d8cee2;
+  --foreground: #14111c;
+  --foreground-muted: #3a3247;
+  --muted: #6b6480;
+  --muted-strong: #4a4459;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Tinted section variant — for alternating bands */
+.section-cream {
+  --background: #faf8fd;
+  --surface: #ffffff;
+  --surface-2: #f3eef9;
+  --surface-3: #ebe4f3;
+  --border: rgba(20, 17, 28, 0.08);
+  --border-strong: rgba(20, 17, 28, 0.16);
+  --foreground: #14111c;
+  --foreground-muted: #3a3447;
+  --muted: #6b6480;
+  --muted-strong: #4a4459;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Dark variant — deep violet-tinted near-black for heroes & accent strips. */
+.section-dark {
+  --background: #0a0813;
+  --surface: #14111c;
+  --surface-2: #1c1828;
+  --surface-3: #2a2438;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --foreground: #ffffff;
+  --foreground-muted: #c8c4d6;
+  --muted: #8e8aa0;
+  --muted-strong: #b0acc0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Inside dark sections, scale violet brand text upward so it reads. */
+.section-dark .text-brand-700 { color: var(--brand-300); }
+.section-dark .text-brand-600 { color: var(--brand-300); }
+.section-dark .hover\:text-brand-700:hover { color: var(--brand-200); }
+.section-dark .hover\:text-brand-600:hover { color: var(--brand-200); }
+.section-dark .border-brand-500\/30 { border-color: color-mix(in oklab, var(--brand-400) 40%, transparent); }
+.section-dark .bg-brand-50 { background-color: color-mix(in oklab, var(--brand-400) 14%, transparent); }
+.section-dark .eyebrow { color: var(--brand-300); }
 
 .font-display {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
 
+.font-display-italic {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.text-accent { color: var(--brand-700); }
+
+/* Section eyebrow — small caps, violet */
+.eyebrow {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand-700);
+  font-weight: 500;
+}
+
+/* Surfaces */
+.card-dark {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.card-elevated {
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+}
+
+/* Minimal ambient — subtle violet glow for hero backgrounds */
 .brand-glow {
   background:
-    radial-gradient(55% 45% at 50% 0%, color-mix(in oklab, var(--brand-300) 32%, transparent) 0%, transparent 65%),
-    radial-gradient(40% 35% at 90% 15%, color-mix(in oklab, var(--brand-200) 50%, transparent) 0%, transparent 70%),
-    radial-gradient(45% 40% at 8% 80%, color-mix(in oklab, var(--brand-100) 80%, transparent) 0%, transparent 70%);
+    radial-gradient(60% 50% at 80% 0%, color-mix(in oklab, var(--brand-300) 22%, transparent) 0%, transparent 60%),
+    radial-gradient(50% 40% at 10% 100%, color-mix(in oklab, var(--brand-200) 18%, transparent) 0%, transparent 60%);
 }
 
 .brand-glow-soft {
   background:
-    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--brand-200) 45%, transparent) 0%, transparent 70%);
+    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--brand-200) 18%, transparent) 0%, transparent 70%);
 }
 
 .lux-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-500) 28%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-500) 45%, transparent), transparent);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-500) 60%, var(--brand-400) 100%);
+  background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-500) 60%, var(--brand-300) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -97,17 +187,17 @@ body {
 
 .ring-brand {
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--brand-400) 35%, transparent),
-    0 12px 30px -12px color-mix(in oklab, var(--brand-500) 35%, transparent);
+    0 0 0 1px color-mix(in oklab, var(--brand-500) 35%, transparent),
+    0 12px 30px -12px color-mix(in oklab, var(--brand-500) 40%, transparent);
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.marquee-track {
-  animation: marquee 40s linear infinite;
-}
+.marquee-track { animation: marquee 60s linear infinite; }
+.marquee-track-slow { animation: marquee 120s linear infinite; }
+.marquee-track-slow-reverse { animation: marquee 120s linear infinite reverse; }
 
 @keyframes float-slow {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -121,52 +211,48 @@ body {
 }
 .pulse-glow { animation: pulse-glow 3.2s ease-in-out infinite; }
 
-.border-subtle {
-  border-color: var(--border);
-}
+.border-subtle { border-color: var(--border); }
 
+/* Card variants — soft warm tints on light surface */
 .bg-card-lux {
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--brand-100) 45%, transparent) 0%, transparent 55%),
-    #ffffff;
+    linear-gradient(180deg, color-mix(in oklab, var(--brand-100) 60%, transparent) 0%, transparent 50%),
+    linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
 }
-
 .bg-card-tinted {
   background: var(--surface-2);
 }
 
+/* Shadows tuned for light surfaces — subtle, professional */
 .shadow-soft {
-  box-shadow: 0 1px 2px rgba(20, 17, 28, 0.04), 0 4px 14px rgba(20, 17, 28, 0.05);
-}
-
-.shadow-soft-lg {
   box-shadow:
     0 1px 2px rgba(20, 17, 28, 0.04),
-    0 12px 28px -10px rgba(112, 41, 179, 0.18),
-    0 24px 56px -16px rgba(112, 41, 179, 0.12);
+    0 2px 8px rgba(20, 17, 28, 0.04);
+}
+.shadow-soft-lg {
+  box-shadow:
+    0 4px 12px rgba(20, 17, 28, 0.06),
+    0 16px 40px -12px rgba(20, 17, 28, 0.08);
 }
 
 .dot-grid {
-  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--brand-400) 28%, transparent) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--brand-500) 25%, transparent) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-.hide-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
 
+/* Long-form prose for legal pages / blog content */
 .prose-sv {
-  color: var(--muted-strong);
+  color: var(--foreground-muted);
   line-height: 1.7;
 }
 .prose-sv > * + * { margin-top: 1rem; }
 .prose-sv h2 {
-  font-family: var(--font-fraunces), Georgia, serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.01em;
+  font-weight: 500;
   color: var(--foreground);
   font-size: 1.625rem;
   line-height: 1.2;
@@ -178,8 +264,9 @@ body {
   .prose-sv h2 { font-size: 2rem; }
 }
 .prose-sv h3 {
-  font-family: var(--font-fraunces), Georgia, serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.01em;
+  font-weight: 500;
   color: var(--foreground);
   font-size: 1.25rem;
   line-height: 1.3;
@@ -190,12 +277,12 @@ body {
 .prose-sv ul { list-style: disc; }
 .prose-sv ol { list-style: decimal; }
 .prose-sv li { margin-top: 0.5rem; }
-.prose-sv li::marker { color: var(--brand-500); }
+.prose-sv li::marker { color: var(--brand-600); }
 .prose-sv a {
   color: var(--brand-700);
   text-decoration: underline;
   text-underline-offset: 2px;
-  text-decoration-color: color-mix(in oklab, var(--brand-400) 50%, transparent);
+  text-decoration-color: color-mix(in oklab, var(--brand-500) 50%, transparent);
   transition: color 200ms, text-decoration-color 200ms;
 }
 .prose-sv a:hover {
@@ -204,9 +291,9 @@ body {
 }
 .prose-sv strong { color: var(--foreground); font-weight: 600; }
 .prose-sv blockquote {
-  border-left: 2px solid var(--brand-300);
+  border-left: 2px solid var(--brand-500);
   padding-left: 1.25rem;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-style: italic;
   color: var(--foreground);
   margin-top: 1.5rem;
@@ -216,7 +303,7 @@ body {
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
   font-size: 0.9em;
-  color: var(--brand-800);
+  color: var(--brand-700);
 }
 .prose-sv hr {
   border: 0;

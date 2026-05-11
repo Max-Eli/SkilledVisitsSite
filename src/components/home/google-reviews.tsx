@@ -64,7 +64,7 @@ const AVATAR_BG = [
   "bg-emerald-100 text-emerald-800",
   "bg-rose-100 text-rose-800",
   "bg-sky-100 text-sky-800",
-  "bg-violet-100 text-violet-800",
+  "bg-stone-200 text-stone-800",
 ];
 
 export function GoogleReviews() {

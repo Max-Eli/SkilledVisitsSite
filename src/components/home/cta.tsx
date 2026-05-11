@@ -1,84 +1,203 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
-import { LuxButton } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Clock,
+  ShieldCheck,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
 import { BRAND } from "@/lib/content";
-import { AccentText } from "@/components/ui/accent-text";
+
+const TRUST_PILLS = [
+  { icon: Clock, label: "24/7 Available" },
+  { icon: ShieldCheck, label: "Licensed Clinicians" },
+  { icon: MapPin, label: "We Come To You" },
+];
+
+const CONTACTS = [
+  {
+    icon: Phone,
+    label: "Florida",
+    value: BRAND.phoneFL,
+    href: `tel:${BRAND.phoneFL.replace(/\D/g, "")}`,
+  },
+  {
+    icon: Phone,
+    label: "New York",
+    value: BRAND.phoneNY,
+    href: `tel:${BRAND.phoneNY.replace(/\D/g, "")}`,
+  },
+  {
+    icon: Mail,
+    label: "Email Us",
+    value: BRAND.email,
+    href: `mailto:${BRAND.email}`,
+  },
+];
 
 export function CTA() {
   return (
-    <section className="relative mx-auto max-w-7xl px-5 py-28 md:px-8">
-      <div className="relative overflow-hidden rounded-[28px] border border-[color:var(--border-strong)] bg-[color:var(--surface-2)] p-8 sm:p-10 md:rounded-[36px] md:p-20">
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(50% 60% at 100% 0%, color-mix(in oklab, var(--brand-400) 55%, transparent) 0%, transparent 65%), radial-gradient(40% 55% at 0% 100%, color-mix(in oklab, var(--brand-300) 70%, transparent) 0%, transparent 70%)",
-          }}
+    <section className="section-dark relative overflow-hidden">
+      {/* Background van photo at low opacity */}
+      <div aria-hidden className="absolute inset-0 -z-20">
+        <Image
+          src="/van-side-1.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-25"
+        />
+      </div>
+
+      {/* Gradient overlay + brand glow */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-[color:var(--background)] via-[color:var(--background)]/85 to-[color:var(--background)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 brand-glow opacity-50"
+      />
+
+      <div className="mx-auto max-w-3xl px-5 py-24 text-center md:px-8 md:py-32">
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="eyebrow"
+        >
+          Begin
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display mt-5 text-5xl leading-[1] tracking-tight text-[color:var(--foreground)] md:text-6xl lg:text-7xl"
+        >
+          Ready to Feel{" "}
+          <span className="font-display-italic text-brand-700">Better?</span>
+        </motion.h2>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-4 h-px w-16 origin-center bg-brand-500/80"
         />
 
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.4 }}
-          className="pointer-events-none absolute -right-10 -top-20 h-[460px] w-[460px] rounded-full border border-brand-300/70"
-        />
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.6, delay: 0.15 }}
-          className="pointer-events-none absolute -right-32 -top-40 h-[680px] w-[680px] rounded-full border border-brand-200"
-        />
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.8, delay: 0.3 }}
-          className="pointer-events-none absolute -right-52 -top-56 h-[880px] w-[880px] rounded-full border border-brand-200/60"
-        />
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[color:var(--foreground-muted)]"
+        >
+          Book your visit and a clinician will design your protocol before they
+          arrive. Same-day, around the clock, wherever you are.
+        </motion.p>
 
-        <div className="relative flex items-start justify-between gap-8">
-          <div className="max-w-3xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] text-brand-700">
-              Begin
-            </div>
-            <h2 className="font-display mt-4 text-5xl leading-[1.02] tracking-tight md:text-7xl">
-              Care that comes<br />
-              <AccentText className="text-gradient">to you.</AccentText>
-            </h2>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-[color:var(--muted-strong)]">
-              Book your consultation. We&apos;ll design a protocol, schedule a
-              time, and arrive when you&apos;re ready.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
-              <LuxButton href="/contact" size="lg" withArrow>
-                Start your consultation
-              </LuxButton>
-              <a
-                href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-                className="text-sm text-[color:var(--muted-strong)] hover:text-brand-700 transition-colors"
-              >
-                Or call {BRAND.phoneFL}
-              </a>
-            </div>
-          </div>
+        {/* Trust pills */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-2"
+        >
+          {TRUST_PILLS.map(({ icon: Icon, label }) => (
+            <span
+              key={label}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] text-[color:var(--foreground)] backdrop-blur-md"
+            >
+              <Icon className="h-3.5 w-3.5 text-brand-700" strokeWidth={1.7} />
+              {label}
+            </span>
+          ))}
+        </motion.div>
 
-          <div className="hidden md:block">
-            <div className="text-right text-[10px] uppercase tracking-[0.28em] text-brand-700/80">
-              By appointment
-              <div className="mt-2 ml-auto h-px w-12 bg-brand-300" />
-              <div className="mt-2 normal-case tracking-normal text-[11px] text-[color:var(--muted)]">
-                Available 24 / 7
+        {/* Primary CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+        >
+          <Link
+            href="/contact"
+            className="group inline-flex items-center justify-center gap-2.5 rounded-md bg-gradient-to-b from-brand-500 to-brand-700 px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-white shadow-[0_10px_28px_-12px_color-mix(in_oklab,var(--brand-500)_60%,transparent)] transition hover:-translate-y-0.5"
+          >
+            Book Your Visit
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center gap-2.5 rounded-md border border-[color:var(--border-strong)] bg-[color:var(--surface)]/30 px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-[color:var(--foreground)] backdrop-blur-sm transition hover:border-brand-500/60 hover:bg-[color:var(--surface)]/60"
+          >
+            Explore Services
+          </Link>
+        </motion.div>
+
+        {/* "Or reach us directly" divider */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+          className="mx-auto mt-14 flex max-w-md items-center gap-4"
+        >
+          <div className="h-px flex-1 bg-[color:var(--border)]" />
+          <span className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">
+            Or Reach Us Directly
+          </span>
+          <div className="h-px flex-1 bg-[color:var(--border)]" />
+        </motion.div>
+
+        {/* Contact cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3"
+        >
+          {CONTACTS.map(({ icon: Icon, label, value, href }) => (
+            <a
+              key={label}
+              href={href}
+              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 text-left backdrop-blur-md transition hover:-translate-y-0.5 hover:border-brand-400/50 hover:bg-white/[0.08]"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-400/40 bg-brand-500/15 text-brand-700">
+                <Icon className="h-4 w-4" strokeWidth={1.7} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
+                  {label}
+                </div>
+                <div className="truncate text-sm text-[color:var(--foreground)]">
+                  {value}
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+              <ArrowRight
+                className="h-3.5 w-3.5 shrink-0 text-[color:var(--muted)] transition-all group-hover:translate-x-0.5 group-hover:text-brand-700"
+                strokeWidth={1.7}
+              />
+            </a>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

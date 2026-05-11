@@ -14,16 +14,18 @@ export const BRAND = {
 
 export const NAV_LINKS = [
   { href: "/services", label: "Services" },
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/service-areas", label: "Where We Serve" },
-  { href: "/blog", label: "Blog" },
+  { href: "/mobile-iv-lounge", label: "Mobile IV Lounge" },
+  { href: "/memberships", label: "Memberships" },
   { href: "/about", label: "About" },
+  { href: "/service-areas", label: "Service Areas" },
   { href: "/contact", label: "Contact" },
 ];
 
-// Extra links shown only in the footer (referrals, etc.).
+// Extra links shown only in the footer.
 export const FOOTER_EXTRA_LINKS = [
+  { href: "/blog", label: "Insights" },
   { href: "/referrals", label: "Referrals" },
+  { href: "/how-it-works", label: "How It Works" },
 ];
 
 export type CocktailCategory =
@@ -427,12 +429,65 @@ export const HOW_IT_WORKS = [
 export const SERVICE_AREAS = {
   Florida: {
     phone: BRAND.phoneFL,
-    cities: ["Miami-Dade", "Broward", "Palm Beach"],
+    cities: [
+      "Miami",
+      "Miami Beach",
+      "South Beach",
+      "Sunny Isles",
+      "Aventura",
+      "Bal Harbour",
+      "Surfside",
+      "Brickell",
+      "Coral Gables",
+      "Coconut Grove",
+      "Key Biscayne",
+      "Pinecrest",
+      "Doral",
+      "Wynwood",
+      "Fort Lauderdale",
+      "Hollywood",
+      "Hallandale",
+      "Pompano Beach",
+      "Deerfield Beach",
+      "Boca Raton",
+      "Delray Beach",
+      "Boynton Beach",
+      "West Palm Beach",
+      "Palm Beach",
+      "Jupiter",
+      "Palm Beach Gardens",
+    ],
     hero: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&w=1600&q=80",
   },
   "New York": {
     phone: BRAND.phoneNY,
-    cities: ["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"],
+    cities: [
+      "Manhattan",
+      "Upper East Side",
+      "Upper West Side",
+      "Midtown",
+      "Tribeca",
+      "SoHo",
+      "Financial District",
+      "Chelsea",
+      "West Village",
+      "East Village",
+      "Brooklyn",
+      "Williamsburg",
+      "DUMBO",
+      "Park Slope",
+      "Brooklyn Heights",
+      "Queens",
+      "Long Island City",
+      "Astoria",
+      "Forest Hills",
+      "The Bronx",
+      "Staten Island",
+      "Westchester",
+      "Long Island",
+      "The Hamptons",
+      "Greenwich",
+    ],
     hero: "https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=1600&q=80",
   },
 };
@@ -451,7 +506,7 @@ export type GoogleReview = {
   text: string;
 };
 
-export const GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/JVZQVrfCzBqSc7P16";
+export const GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/jvsDcMbfaetFgE9PA";
 
 export const GOOGLE_REVIEWS: GoogleReview[] = [
   {
