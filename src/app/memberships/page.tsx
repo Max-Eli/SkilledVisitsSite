@@ -27,17 +27,17 @@ const BENEFITS = [
   {
     icon: Crown,
     title: "Priority Access",
-    body: "Same-day booking and the first pick of clinician schedules — every time.",
+    body: "Same-day concierge scheduling and first pick of clinician availability — every time.",
   },
   {
     icon: HandCoins,
     title: "Member Pricing",
-    body: "Locked-in member rates on every IV, shot, and lab — and exclusive add-ons.",
+    body: "Preferential member rates on every IV, shot, and lab — plus exclusive add-ons.",
   },
   {
     icon: Sparkles,
-    title: "Monthly Credits",
-    body: "Pre-loaded credits each month that roll forward — use them how you'd like.",
+    title: "Personalized Protocols",
+    body: "Custom wellness protocols tailored to your goals, biology, and lifestyle.",
   },
   {
     icon: HeartHandshake,
@@ -47,7 +47,7 @@ const BENEFITS = [
   {
     icon: Truck,
     title: "Travel Coverage",
-    body: "Visits at home, office, hotel, or the mobile lounge — always included.",
+    body: "Sessions at home, office, hotel, or the Mobile IV Lounge — always included.",
   },
 ];
 
@@ -64,55 +64,57 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Essential",
-    price: "$129",
+    price: "$179",
     cadence: "/ month",
-    description: "Routine wellness, made easy.",
+    description: "Routine wellness, made effortless.",
     features: [
-      "1 IV hydration visit / month",
-      "10% off all add-ons",
-      "Standard wellness shot included",
-      "Priority booking line",
-      "Quarterly clinician check-in",
+      "One concierge IV therapy session monthly",
+      "10% off all add-on services",
+      "Priority concierge scheduling",
+      "One signature wellness shot included",
+      "Quarterly clinician wellness check-in",
     ],
     ctaLabel: "Choose Essential",
   },
   {
     name: "Premier",
-    price: "$199",
+    price: "$349",
     cadence: "/ month",
-    description: "Most popular. Real protocols, real results.",
+    description: "For the serious wellness client. Real protocols, real results.",
     features: [
-      "2 IV hydration visits / month",
-      "15% off all add-ons",
-      "1 signature wellness shot included",
+      "Two concierge IV therapy sessions monthly",
+      "15% off all add-on services",
+      "One signature wellness shot monthly",
       "Quarterly bloodwork panel",
       "Personalized protocol design",
-      "24/7 priority concierge",
+      "Priority concierge booking",
     ],
     ctaLabel: "Choose Premier",
     highlight: true,
   },
   {
     name: "Elite",
-    price: "$299",
+    price: "$599",
     cadence: "/ month",
-    description: "For peak performance and longevity.",
+    description: "Exclusive access. Executive-level care.",
     features: [
-      "4 IV hydration visits / month",
-      "20% off all add-ons",
-      "1 NAD+ infusion every quarter",
-      "2 signature shots included",
+      "Up to four concierge IV therapy sessions monthly (or two premium)",
+      "20% off all add-on services",
+      "Quarterly NAD+ infusion included",
+      "Two signature wellness shots monthly",
       "Bi-annual executive blood panel",
-      "Mobile lounge sessions included",
-      "Dedicated clinical concierge",
+      "Exclusive access to the Skilled Visits Mobile IV Lounge",
+      "Dedicated concierge line",
+      "Priority after-hours dispatch",
+      "Quarterly guest pass for a spouse or friend",
     ],
     ctaLabel: "Choose Elite",
   },
 ];
 
 const ALL_PLANS_INCLUDE = [
-  "Licensed clinician on every visit",
-  "Same-day booking line",
+  "Licensed clinician on every session",
+  "Same-day concierge availability",
   "Cancel or pause anytime",
   "No setup fees, ever",
 ];
@@ -156,19 +158,19 @@ const CONTACTS = [
 const FAQS = [
   {
     q: "How do I redeem my membership each month?",
-    a: "Book through your member portal or call our concierge line. Visits, credits, and add-ons are all tracked automatically.",
+    a: "Book through your member portal or call our concierge line. Sessions, add-ons, and member rates are tracked automatically.",
   },
   {
-    q: "Do unused credits roll over?",
-    a: "Yes — credits roll forward up to three months so a busy season never goes to waste.",
+    q: "What if I can't use all my sessions in a month?",
+    a: "Unused sessions roll forward up to three months, and your concierge will help plan your cadence around travel and your schedule.",
   },
   {
     q: "Can I share my membership with family?",
-    a: "Each plan covers one member. We offer household add-ons at a reduced rate — ask the concierge team.",
+    a: "Each plan covers one member. Elite includes a quarterly guest pass for a spouse or friend, and household add-ons are available on every plan — ask your concierge.",
   },
   {
     q: "What's the cancellation policy?",
-    a: "Month-to-month, cancel anytime. No setup fee, no penalty.",
+    a: "Month-to-month. Cancel or pause anytime. No setup fee, no penalty.",
   },
 ];
 
@@ -191,9 +193,9 @@ export default function MembershipsPage() {
               </span>
             </h1>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-[color:var(--foreground-muted)] sm:mt-7 sm:text-[15px] md:text-base">
-              Our membership plans are designed for those who treat wellness as
-              a routine — premium care, on a predictable cadence, with priority
-              access whenever you need it.
+              Concierge-level access, personalized protocols, and priority care
+              — engineered for clients who treat their health as a long-term
+              investment.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
