@@ -66,13 +66,11 @@ const TIERS: Tier[] = [
     name: "Essential",
     price: "$179",
     cadence: "/ month",
-    description: "Routine wellness, made effortless.",
+    description: "Routine wellness, made easy.",
     features: [
-      "One concierge IV therapy session monthly",
-      "10% off all add-on services",
-      "Priority concierge scheduling",
-      "One signature wellness shot included",
-      "Quarterly clinician wellness check-in",
+      "1 concierge IV therapy session per month",
+      "10% off enhancements & add-ons",
+      "1 standard wellness shot included monthly",
     ],
     ctaLabel: "Choose Essential",
   },
@@ -80,14 +78,13 @@ const TIERS: Tier[] = [
     name: "Premier",
     price: "$349",
     cadence: "/ month",
-    description: "For the serious wellness client. Real protocols, real results.",
+    description: "Consistent wellness. Elevated recovery.",
     features: [
-      "Two concierge IV therapy sessions monthly",
-      "15% off all add-on services",
-      "One signature wellness shot monthly",
-      "Quarterly bloodwork panel",
-      "Personalized protocol design",
-      "Priority concierge booking",
+      "2 concierge IV therapy sessions per month",
+      "15% off enhancements & add-ons",
+      "1 signature wellness shot included monthly",
+      "Annual wellness bloodwork panel",
+      "Priority booking access",
     ],
     ctaLabel: "Choose Premier",
     highlight: true,
@@ -96,34 +93,30 @@ const TIERS: Tier[] = [
     name: "Elite",
     price: "$599",
     cadence: "/ month",
-    description: "Exclusive access. Executive-level care.",
+    description: "Peak performance & longevity.",
     features: [
-      "Up to four concierge IV therapy sessions monthly (or two premium)",
-      "20% off all add-on services",
-      "Quarterly NAD+ infusion included",
-      "Two signature wellness shots monthly",
-      "Bi-annual executive blood panel",
-      "Exclusive access to the Skilled Visits Mobile IV Lounge",
-      "Dedicated concierge line",
-      "Priority after-hours dispatch",
-      "Quarterly guest pass for a spouse or friend",
+      "Up to 4 concierge IV therapy sessions per month (or 2 premium)",
+      "20% off enhancements & add-ons",
+      "2 signature wellness shots included monthly",
+      "Semi-annual wellness panel",
+      "Preferred pricing on NAD+ therapy",
+      "Priority after-hours scheduling",
     ],
     ctaLabel: "Choose Elite",
   },
 ];
 
-const ALL_PLANS_INCLUDE = [
-  "Licensed clinician on every session",
-  "Same-day concierge availability",
-  "Cancel or pause anytime",
-  "No setup fees, ever",
+const MEMBERSHIP_BENEFITS = [
+  "Preferred member scheduling",
+  "Access to the Skilled Visits Mobile IV Lounge (based on availability)",
+  "Exclusive member pricing on select enhancements & wellness services",
+  "Access to member-only promotions & seasonal wellness offers",
 ];
 
 const ENHANCEMENTS = [
   "Add-on NAD+ infusions at member rate",
   "Hormone optimization panels",
   "Mobile lounge buyouts for groups",
-  "Aesthetic & beauty add-ons",
   "Custom IV formulations",
   "Annual executive physical",
 ];
@@ -343,20 +336,29 @@ export default function MembershipsPage() {
             ))}
           </div>
 
-          {/* All plans include strip */}
-          <div className="mt-10 rounded-2xl border border-[color:var(--border)] bg-white p-6 shadow-soft md:p-7">
-            <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
-              <div className="text-[11px] uppercase tracking-[0.22em] text-brand-700 shrink-0">
-                Every Plan Includes
-              </div>
-              <div className="flex flex-wrap gap-x-5 gap-y-2">
-                {ALL_PLANS_INCLUDE.map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-[13px] text-[color:var(--foreground)]">
-                    <Check className="h-3.5 w-3.5 shrink-0 text-brand-700" strokeWidth={2.5} />
-                    {item}
-                  </div>
-                ))}
-              </div>
+          {/* Membership benefits — every member receives */}
+          <div className="mt-12 rounded-2xl border border-[color:var(--border)] bg-white p-7 shadow-soft md:mt-14 md:p-9">
+            <div className="text-center">
+              <div className="eyebrow">Membership Benefits</div>
+              <h3 className="font-display mt-3 text-2xl tracking-tight text-[color:var(--foreground)] md:text-3xl">
+                Every Skilled Visits Member{" "}
+                <span className="font-display-italic text-brand-700">
+                  Receives
+                </span>
+              </h3>
+            </div>
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-x-6 md:gap-y-4">
+              {MEMBERSHIP_BENEFITS.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-4 py-3.5 text-[13px] leading-relaxed text-[color:var(--foreground)] shadow-soft transition hover:-translate-y-0.5 hover:border-brand-500/30"
+                >
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700">
+                    <Check className="h-3 w-3" strokeWidth={2.5} />
+                  </span>
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </div>
