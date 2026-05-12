@@ -14,12 +14,12 @@ const FEATURES = [
   {
     icon: Stethoscope,
     title: "Board-Certified Clinicians",
-    body: "Every visit is delivered by a credentialed nurse, NP, or MD — with physician oversight on every protocol.",
+    body: "Every visit is delivered by experienced registered nurses following physician-approved treatment protocols.",
   },
   {
     icon: Beaker,
     title: "Medical-Grade Ingredients",
-    body: "FDA-vetted vitamins, minerals, and prescription medications — the same products used in hospitals.",
+    body: "Premium vitamins, minerals, and wellness medications sourced from trusted U.S. pharmacies and medical suppliers.",
   },
   {
     icon: Clock,
