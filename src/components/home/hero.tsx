@@ -36,7 +36,7 @@ export function Hero() {
       {/* Full-bleed editorial hero photo — NYC penthouse, IV at golden hour */}
       <div aria-hidden className="absolute inset-0 -z-20">
         <Image
-          src="/siteimages/temphero.png"
+          src="/siteimages/IMG_3007.JPG"
           alt=""
           fill
           priority
