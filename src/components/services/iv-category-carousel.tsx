@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Cocktail, CocktailCategory } from "@/lib/content";
+import { BRAND } from "@/lib/content";
 
 export function IVCategoryCarousel({
   category,
@@ -177,7 +178,9 @@ export function IVCategoryCarousel({
                 </div>
 
                 <Link
-                  href="/contact"
+                  href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
                   className="group/cta mt-auto inline-flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.22em] text-brand-700 transition hover:text-brand-800"
                 >
                   Book This Drip

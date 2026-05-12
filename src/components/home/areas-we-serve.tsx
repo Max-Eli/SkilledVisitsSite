@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
-import { SERVICE_AREAS } from "@/lib/content";
+import { BRAND, SERVICE_AREAS } from "@/lib/content";
 
 const ENTRIES: {
   key: keyof typeof SERVICE_AREAS;
@@ -171,7 +171,9 @@ export function AreasWeServe() {
                       {data.phone}
                     </a>
                     <Link
-                      href="/contact"
+                      href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
                       className="group/cta inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-b from-brand-500 to-brand-700 px-5 py-3 text-[10px] uppercase tracking-[0.22em] text-white shadow-[0_8px_22px_-10px_color-mix(in_oklab,var(--brand-500)_60%,transparent)] transition hover:-translate-y-0.5 md:text-[11px]"
                     >
                       Book in {entry.short}

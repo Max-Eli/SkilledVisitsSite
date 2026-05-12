@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { BRAND } from "@/lib/content";
 import {
   ArrowRight,
   Thermometer,
@@ -166,7 +167,9 @@ export function MobileLoungePromo() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
-                href="/contact"
+                href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 rounded-md border border-[color:var(--border-strong)] bg-[color:var(--surface)]/30 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-[color:var(--foreground)] backdrop-blur-sm transition hover:border-brand-500/60 hover:bg-[color:var(--surface)]/60"
               >
                 Book the Lounge

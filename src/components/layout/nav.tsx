@@ -66,7 +66,9 @@ export function Nav() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <LuxButton href="/contact" size="sm" withArrow>
+          <LuxButton href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer" size="sm" withArrow>
             Book Now
           </LuxButton>
         </div>
@@ -116,7 +118,9 @@ export function Nav() {
             ))}
           </nav>
           <div className="mt-auto px-5 pb-10 pt-8 flex flex-col gap-3">
-            <LuxButton href="/contact" size="lg" withArrow onClick={() => setOpen(false)}>
+            <LuxButton href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer" size="lg" withArrow onClick={() => setOpen(false)}>
               Book Now
             </LuxButton>
             <a

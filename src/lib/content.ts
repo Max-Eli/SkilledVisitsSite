@@ -3,8 +3,9 @@ export const BRAND = {
   tagline: "Wellness, delivered.",
   email: "info@skilledvisits.com",
   phoneFL: "(305) 808-7777",
-  phoneNY: "(888) 664-3964",
+  phoneNY: "(718) 465-7777",
   hours: "Available 24 / 7",
+  bookingUrl: "https://SkilledVisits.as.me/",
   social: {
     instagram: "https://instagram.com/skilledvisits",
     facebook: "https://facebook.com/skilledvisits",

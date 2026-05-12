@@ -160,7 +160,9 @@ export default function ServiceAreasPage() {
                         {data.phone}
                       </a>
                       <Link
-                        href="/contact"
+                        href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
                         className="group/cta inline-flex items-center gap-2 rounded-md bg-gradient-to-b from-brand-500 to-brand-700 px-5 py-2.5 text-[10px] uppercase tracking-[0.22em] text-white shadow-[0_8px_22px_-10px_color-mix(in_oklab,var(--brand-500)_60%,transparent)] transition hover:-translate-y-0.5 md:text-[11px]"
                       >
                         Book in {region === "Florida" ? "South Florida" : "New York"}
@@ -289,7 +291,9 @@ export default function ServiceAreasPage() {
           </div>
           <div className="flex flex-col items-start gap-3 md:items-end">
             <Link
-              href="/contact"
+              href={BRAND.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 rounded-md bg-gradient-to-b from-brand-500 to-brand-700 px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-white shadow-[0_10px_28px_-12px_color-mix(in_oklab,var(--brand-500)_60%,transparent)] transition hover:-translate-y-0.5"
             >
               Book Now
