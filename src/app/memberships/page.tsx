@@ -159,7 +159,7 @@ const FAQS = [
   },
   {
     q: "Can I share my membership with family?",
-    a: "Each plan covers one member. Elite includes a quarterly guest pass for a spouse or friend, and household add-ons are available on every plan — ask your concierge.",
+    a: "No sharing — each plan covers one member only.",
   },
   {
     q: "What's the cancellation policy?",
