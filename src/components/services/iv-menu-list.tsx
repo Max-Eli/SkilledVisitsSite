@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Download, ShieldCheck } from "lucide-react";
+import { Download } from "lucide-react";
 import type { Cocktail } from "@/lib/content";
 import { COCKTAIL_CATEGORIES, MENU_PDF } from "@/lib/content";
 import { IVCategoryCarousel } from "@/components/services/iv-category-carousel";
@@ -65,10 +65,6 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
               <Download className="h-4 w-4" strokeWidth={1.75} />
               Download Menu (PDF)
             </a>
-            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-strong)]">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" strokeWidth={1.75} />
-              We Accept Insurance
-            </div>
           </motion.div>
         </div>
 

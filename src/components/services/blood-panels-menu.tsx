@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Download, ShieldCheck, Check } from "lucide-react";
+import { Download, Check } from "lucide-react";
 import { BLOOD_PANELS, BLOOD_WORK_FEE, MENU_PDF } from "@/lib/content";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
@@ -40,10 +40,6 @@ export function BloodPanelsMenu() {
                 <Download className="h-4 w-4" strokeWidth={1.75} />
                 <span>Download menu (PDF)</span>
               </a>
-              <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-strong)]">
-                <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" strokeWidth={1.75} />
-                <span>We accept insurance</span>
-              </div>
             </div>
           </Reveal>
         </div>

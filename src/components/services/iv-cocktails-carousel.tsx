@@ -188,7 +188,7 @@ export function IVCocktailsCarousel({ cocktails }: { cocktails: Cocktail[] }) {
                 />
                 <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-white/90 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.22em] text-brand-700 backdrop-blur-sm">
                   <span className="h-1 w-1 rounded-full bg-brand-500" />
-                  {c.category.split(" ")[0]}
+                  {c.category}
                 </div>
                 <div className="absolute right-3 top-3 inline-flex items-center rounded-full border border-[color:var(--border)] bg-white/95 px-2.5 py-0.5 font-display text-[12px] tracking-tight text-foreground backdrop-blur-sm">
                   {c.price}

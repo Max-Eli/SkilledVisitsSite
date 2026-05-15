@@ -30,10 +30,12 @@ export const FOOTER_EXTRA_LINKS = [
 ];
 
 export type CocktailCategory =
-  | "Performance & Recovery"
-  | "Wellness & Maintenance"
-  | "Immune, Detox & Longevity"
-  | "Women's Health & Wellness";
+  | "Performance"
+  | "Recovery"
+  | "Maintenance"
+  | "Detox"
+  | "Longevity"
+  | "Women's Health";
 
 export type Cocktail = {
   name: string;
@@ -78,7 +80,6 @@ export type Service = {
 const STD_SALINE = "1 Liter 0.9% Normal Saline";
 
 export const IV_COCKTAILS: Cocktail[] = [
-  // ─── Performance & Recovery ───
   {
     name: "Athletic Performance",
     tagline: "Optimize. Perform. Dominate.",
@@ -87,7 +88,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Taurine", "L-Carnitine", "B-Complex", "Magnesium", "Amino Blend"],
     image: "/athletic-performance.jpeg",
     price: "$299",
-    category: "Performance & Recovery",
+    category: "Performance",
     infusedIn: STD_SALINE,
   },
   {
@@ -98,7 +99,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin C", "B-Complex", "Ondansetron", "Mineral Blend"],
     image: "/hangover-hero.jpeg",
     price: "$249",
-    category: "Performance & Recovery",
+    category: "Recovery",
     infusedIn: STD_SALINE,
   },
   {
@@ -109,7 +110,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "Magnesium"],
     image: "/jet-lag-recovery.jpeg",
     price: "$249",
-    category: "Performance & Recovery",
+    category: "Recovery",
     infusedIn: STD_SALINE,
   },
   {
@@ -120,7 +121,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Taurine", "B-Complex", "Magnesium", "Amino Blend"],
     image: "/stress-relief.jpeg",
     price: "$249",
-    category: "Performance & Recovery",
+    category: "Performance",
     infusedIn: STD_SALINE,
   },
   {
@@ -131,11 +132,10 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Zinc", "Taurine", "Vitamin C", "L-Glutamine"],
     image: "/post-surgery-recovery.jpeg",
     price: "$249",
-    category: "Performance & Recovery",
+    category: "Recovery",
     infusedIn: STD_SALINE,
   },
 
-  // ─── Wellness & Maintenance ───
   {
     name: "Energy Charge",
     tagline: "Energize from within.",
@@ -144,7 +144,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "L-Carnitine"],
     image: "/energy-charge.jpeg",
     price: "$249",
-    category: "Wellness & Maintenance",
+    category: "Maintenance",
     infusedIn: STD_SALINE,
   },
   {
@@ -155,7 +155,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin B-12", "Calcium", "B-Complex", "Magnesium"],
     image: "/original-myers.jpeg",
     price: "$299",
-    category: "Wellness & Maintenance",
+    category: "Maintenance",
     infusedIn: STD_SALINE,
   },
   {
@@ -166,7 +166,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["No Vitamins", "0.9% Normal Saline"],
     image: "/pure-hydration.jpeg",
     price: "$199",
-    category: "Wellness & Maintenance",
+    category: "Maintenance",
     infusedIn: STD_SALINE,
   },
   {
@@ -189,11 +189,10 @@ export const IV_COCKTAILS: Cocktail[] = [
     ],
     image: "/custom-plus.jpeg",
     price: "$249",
-    category: "Wellness & Maintenance",
+    category: "Maintenance",
     infusedIn: STD_SALINE,
   },
 
-  // ─── Immune, Detox & Longevity ───
   {
     name: "Immunity Shield",
     tagline: "IV armor. Infused to defend.",
@@ -202,7 +201,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Zinc", "Vitamin C", "B-Complex", "Glutathione"],
     image: "/immunity-shield.jpeg",
     price: "$249",
-    category: "Immune, Detox & Longevity",
+    category: "Maintenance",
     infusedIn: STD_SALINE,
   },
   {
@@ -213,7 +212,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["NAD+"],
     image: "/nad-revive.jpeg",
     price: "$499",
-    category: "Immune, Detox & Longevity",
+    category: "Longevity",
     infusedIn: "500 mL 0.9% Normal Saline",
   },
   {
@@ -229,7 +228,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     ],
     image: "/ultra-flush.jpeg",
     price: "$349",
-    category: "Immune, Detox & Longevity",
+    category: "Detox",
     infusedIn: "2 Liters 0.9% Normal Saline",
   },
   {
@@ -240,11 +239,10 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["B-Complex", "Famotidine", "Magnesium", "L-Glutamine"],
     image: "/stomach-rescue.jpeg",
     price: "$249",
-    category: "Immune, Detox & Longevity",
+    category: "Detox",
     infusedIn: STD_SALINE,
   },
 
-  // ─── Women's Health & Wellness ───
   {
     name: "Her Beauty",
     tagline: "The drip behind her glow.",
@@ -253,7 +251,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Biotin", "Vitamin C", "B-Complex", "Glutathione"],
     image: "/her-beauty.jpeg",
     price: "$249",
-    category: "Women's Health & Wellness",
+    category: "Women's Health",
     infusedIn: STD_SALINE,
   },
   {
@@ -264,7 +262,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin B-12", "Calcium", "B-Complex", "Magnesium"],
     image: "/her-monthly.jpeg",
     price: "$249",
-    category: "Women's Health & Wellness",
+    category: "Women's Health",
     infusedIn: STD_SALINE,
   },
   {
@@ -275,16 +273,18 @@ export const IV_COCKTAILS: Cocktail[] = [
     benefits: ["Vitamin B-12", "Vitamin C", "B-Complex"],
     image: "/prenatal-support.jpeg",
     price: "$199",
-    category: "Women's Health & Wellness",
+    category: "Women's Health",
     infusedIn: STD_SALINE,
   },
 ];
 
 export const COCKTAIL_CATEGORIES: CocktailCategory[] = [
-  "Performance & Recovery",
-  "Wellness & Maintenance",
-  "Immune, Detox & Longevity",
-  "Women's Health & Wellness",
+  "Performance",
+  "Recovery",
+  "Maintenance",
+  "Detox",
+  "Longevity",
+  "Women's Health",
 ];
 
 export const WELLNESS_SHOT_TIERS: WellnessShotTier[] = [

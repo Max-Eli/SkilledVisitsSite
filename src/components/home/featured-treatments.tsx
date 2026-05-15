@@ -204,7 +204,7 @@ export function FeaturedTreatments() {
                     />
                     <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-white/95 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-brand-700 shadow-sm backdrop-blur-sm">
                       <span className="h-1 w-1 rounded-full bg-brand-500" />
-                      {c.category.split(" ")[0]}
+                      {c.category}
                     </div>
                   </div>
 
