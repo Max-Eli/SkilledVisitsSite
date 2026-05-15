@@ -77,18 +77,22 @@ export function Nav() {
           aria-label="Open menu"
           onClick={() => setOpen(true)}
           className={cn(
-            "inline-flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-md transition-colors lg:hidden",
+            "inline-flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition-colors lg:hidden",
             scrolled
-              ? "border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--foreground)]"
-              : "border border-white/20 bg-white/5 text-white",
+              ? "border border-[color:var(--border-strong)] bg-[color:var(--surface)] text-[color:var(--foreground)] shadow-soft"
+              : "border border-white/40 bg-black/45 text-white shadow-[0_4px_12px_rgba(0,0,0,0.25)]",
           )}
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-5 w-5" strokeWidth={1.8} />
         </button>
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-[color:var(--background)] lg:hidden">
+        <div className="section-dark fixed inset-0 z-[60] flex flex-col overflow-y-auto lg:hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10 brand-glow opacity-50"
+          />
           <div className="flex h-20 items-center justify-between px-5">
             <Image
               src="/brand/logo.svg"
@@ -100,34 +104,46 @@ export function Nav() {
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--foreground)]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-black/45 text-white backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.25)]"
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5" strokeWidth={1.8} />
             </button>
           </div>
-          <nav className="flex flex-col gap-1 px-5 pt-6">
+          <nav className="flex flex-col gap-1 px-5 pt-8">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-3xl tracking-tight text-[color:var(--foreground)] py-3 border-b border-[color:var(--border)]"
+                className="group flex items-center justify-between gap-3 border-b border-white/10 py-4 font-display text-3xl tracking-tight text-white transition-colors hover:text-brand-300"
               >
                 {l.label}
+                <span
+                  aria-hidden
+                  className="text-brand-300 transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
               </Link>
             ))}
           </nav>
-          <div className="mt-auto px-5 pb-10 pt-8 flex flex-col gap-3">
-            <LuxButton href={BRAND.bookingUrl}
+          <div className="mt-auto flex flex-col gap-3 px-5 pb-10 pt-10">
+            <LuxButton
+              href={BRAND.bookingUrl}
               target="_blank"
-              rel="noopener noreferrer" size="lg" withArrow onClick={() => setOpen(false)}>
+              rel="noopener noreferrer"
+              size="lg"
+              withArrow
+              onClick={() => setOpen(false)}
+            >
               Book Now
             </LuxButton>
             <a
               href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] py-3 text-sm text-[color:var(--foreground)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 py-3 text-sm text-white backdrop-blur-md transition hover:border-brand-400/50 hover:bg-white/10"
             >
-              <Phone className="h-4 w-4 text-brand-700" /> {BRAND.phoneFL}
+              <Phone className="h-4 w-4 text-brand-300" />
+              {BRAND.phoneFL}
             </a>
           </div>
         </div>

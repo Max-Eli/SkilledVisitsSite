@@ -221,7 +221,7 @@ export function ServicesGrid() {
             </span>
             <div>
               <div className="font-display text-lg leading-tight text-[color:var(--foreground)] md:text-xl">
-                Not sure which service is right for you?
+                Not sure which drip is right for you?
               </div>
               <div className="mt-1 text-[13px] text-[color:var(--muted)]">
                 Our medical team can help recommend the best option for your goals.

@@ -168,7 +168,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-3xl px-5 py-24 text-center md:px-8 md:py-32">
           <div className="eyebrow">Need a Recommendation?</div>
           <h2 className="font-display mt-5 text-5xl leading-[1] tracking-tight text-[color:var(--foreground)] md:text-6xl lg:text-7xl">
-            Not sure which service{" "}
+            Not sure which drip{" "}
             <span className="font-display-italic text-brand-700">
               is right for you?
             </span>
