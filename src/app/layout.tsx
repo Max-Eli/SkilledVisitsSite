@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     template: "%s · Skilled Visits",
   },
   description:
-    "Private in-home IV therapy, wellness shots, rapid testing and mobile phlebotomy from licensed clinicians. 24/7 across Florida and New York.",
+    "Licensed nurses delivering IV therapy, wellness shots, and blood work directly to your home, hotel, office, yacht, or inside our mobile IV lounge.",
   icons: { icon: "/brand/favicon.svg" },
   openGraph: {
     title: "Skilled Visits — Wellness Treatments, Delivered.",
     description:
-      "Private in-home IV therapy, wellness shots, rapid testing and mobile phlebotomy. 24/7 across Florida and New York.",
+      "Licensed nurses delivering IV therapy, wellness shots, and blood work directly to your home, hotel, office, yacht, or inside our mobile IV lounge.",
     type: "website",
   },
 };
