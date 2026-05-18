@@ -47,12 +47,18 @@ const CONTACT_CARDS = [
     sub: "Reply within hours",
     href: `mailto:${BRAND.email}`,
   },
+];
+
+const TEXT_REGIONS = [
   {
-    icon: MessageSquare,
-    label: "Text Us",
-    primary: BRAND.phoneFL,
-    sub: "24/7 Concierge",
+    region: "Florida",
+    number: BRAND.phoneFL,
     href: `sms:${BRAND.phoneFL.replace(/\D/g, "")}`,
+  },
+  {
+    region: "New York",
+    number: BRAND.phoneNY,
+    href: `sms:${BRAND.phoneNY.replace(/\D/g, "")}`,
   },
 ];
 
@@ -156,6 +162,37 @@ export default function ContactPage() {
                 </div>
               </a>
             ))}
+
+            {/* Text Us — dual-region card with two tappable rows */}
+            <div className="flex flex-col items-center gap-4 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-7 text-center transition hover:border-brand-500/30">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand-400/40 bg-brand-500/10 text-brand-700">
+                <MessageSquare className="h-5 w-5" strokeWidth={1.6} />
+              </span>
+              <div className="w-full">
+                <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--foreground)]">
+                  Text Us
+                </div>
+                <div className="mt-4 flex flex-col divide-y divide-[color:var(--border)]">
+                  {TEXT_REGIONS.map((r) => (
+                    <a
+                      key={r.region}
+                      href={r.href}
+                      className="group flex flex-col items-center gap-1 py-2.5 transition first:pt-0 last:pb-0 hover:text-brand-700"
+                    >
+                      <span className="font-display text-lg leading-tight text-[color:var(--foreground)] transition group-hover:text-brand-700 md:text-xl">
+                        {r.number}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-brand-700">
+                        {r.region}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+                <div className="mt-3 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                  24/7 Concierge
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
