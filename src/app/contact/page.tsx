@@ -77,7 +77,7 @@ const FAQS = [
   },
   {
     q: "How do I book a visit?",
-    a: "Call our concierge line, text, email, or submit the form below. A clinician will follow up to design your protocol and confirm timing.",
+    a: "Call our concierge line, text, email, or send us a note using the form at the top of this page. A clinician will follow up to design your protocol and confirm timing.",
   },
 ];
 
