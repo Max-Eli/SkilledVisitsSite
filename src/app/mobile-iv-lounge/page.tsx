@@ -23,13 +23,13 @@ import { BRAND } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Mobile IV Lounge",
   description:
-    "A private wellness lounge on wheels. Climate-controlled, clinical-grade, parked wherever you need it across South Florida and New York.",
+    "A private wellness lounge on wheels. Climate-controlled, clinical-grade, parked wherever you need it across South Florida.",
 };
 
 const QUICK_FACTS = [
   { icon: Truck, label: "Luxury Mobile" },
   { icon: MapPin, label: "Comes To You" },
-  { icon: ShieldCheck, label: "Discreet Service" },
+  { icon: Thermometer, label: "Climate Controlled" },
 ];
 
 const COMFORT_FEATURES = [
@@ -67,7 +67,7 @@ const LOUNGE_STATS = [
   { value: "Up to 4", label: "Guests Per Visit" },
   { value: "24/7", label: "Booking Available" },
   { value: "60–90", label: "Minute Sessions" },
-  { value: "FL & NY", label: "Coverage Regions" },
+  { value: "South FL", label: "Service Region" },
 ];
 
 const GALLERY = [
@@ -87,15 +87,9 @@ const TRUST_PILLS = [
 const CONTACTS = [
   {
     icon: Phone,
-    label: "Florida",
+    label: "Florida Concierge",
     value: BRAND.phoneFL,
     href: `tel:${BRAND.phoneFL.replace(/\D/g, "")}`,
-  },
-  {
-    icon: Phone,
-    label: "New York",
-    value: BRAND.phoneNY,
-    href: `tel:${BRAND.phoneNY.replace(/\D/g, "")}`,
   },
   {
     icon: Mail,
@@ -171,8 +165,7 @@ export default function MobileIVLoungePage() {
                 </h1>
                 <p className="mt-5 max-w-md text-[14px] leading-relaxed text-[color:var(--foreground-muted)] sm:mt-7 sm:text-[15px] md:text-base">
                   A luxury, climate-controlled lounge designed around your
-                  comfort — parked wherever you are across South Florida and
-                  New York.
+                  comfort — parked wherever you are across South Florida.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
