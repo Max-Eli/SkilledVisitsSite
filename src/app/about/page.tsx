@@ -133,10 +133,10 @@ export default function AboutPage() {
           </h1>
           <div className="mx-auto mt-5 h-px w-16 bg-brand-500/80" />
           <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[color:var(--foreground-muted)] md:text-base">
-            Skilled Visits is South Florida&apos;s premier mobile wellness
-            provider, delivering concierge IV therapy, wellness shots, and
-            blood work directly to your location — home, hotel, office, or
-            wherever life takes you.
+            Skilled Visits is a concierge mobile wellness provider — licensed
+            nurses delivering IV therapy, wellness shots, and professional
+            blood draw services to your home, hotel, office, yacht, or inside
+            our Mobile IV Lounge.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

@@ -132,6 +132,7 @@ export function ContactForm({ services }: { services: string[] }) {
               <option key={s}>{s}</option>
             ))}
             <option>Not sure yet</option>
+            <option>Other</option>
           </select>
         </label>
         <label className="md:col-span-2 flex flex-col gap-2">
