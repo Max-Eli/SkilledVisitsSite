@@ -64,8 +64,10 @@ export default function ServiceAreasPage() {
               </span>
             </h1>
             <p className="mt-7 max-w-lg text-[15px] leading-relaxed text-[color:var(--foreground-muted)] md:text-base">
-              We bring concierge IV therapy, wellness shots, and blood work
-              directly to your location across South Florida and New York City.
+              Licensed nurses bringing concierge IV therapy, wellness shots,
+              and professional blood draw services to your home, hotel, office,
+              yacht, or inside our Mobile IV Lounge — across every neighborhood
+              we cover.
             </p>
           </div>
 
