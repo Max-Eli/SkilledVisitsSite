@@ -55,8 +55,16 @@ export type WellnessShotTier = {
   ingredients: string[];
 };
 
+export type BloodPanelCategory =
+  | "Wellness & Vitamins"
+  | "Cardiovascular & Risk"
+  | "Hormones"
+  | "Specialty & Diagnostics";
+
 export type BloodPanel = {
   name: string;
+  description: string;
+  category: BloodPanelCategory;
 };
 
 export type RapidTest = {
@@ -323,17 +331,177 @@ export const WELLNESS_SHOT_TIERS: WellnessShotTier[] = [
   },
 ];
 
+export const BLOOD_PANEL_CATEGORIES: BloodPanelCategory[] = [
+  "Wellness & Vitamins",
+  "Cardiovascular & Risk",
+  "Hormones",
+  "Specialty & Diagnostics",
+];
+
 export const BLOOD_PANELS: BloodPanel[] = [
-  { name: "Heavy Metal Panel" },
-  { name: "Hormonal Panel" },
-  { name: "CBC" },
-  { name: "CMP" },
-  { name: "Lipid Panel" },
-  { name: "Hemoglobin A1C" },
-  { name: "Vitamin D" },
-  { name: "Vitamin B12" },
-  { name: "Iron Panel" },
-  { name: "Food Sensitivity Testing" },
+  // ── Wellness & Vitamins ─────────────────────────────────────────────
+  {
+    name: "Complete Blood Count (CBC)",
+    description:
+      "Red and white blood cells, hemoglobin, and platelets — a foundational health snapshot.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Comprehensive Metabolic Panel (CMP)",
+    description:
+      "14-marker panel covering kidney and liver function, electrolytes, and blood sugar.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Basic Metabolic Panel (BMP)",
+    description:
+      "8 essential markers — kidneys, electrolytes, and glucose. A concise CMP subset.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Lipid Panel",
+    description:
+      "Total, LDL, and HDL cholesterol plus triglycerides for cardiovascular health.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Hemoglobin A1C",
+    description:
+      "3-month average blood sugar — a key diabetes and prediabetes screen.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Urinalysis",
+    description:
+      "Routine urine screen for kidney function, hydration, and infection.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Vitamin D (25-Hydroxy)",
+    description:
+      "Vitamin D status — energy, immunity, and bone health.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Vitamin B12",
+    description:
+      "B12 levels — nerve function and red blood cell formation.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Iron Panel",
+    description:
+      "Iron, ferritin, and TIBC — anemia and iron-overload screening.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Magnesium",
+    description:
+      "Cellular energy, sleep, muscle, and cardiovascular support.",
+    category: "Wellness & Vitamins",
+  },
+  {
+    name: "Folate (B9)",
+    description:
+      "Folate levels — methylation and red blood cell production.",
+    category: "Wellness & Vitamins",
+  },
+
+  // ── Cardiovascular & Risk ──────────────────────────────────────────
+  {
+    name: "hs-CRP",
+    description:
+      "High-sensitivity inflammation marker tied to cardiovascular risk.",
+    category: "Cardiovascular & Risk",
+  },
+  {
+    name: "Homocysteine",
+    description:
+      "Amino acid linked to vascular health and methylation status.",
+    category: "Cardiovascular & Risk",
+  },
+  {
+    name: "Lipoprotein (a)",
+    description:
+      "Genetic cholesterol particle — an independent cardiovascular risk marker.",
+    category: "Cardiovascular & Risk",
+  },
+  {
+    name: "Apolipoprotein B",
+    description:
+      "Total atherogenic particle count for refined cardiovascular risk.",
+    category: "Cardiovascular & Risk",
+  },
+
+  // ── Hormones ────────────────────────────────────────────────────────
+  {
+    name: "Thyroid Panel",
+    description:
+      "TSH, free T3, and free T4 — metabolism, energy, and body temperature.",
+    category: "Hormones",
+  },
+  {
+    name: "Male Hormone Panel",
+    description:
+      "Total and free testosterone, estradiol, SHBG, and PSA.",
+    category: "Hormones",
+  },
+  {
+    name: "Female Hormone Panel",
+    description:
+      "Estradiol, progesterone, FSH, LH, prolactin, and testosterone.",
+    category: "Hormones",
+  },
+  {
+    name: "Cortisol",
+    description:
+      "Adrenal stress hormone — energy, sleep, and recovery.",
+    category: "Hormones",
+  },
+  {
+    name: "DHEA-S",
+    description:
+      "Adrenal precursor hormone — sex hormone production and vitality.",
+    category: "Hormones",
+  },
+
+  // ── Specialty & Diagnostics ─────────────────────────────────────────
+  {
+    name: "STI / STD Panel",
+    description:
+      "HIV, syphilis, hepatitis B & C, gonorrhea, and chlamydia.",
+    category: "Specialty & Diagnostics",
+  },
+  {
+    name: "Heavy Metal Panel",
+    description:
+      "Lead, mercury, arsenic, and cadmium — toxic exposure screening.",
+    category: "Specialty & Diagnostics",
+  },
+  {
+    name: "Food Sensitivity Panel",
+    description:
+      "IgG reactivity to 90+ common foods for diet-driven inflammation.",
+    category: "Specialty & Diagnostics",
+  },
+  {
+    name: "Allergy Panel",
+    description:
+      "Environmental and food IgE allergens — symptoms and reactions.",
+    category: "Specialty & Diagnostics",
+  },
+  {
+    name: "Drug Screening",
+    description:
+      "Multi-substance screen — 5-panel, 10-panel, or custom configuration.",
+    category: "Specialty & Diagnostics",
+  },
+  {
+    name: "Pregnancy (β-hCG)",
+    description:
+      "Quantitative beta-hCG for early detection or pregnancy confirmation.",
+    category: "Specialty & Diagnostics",
+  },
 ];
 
 export const BLOOD_WORK_FEE = "$125 Service Fee";
