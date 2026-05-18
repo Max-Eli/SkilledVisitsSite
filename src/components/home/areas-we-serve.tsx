@@ -26,7 +26,22 @@ const ENTRIES: {
   },
 ];
 
-export function AreasWeServe() {
+type AreasWeServeProps = {
+  eyebrow?: string;
+  titleLead?: string;
+  titleAccent?: string;
+  description?: string;
+  showFooterCard?: boolean;
+};
+
+export function AreasWeServe({
+  eyebrow = "Service Areas",
+  titleLead = "Areas We",
+  titleAccent = "Serve",
+  description =
+    "From South Florida to New York City — concierge wellness delivered across dozens of neighborhoods, all under one concierge line.",
+  showFooterCard = true,
+}: AreasWeServeProps = {}) {
   return (
     <section className="section-cream relative overflow-hidden py-24 md:py-32">
       <div
@@ -44,7 +59,7 @@ export function AreasWeServe() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="eyebrow"
           >
-            Service Areas
+            {eyebrow}
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -53,8 +68,10 @@ export function AreasWeServe() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="font-display mt-5 text-4xl tracking-tight text-[color:var(--foreground)] md:text-5xl lg:text-6xl"
           >
-            Areas We{" "}
-            <span className="font-display-italic text-brand-700">Serve</span>
+            {titleLead}{" "}
+            <span className="font-display-italic text-brand-700">
+              {titleAccent}
+            </span>
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -70,8 +87,7 @@ export function AreasWeServe() {
             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[color:var(--muted-strong)]"
           >
-            From South Florida to New York City — concierge wellness delivered
-            across dozens of neighborhoods, all under one concierge line.
+            {description}
           </motion.p>
         </div>
 
@@ -187,35 +203,37 @@ export function AreasWeServe() {
         </div>
 
         {/* "Outside our regions?" prompt */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[color:var(--border)] bg-white p-6 shadow-soft md:flex-row md:gap-6 md:p-7"
-        >
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700">
-              <MapPin className="h-4 w-4" strokeWidth={1.7} />
-            </span>
-            <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--foreground)]">
-                Don&apos;t see your neighborhood?
-              </div>
-              <div className="mt-1 text-[13px] leading-relaxed text-[color:var(--muted-strong)]">
-                Reach out — we likely still come to you, and we&apos;ll confirm
-                the logistics within minutes.
+        {showFooterCard && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[color:var(--border)] bg-white p-6 shadow-soft md:flex-row md:gap-6 md:p-7"
+          >
+            <div className="flex items-center gap-4 text-center md:text-left">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700">
+                <MapPin className="h-4 w-4" strokeWidth={1.7} />
+              </span>
+              <div>
+                <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--foreground)]">
+                  Don&apos;t see your neighborhood?
+                </div>
+                <div className="mt-1 text-[13px] leading-relaxed text-[color:var(--muted-strong)]">
+                  Reach out — we likely still come to you, and we&apos;ll
+                  confirm the logistics within minutes.
+                </div>
               </div>
             </div>
-          </div>
-          <Link
-            href="/contact"
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-md border border-[color:var(--border-strong)] bg-white px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-[color:var(--foreground)] transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-50 hover:text-brand-700"
-          >
-            Ask the Concierge
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </motion.div>
+            <Link
+              href="/contact"
+              className="group inline-flex shrink-0 items-center gap-2.5 rounded-md border border-[color:var(--border-strong)] bg-white px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-[color:var(--foreground)] transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-50 hover:text-brand-700"
+            >
+              Ask the Concierge
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

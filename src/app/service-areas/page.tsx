@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -14,7 +13,8 @@ import {
   Hotel,
   Plane,
 } from "lucide-react";
-import { SERVICE_AREAS, BRAND } from "@/lib/content";
+import { BRAND } from "@/lib/content";
+import { AreasWeServe } from "@/components/home/areas-we-serve";
 
 export const metadata: Metadata = {
   title: "Service Areas",
@@ -28,11 +28,6 @@ const QUICK_FACTS = [
   { icon: MapPin, label: "Multiple Locations" },
   { icon: CalendarCheck, label: "Fast Booking" },
 ];
-
-const COVERAGE: Record<keyof typeof SERVICE_AREAS, string[]> = {
-  Florida: SERVICE_AREAS.Florida.cities,
-  "New York": SERVICE_AREAS["New York"].cities,
-};
 
 const TRAVEL_SETTINGS = [
   { icon: Home, label: "Residential" },
@@ -90,97 +85,19 @@ export default function ServiceAreasPage() {
         </div>
       </section>
 
-      {/* Regions */}
-      <section className="section-cream py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="text-center">
-            <div className="eyebrow">Proudly Serving</div>
-            <h2 className="font-display mt-5 text-4xl tracking-tight md:text-5xl">
-              South Florida &amp;{" "}
-              <span className="font-display-italic text-brand-700">
-                New York City
-              </span>
-            </h2>
-          </div>
+      {/* Regions — shared design with the home Service Areas section */}
+      <AreasWeServe
+        eyebrow="Proudly Serving"
+        titleLead="South Florida &"
+        titleAccent="New York City"
+        description="Two regions, one concierge line. Every neighborhood worth knowing — across South Florida and the five boroughs of New York."
+        showFooterCard={false}
+      />
 
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {Object.entries(SERVICE_AREAS).map(([region, data]) => {
-              const sub =
-                region === "Florida"
-                  ? "Sunshine. Wellness. Delivered."
-                  : "The City That Never Stops.";
-              return (
-                <article
-                  key={region}
-                  className="group overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-soft-lg"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={data.hero}
-                      alt={region}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-7 md:p-8">
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
-                        {sub}
-                      </div>
-                      <h3 className="font-display mt-2 text-4xl tracking-tight text-[color:var(--foreground)] md:text-5xl">
-                        {region === "Florida" ? "SOUTH FLORIDA" : "NEW YORK CITY"}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="p-7 md:p-8">
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-strong)]">
-                      Areas covered
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {COVERAGE[region as keyof typeof COVERAGE].map((c) => (
-                        <span
-                          key={c}
-                          className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-brand-700"
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-7 flex flex-wrap items-center gap-4 justify-between">
-                      <a
-                        href={`tel:${data.phone.replace(/\D/g, "")}`}
-                        className="inline-flex items-center gap-2 text-sm text-[color:var(--foreground)] hover:text-brand-700"
-                      >
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700">
-                          <MapPin className="h-3.5 w-3.5" />
-                        </span>
-                        {data.phone}
-                      </a>
-                      <Link
-                        href={BRAND.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-                        className="group/cta inline-flex items-center gap-2 rounded-md bg-gradient-to-b from-brand-500 to-brand-700 px-5 py-2.5 text-[10px] uppercase tracking-[0.22em] text-white shadow-[0_8px_22px_-10px_color-mix(in_oklab,var(--brand-500)_60%,transparent)] transition hover:-translate-y-0.5 md:text-[11px]"
-                      >
-                        Book in {region === "Florida" ? "South Florida" : "New York"}
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-0.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Coverage strip */}
+      {/* Where we travel — settings strip */}
       <section className="section-cream pb-24 md:pb-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 md:grid-cols-12 md:px-8">
-          <div className="md:col-span-7">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="mx-auto max-w-3xl text-center">
             <div className="eyebrow">Wide Coverage</div>
             <h3 className="font-display mt-5 text-3xl tracking-tight md:text-4xl">
               We Come To You{" "}
@@ -188,49 +105,22 @@ export default function ServiceAreasPage() {
                 Across Our Regions.
               </span>
             </h3>
-            <p className="mt-5 max-w-lg text-sm leading-relaxed text-[color:var(--muted-strong)]">
-              Our routes connect every neighborhood worth knowing in South
-              Florida and the boroughs of New York. We&apos;ll be at your door —
-              fast.
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[color:var(--muted-strong)]">
+              From private residences to yachts and airport pickups, our routes
+              connect every setting that matters. Wherever you are, we&apos;ll
+              be at the door — fast.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {TRAVEL_SETTINGS.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)] shadow-soft"
-                >
-                  <Icon className="h-3.5 w-3.5 text-brand-700" />
-                  {label}
-                </div>
-              ))}
-            </div>
           </div>
-
-          <div className="md:col-span-5">
-            <div className="grid grid-cols-1 gap-3">
-              {Object.entries(COVERAGE).map(([region, cities]) => (
-                <div
-                  key={region}
-                  className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-6 text-[color:var(--foreground)]"
-                >
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
-                    {region === "Florida" ? "South Florida Coverage" : "New York City Coverage"}
-                  </div>
-                  <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[12px] text-[color:var(--foreground)]">
-                    {cities.map((c) => (
-                      <li key={c} className="flex items-center gap-2">
-                        <MapPin className="h-3 w-3 text-brand-700" />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-              Don&apos;t see your area? Contact us — we may still be able to come
-              to you.
-            </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {TRAVEL_SETTINGS.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)] shadow-soft"
+              >
+                <Icon className="h-3.5 w-3.5 text-brand-700" />
+                {label}
+              </div>
+            ))}
           </div>
         </div>
       </section>

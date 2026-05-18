@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import { BRAND, SERVICES } from "@/lib/content";
 import { ContactForm } from "@/components/contact-form";
+import { AreasWeServe } from "@/components/home/areas-we-serve";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -197,71 +197,15 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Coverage */}
-      <section className="section-cream py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="text-center">
-            <div className="eyebrow">Proudly Serving</div>
-            <h2 className="font-display mt-5 text-4xl tracking-tight md:text-5xl">
-              South Florida &amp;{" "}
-              <span className="font-display-italic text-brand-700">
-                New York City
-              </span>
-            </h2>
-          </div>
+      {/* Coverage — shared design with the home Service Areas section */}
+      <AreasWeServe
+        eyebrow="Proudly Serving"
+        titleLead="South Florida &"
+        titleAccent="New York City"
+        description="Two regions, one concierge line. We come to homes, hotels, offices, yachts, and more — across every neighborhood we cover."
+        showFooterCard={false}
+      />
 
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {(["Florida", "New York"] as const).map((region) => (
-              <div
-                key={region}
-                className="overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white shadow-soft"
-              >
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={
-                      region === "Florida"
-                        ? "https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&w=1600&q=80"
-                        : "https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=1600&q=80"
-                    }
-                    alt={region}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-7 md:p-8">
-                    <h3 className="font-display text-3xl tracking-tight text-[color:var(--foreground)] md:text-4xl">
-                      {region === "Florida" ? "SOUTH FLORIDA" : "NEW YORK CITY"}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between p-6">
-                  <a
-                    href={`tel:${
-                      region === "Florida"
-                        ? BRAND.phoneFL.replace(/\D/g, "")
-                        : BRAND.phoneNY.replace(/\D/g, "")
-                    }`}
-                    className="inline-flex items-center gap-2 text-sm text-[color:var(--foreground)] hover:text-brand-700"
-                  >
-                    <Phone className="h-3.5 w-3.5 text-brand-700" />
-                    {region === "Florida" ? BRAND.phoneFL : BRAND.phoneNY}
-                  </a>
-                  <Link
-                    href="/service-areas"
-                    className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-brand-700"
-                  >
-                    Service Areas <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ + Emergency */}
       <section className="section-cream pb-24 md:pb-32">
