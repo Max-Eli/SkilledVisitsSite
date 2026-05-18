@@ -25,12 +25,11 @@ export const metadata: Metadata = {
     template: "%s · Skilled Visits",
   },
   description:
-    "Licensed nurses delivering IV therapy, wellness shots, and blood work directly to your home, hotel, office, yacht, or inside our mobile IV lounge.",
-  icons: { icon: "/brand/favicon.svg" },
+    "Licensed nurses providing concierge IV therapy, wellness shots, and professional blood draw services directly to your home, hotel, office, yacht, or inside our Mobile IV Lounge.",
   openGraph: {
     title: "Skilled Visits — Wellness Treatments, Delivered.",
     description:
-      "Licensed nurses delivering IV therapy, wellness shots, and blood work directly to your home, hotel, office, yacht, or inside our mobile IV lounge.",
+      "Licensed nurses providing concierge IV therapy, wellness shots, and professional blood draw services directly to your home, hotel, office, yacht, or inside our Mobile IV Lounge.",
     type: "website",
   },
 };
