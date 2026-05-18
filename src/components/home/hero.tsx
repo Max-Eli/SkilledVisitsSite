@@ -129,9 +129,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="hidden max-w-md text-base leading-relaxed text-[color:var(--foreground-muted)] md:mt-7 md:block"
           >
-            Licensed nurses delivering IV therapy, wellness shots, and blood
-            work directly to your home, hotel, office, yacht, or inside our
-            mobile IV lounge.
+            Licensed nurses providing concierge IV therapy, wellness shots, and
+            professional blood draw services directly to your home, hotel,
+            office, yacht, or inside our Mobile IV Lounge.
           </motion.p>
         </div>
 
