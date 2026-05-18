@@ -7,6 +7,8 @@ import type { Cocktail, CocktailCategory } from "@/lib/content";
 import { COCKTAIL_CATEGORIES, MENU_PDF } from "@/lib/content";
 import { IVCategoryCarousel } from "@/components/services/iv-category-carousel";
 
+type IVFilter = "All" | CocktailCategory;
+
 export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
   // Group cocktails by category, then drop categories with nothing in them.
   const grouped = COCKTAIL_CATEGORIES.map((cat) => ({
@@ -14,7 +16,9 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
     items: cocktails.filter((c) => c.category === cat),
   })).filter((g) => g.items.length > 0);
 
-  const [selected, setSelected] = useState<CocktailCategory>(grouped[0].category);
+  const filters: IVFilter[] = ["All", ...grouped.map((g) => g.category)];
+
+  const [selected, setSelected] = useState<IVFilter>("All");
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +41,16 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
     };
   }, [open]);
 
-  const activeGroup = grouped.find((g) => g.category === selected) ?? grouped[0];
+  const selectedIndex = filters.indexOf(selected);
+  const selectedLabel = selected === "All" ? "All Drips" : selected;
+  const activeItems =
+    selected === "All"
+      ? cocktails
+      : grouped.find((g) => g.category === selected)?.items ?? [];
+  const activeIndex =
+    selected === "All"
+      ? 0
+      : grouped.findIndex((g) => g.category === selected);
 
   return (
     <section className="relative py-24 md:py-32">
@@ -118,15 +131,15 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
             >
               <span className="flex items-center gap-3 md:gap-4">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-brand-500 to-brand-700 font-display text-[11px] text-white shadow-[0_4px_12px_-4px_color-mix(in_oklab,var(--brand-500)_55%,transparent)] md:h-10 md:w-10 md:text-xs">
-                  0{grouped.findIndex((g) => g.category === selected) + 1}
+                  {selected === "All" ? "All" : `0${selectedIndex}`}
                 </span>
                 <span className="font-display text-xl leading-none tracking-tight text-[color:var(--foreground)] md:text-2xl">
-                  {selected}
+                  {selectedLabel}
                 </span>
               </span>
               <span className="flex shrink-0 items-center gap-2 md:gap-3">
                 <span className="hidden text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)] sm:inline">
-                  {activeGroup.items.length} Drips
+                  {activeItems.length} Drips
                 </span>
                 <span
                   className={`flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] transition-transform duration-300 ${
@@ -152,16 +165,22 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute left-0 right-0 z-30 mt-2 origin-top overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-1.5 shadow-soft-lg"
                 >
-                  {grouped.map((g, gi) => {
-                    const isActive = g.category === selected;
+                  {filters.map((f, fi) => {
+                    const isActive = f === selected;
+                    const count =
+                      f === "All"
+                        ? cocktails.length
+                        : grouped.find((g) => g.category === f)?.items.length ??
+                          0;
+                    const label = f === "All" ? "All Drips" : f;
                     return (
-                      <li key={g.category}>
+                      <li key={f}>
                         <button
                           type="button"
                           role="option"
                           aria-selected={isActive}
                           onClick={() => {
-                            setSelected(g.category);
+                            setSelected(f);
                             setOpen(false);
                           }}
                           className={`group flex w-full items-center justify-between gap-3 rounded-full px-4 py-3 text-left transition md:px-5 ${
@@ -178,14 +197,14 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
                                   : "border border-[color:var(--border)] bg-white text-brand-700 group-hover:border-brand-500/40"
                               }`}
                             >
-                              0{gi + 1}
+                              {f === "All" ? "All" : `0${fi}`}
                             </span>
                             <span className="font-display text-base tracking-tight text-[color:var(--foreground)] md:text-lg">
-                              {g.category}
+                              {label}
                             </span>
                           </span>
                           <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">
-                            {g.items.length} Drips
+                            {count} Drips
                             {isActive && (
                               <Check
                                 className="h-3.5 w-3.5 text-brand-700"
@@ -207,18 +226,16 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
         <div className="mt-10 md:mt-12">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeGroup.category}
+              key={selected}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <IVCategoryCarousel
-                category={activeGroup.category}
-                items={activeGroup.items}
-                groupIndex={grouped.findIndex(
-                  (g) => g.category === activeGroup.category,
-                )}
+                category={selectedLabel}
+                items={activeItems}
+                groupIndex={activeIndex}
               />
             </motion.div>
           </AnimatePresence>

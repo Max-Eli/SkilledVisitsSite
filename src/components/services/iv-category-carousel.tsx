@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { Cocktail, CocktailCategory } from "@/lib/content";
+import type { Cocktail } from "@/lib/content";
 import { BRAND } from "@/lib/content";
 
 export function IVCategoryCarousel({
@@ -13,7 +13,7 @@ export function IVCategoryCarousel({
   items,
   groupIndex,
 }: {
-  category: CocktailCategory;
+  category: string;
   items: Cocktail[];
   groupIndex: number;
 }) {
@@ -141,7 +141,7 @@ export function IVCategoryCarousel({
                 />
                 <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-white/95 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-brand-700 shadow-sm backdrop-blur-sm">
                   <span className="h-1 w-1 rounded-full bg-brand-500" />
-                  {category}
+                  {c.category}
                 </div>
               </div>
 
