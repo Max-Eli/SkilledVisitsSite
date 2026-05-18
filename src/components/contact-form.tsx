@@ -14,18 +14,29 @@ export function ContactForm({ services }: { services: string[] }) {
     initialContactState,
   );
 
+  // Force light-theme variables on the form card so the same component
+  // renders correctly inside .section-dark heroes (where --foreground is
+  // white and labels would otherwise vanish on the white card).
+  const lightThemeReset: React.CSSProperties = {
+    ["--foreground" as string]: "#14111c",
+    ["--foreground-muted" as string]: "#3a3447",
+    ["--muted" as string]: "#6b6480",
+    ["--muted-strong" as string]: "#4a4459",
+  };
+
   if (state.status === "ok") {
     return (
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-10 md:p-14 shadow-soft"
+        style={lightThemeReset}
+        className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-white p-10 md:p-14 text-[color:var(--foreground)] shadow-soft"
       >
         <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
           <Check className="h-6 w-6 text-brand-700" />
         </div>
-        <h3 className="font-display mt-6 text-3xl md:text-4xl">
+        <h3 className="font-display mt-6 text-3xl text-[color:var(--foreground)] md:text-4xl">
           Thank you — we&apos;ll be in touch.
         </h3>
         <p className="mt-4 max-w-md text-[color:var(--muted-strong)] leading-relaxed">
@@ -37,14 +48,17 @@ export function ContactForm({ services }: { services: string[] }) {
   }
 
   const inputCls =
-    "w-full rounded-2xl border border-[color:var(--border)] bg-white px-5 py-4 text-base text-foreground placeholder:text-[color:var(--muted)]/80 transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/25 disabled:opacity-60";
+    "w-full rounded-2xl border border-[color:var(--border)] bg-white px-5 py-4 text-base text-[color:var(--foreground)] placeholder:text-[color:var(--muted)]/80 transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/25 disabled:opacity-60";
 
   return (
     <form
       action={formAction}
-      className="rounded-3xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-soft"
+      style={lightThemeReset}
+      className="relative rounded-3xl border border-[color:var(--border)] bg-white p-8 text-[color:var(--foreground)] shadow-soft md:p-10"
     >
-      <h3 className="font-display text-2xl md:text-3xl">Tell us about yourself</h3>
+      <h3 className="font-display text-2xl text-[color:var(--foreground)] md:text-3xl">
+        Tell us about yourself
+      </h3>
       <p className="mt-2 text-sm text-[color:var(--muted-strong)]">
         We&apos;ll respond within a few hours.
       </p>
