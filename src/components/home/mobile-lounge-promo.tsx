@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { BRAND } from "@/lib/content";
 import {
+  ArrowLeft,
   ArrowRight,
   Thermometer,
   ShieldCheck,
@@ -36,7 +38,27 @@ const FEATURES = [
   },
 ];
 
+const VAN_IMAGES = [
+  "/van-side-2.jpg",
+  "/van-front.jpg",
+  "/van-side-1.jpg",
+  "/van-rear-1.jpg",
+  "/van-rear-2.jpg",
+];
+
 export function MobileLoungePromo() {
+  const [idx, setIdx] = useState(0);
+  const total = VAN_IMAGES.length;
+  const next = () => setIdx((i) => (i + 1) % total);
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+
+  // Auto-advance every 5s. Resets whenever the user manually navigates.
+  useEffect(() => {
+    const timer = window.setInterval(next, 5000);
+    return () => window.clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx]);
+
   return (
     <section className="section-dark relative overflow-hidden py-24 md:py-32">
       <div
@@ -95,29 +117,73 @@ export function MobileLoungePromo() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7"
           >
-            <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-soft-lg">
-              <Image
-                src="/van-side-2.jpg"
-                alt="Skilled Visits mobile IV lounge"
-                fill
-                sizes="(min-width: 768px) 55vw, 100vw"
-                className="object-cover"
-              />
+            <div
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Mobile IV Lounge photo gallery"
+              className="group/carousel relative aspect-[16/9] overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-soft-lg"
+            >
+              {/* Stacked images — cross-fade between active and inactive */}
+              {VAN_IMAGES.map((src, i) => (
+                <Image
+                  key={src}
+                  src={src}
+                  alt={`Skilled Visits mobile IV lounge ${i + 1} of ${total}`}
+                  fill
+                  sizes="(min-width: 768px) 55vw, 100vw"
+                  className={`object-cover transition-opacity duration-700 ease-out ${
+                    i === idx ? "opacity-100" : "opacity-0"
+                  }`}
+                  priority={i === 0}
+                />
+              ))}
+
+              {/* Soft gradient overlay so floating chrome stays readable */}
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-tr from-[color:var(--background)]/40 via-transparent to-transparent"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[color:var(--background)]/40 via-transparent to-transparent"
               />
+
               {/* Floating tag */}
               <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 text-[10px] uppercase tracking-[0.22em] text-white backdrop-blur-md">
                 <Truck className="h-3 w-3 text-brand-300" strokeWidth={1.7} />
                 Exclusive Suite
               </div>
-              {/* Edge corner accent */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute bottom-5 right-5 hidden h-12 w-12 rounded-full border border-brand-400/40 bg-brand-500/15 backdrop-blur-md md:flex md:items-center md:justify-center"
+
+              {/* Carousel controls */}
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous photo"
+                className="absolute bottom-5 left-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white backdrop-blur-md transition hover:border-brand-400/70 hover:bg-black/60"
               >
-                <ArrowRight className="h-4 w-4 text-brand-300" strokeWidth={1.7} />
+                <ArrowLeft className="h-4 w-4" strokeWidth={1.7} />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next photo"
+                className="absolute bottom-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-400/60 bg-brand-500/20 text-white backdrop-blur-md transition hover:border-brand-300 hover:bg-brand-500/35"
+              >
+                <ArrowRight className="h-4 w-4" strokeWidth={1.7} />
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-7 left-1/2 flex -translate-x-1/2 items-center gap-1.5">
+                {VAN_IMAGES.map((src, i) => (
+                  <button
+                    key={src}
+                    type="button"
+                    onClick={() => setIdx(i)}
+                    aria-label={`Go to photo ${i + 1}`}
+                    aria-current={i === idx}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      i === idx
+                        ? "w-8 bg-brand-300"
+                        : "w-2 bg-white/40 hover:bg-white/60"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>

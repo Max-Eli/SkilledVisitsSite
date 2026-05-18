@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Clock,
   Stethoscope,
+  Star,
   HeartPulse,
   Award,
   Sparkles,
@@ -30,7 +31,7 @@ const TRUST = [
   { icon: ShieldCheck, label: "Licensed Nurses" },
   { icon: Clock, label: "7 Days a Week" },
   { icon: Award, label: "Experienced MDs" },
-  { icon: Stethoscope, label: "Physician Oversight" },
+  { icon: Star, label: "5-Star Google Rated" },
 ];
 
 const VALUES = [

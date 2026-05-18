@@ -8,7 +8,7 @@ import {
   Clock,
   Droplet,
   Truck,
-  Stethoscope,
+  Star,
 } from "lucide-react";
 import { BRAND, SERVICES } from "@/lib/content";
 import { IVMenuList } from "@/components/services/iv-menu-list";
@@ -34,7 +34,7 @@ const TRUST = [
   { icon: Clock, label: "Same-Day Appointments" },
   { icon: Droplet, label: "Medical-Grade" },
   { icon: Truck, label: "We Come To You" },
-  { icon: Stethoscope, label: "Physician Oversight" },
+  { icon: Star, label: "5-Star Google Rated" },
 ];
 
 const SUBLINES: Record<string, { heading: string; accent: string; tagline: string }> = {

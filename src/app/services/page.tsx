@@ -7,7 +7,7 @@ import {
   Clock,
   Droplet,
   Truck,
-  Stethoscope,
+  Star,
   Phone,
   Mail,
   MapPin,
@@ -27,7 +27,7 @@ const TRUST = [
   { icon: Clock, label: "Same-Day Appointments" },
   { icon: Droplet, label: "Medical-Grade Ingredients" },
   { icon: Truck, label: "We Come To You" },
-  { icon: Stethoscope, label: "Physician Oversight" },
+  { icon: Star, label: "5-Star Google Rated" },
 ];
 
 const TRUST_PILLS = [
