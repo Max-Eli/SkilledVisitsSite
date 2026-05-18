@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Check, AlertCircle } from "lucide-react";
@@ -13,6 +13,13 @@ export function ContactForm({ services }: { services: string[] }) {
     submitContactForm,
     initialContactState,
   );
+
+  // Form-mount timestamp — the server checks that real users take at least a
+  // couple of seconds to fill it out. Bots that submit instantly get filtered.
+  const [mountedAt, setMountedAt] = useState<number | null>(null);
+  useEffect(() => {
+    setMountedAt(Date.now());
+  }, []);
 
   // Force light-theme variables on the form card so the same component
   // renders correctly inside .section-dark heroes (where --foreground is
@@ -161,6 +168,9 @@ export function ContactForm({ services }: { services: string[] }) {
           />
         </label>
       </div>
+
+      {/* Time-fill probe — real users can't submit faster than a few seconds. */}
+      <input type="hidden" name="ts" value={mountedAt ?? ""} readOnly />
 
       {state.status === "error" && (
         <motion.div

@@ -17,6 +17,7 @@
 // Vercel only injects env vars into NEW deploys after they're added — if you
 // just added a var, trigger a redeploy.
 
+import { headers } from "next/headers";
 import { Resend } from "resend";
 import { BRAND } from "@/lib/content";
 import type { ContactFormState } from "@/lib/contact-types";
@@ -30,16 +31,118 @@ type Submission = {
   message: string;
 };
 
+// ---------------------------------------------------------------------------
+// Spam controls
+// ---------------------------------------------------------------------------
+
+// Field length caps — anything over these is almost certainly a bot payload.
+const MAX_LEN = {
+  name: 80,
+  email: 254,
+  phone: 30,
+  region: 60,
+  service: 80,
+  message: 5000,
+};
+
+// Minimum time (ms) a real human spends filling the form before submitting.
+// Bots almost always submit instantly after mount.
+const MIN_FILL_TIME_MS = 2500;
+
+// Per-IP rate limit. In-memory — resets on cold starts and isn't shared
+// across serverless instances, so it's a best-effort burst limiter rather
+// than a hard cap. Good enough to defeat naive spammers without external infra.
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 3;
+const ipHistory: Map<string, number[]> = new Map();
+
+function getClientIP(h: Headers): string {
+  const xff = h.get("x-forwarded-for");
+  if (xff) return xff.split(",")[0].trim();
+  return h.get("x-real-ip") ?? "unknown";
+}
+
+function rateLimitOk(ip: string): boolean {
+  const now = Date.now();
+  const hist = (ipHistory.get(ip) ?? []).filter(
+    (t) => now - t < RATE_LIMIT_WINDOW_MS,
+  );
+  if (hist.length >= RATE_LIMIT_MAX) {
+    ipHistory.set(ip, hist);
+    return false;
+  }
+  hist.push(now);
+  ipHistory.set(ip, hist);
+  return true;
+}
+
+// Match anything that looks like a URL/domain. Bots love link payloads.
+const URL_RE = /\b(?:https?:\/\/|www\.)\S+|\S+\.(?:com|net|org|ru|cn|biz|info|xyz|top|loan|click)\b/gi;
+
+// Common spam payload keywords. Kept conservative so legitimate medical
+// vocabulary isn't blocked.
+const SPAM_RE =
+  /\b(viagra|cialis|casino|crypto airdrop|bitcoin mining|seo (?:services|backlinks|ranking)|cheap (?:loan|insurance)|click here now|nude|onlyfans|escort|porn|adderall without)\b/i;
+
+function looksLikeSpam(d: Submission): boolean {
+  // Length sanity — any obviously oversized field is spam.
+  if (
+    d.name.length > MAX_LEN.name ||
+    d.email.length > MAX_LEN.email ||
+    d.phone.length > MAX_LEN.phone ||
+    d.region.length > MAX_LEN.region ||
+    d.service.length > MAX_LEN.service ||
+    d.message.length > MAX_LEN.message
+  ) {
+    return true;
+  }
+
+  // Names with URLs or scripts are always bots.
+  if (URL_RE.test(d.name)) return true;
+  URL_RE.lastIndex = 0; // reset for next call (g flag preserves state)
+
+  // Messages with several URLs are nearly always link spam.
+  const msgUrls = d.message.match(URL_RE)?.length ?? 0;
+  if (msgUrls >= 3) return true;
+
+  // Obvious keyword payloads.
+  if (SPAM_RE.test(d.message) || SPAM_RE.test(d.name)) return true;
+
+  return false;
+}
+
 export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
   console.log("[contact] action invoked");
   try {
+    // 1) Per-IP rate limit. Silent reject — don't tell bots the threshold.
+    const h = await headers();
+    const ip = getClientIP(h);
+    if (!rateLimitOk(ip)) {
+      console.log("[contact] rate limit hit for ip", ip);
+      return { status: "ok" };
+    }
+
+    // 2) Honeypot — invisible field that real users never fill.
     const honey = (formData.get("company") ?? "").toString().trim();
     if (honey) {
       console.log("[contact] honeypot triggered, silently returning ok");
       return { status: "ok" };
+    }
+
+    // 3) Time-fill check — reject submissions that come in faster than a
+    //    human could plausibly fill the form. Missing/invalid ts is fine
+    //    (the field is set client-side; tolerate users with JS disabled).
+    const tsRaw = (formData.get("ts") ?? "").toString();
+    const ts = Number.parseInt(tsRaw, 10);
+    if (Number.isFinite(ts) && ts > 0) {
+      const elapsed = Date.now() - ts;
+      if (elapsed < MIN_FILL_TIME_MS) {
+        console.log("[contact] form filled too fast", { elapsed });
+        return { status: "ok" };
+      }
     }
 
     const data: Submission = {
@@ -50,6 +153,12 @@ export async function submitContactForm(
       service: ((formData.get("service") ?? "") as string).trim(),
       message: ((formData.get("message") ?? "") as string).trim(),
     };
+
+    // 4) Content heuristics — silent reject for obvious spam patterns.
+    if (looksLikeSpam(data)) {
+      console.log("[contact] content heuristics flagged submission");
+      return { status: "ok" };
+    }
     console.log("[contact] form parsed", {
       name: data.name,
       email: data.email,
