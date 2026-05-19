@@ -14,7 +14,7 @@ import {
 const FEATURES = [
   {
     icon: Stethoscope,
-    title: "Board-Certified Clinicians",
+    title: "Expert Clinical Care",
     body: "Every visit is delivered by experienced registered nurses following physician-approved treatment protocols.",
   },
   {
