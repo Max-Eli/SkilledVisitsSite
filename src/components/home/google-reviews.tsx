@@ -68,7 +68,10 @@ const AVATAR_BG = [
 ];
 
 export function GoogleReviews() {
-  const reviews: GoogleReview[] = GOOGLE_REVIEWS;
+  // Most recent first.
+  const reviews: GoogleReview[] = [...GOOGLE_REVIEWS].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -227,9 +230,13 @@ export function GoogleReviews() {
           className="hide-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-6 md:px-8"
         >
           {reviews.map((r, i) => (
-            <motion.article
+            <motion.a
               key={`${r.name}-${i}`}
               data-card
+              href={r.url ?? GOOGLE_BUSINESS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read ${r.name}'s review on Google`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -274,7 +281,7 @@ export function GoogleReviews() {
               <p className="text-[15px] leading-relaxed text-foreground/90">
                 {r.text}
               </p>
-            </motion.article>
+            </motion.a>
           ))}
         </div>
       </div>

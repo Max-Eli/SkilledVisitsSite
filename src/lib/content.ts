@@ -673,6 +673,10 @@ export type GoogleReview = {
   rating: number;
   date: string;
   text: string;
+  // Optional deep link to this specific review on Google. To get one: open
+  // the review on Google Maps → ⋮ menu → "Share review" → copy the link.
+  // When omitted, the card links to the business reviews page instead.
+  url?: string;
 };
 
 export const GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/jvsDcMbfaetFgE9PA";
