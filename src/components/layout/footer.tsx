@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, Clock, MapPin, Star, ArrowRight } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  Clock,
+  MapPin,
+  Star,
+  ArrowRight,
+  MessageSquare,
+} from "lucide-react";
 import {
   BRAND,
   NAV_LINKS,
@@ -210,6 +218,13 @@ export function Footer() {
                   </div>
                 </div>
               </a>
+            </li>
+            <li className="flex items-center gap-2 px-1 text-[11px] text-[color:var(--muted-strong)]">
+              <MessageSquare
+                className="h-3.5 w-3.5 shrink-0 text-brand-700"
+                strokeWidth={1.7}
+              />
+              Call or text either number — anytime.
             </li>
             <li>
               <a
