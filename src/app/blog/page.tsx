@@ -75,11 +75,12 @@ export default function BlogPage() {
           <div className="md:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-soft-lg">
               <Image
-                src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80"
-                alt="Open journal"
+                src="/svahero1.jpg"
+                alt="Wellness lifestyle — citrus and sunlight"
                 fill
                 sizes="(min-width: 768px) 35vw, 80vw"
                 className="object-cover"
+                priority
               />
             </div>
           </div>

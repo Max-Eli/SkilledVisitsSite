@@ -19,12 +19,12 @@ export const NAV_LINKS = [
   { href: "/memberships", label: "Memberships" },
   { href: "/about", label: "About" },
   { href: "/service-areas", label: "Service Areas" },
+  { href: "/blog", label: "Insights" },
   { href: "/contact", label: "Contact" },
 ];
 
 // Extra links shown only in the footer.
 export const FOOTER_EXTRA_LINKS = [
-  { href: "/blog", label: "Insights" },
   { href: "/referrals", label: "Referrals" },
   { href: "/how-it-works", label: "How It Works" },
 ];
