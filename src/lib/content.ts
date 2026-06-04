@@ -5,7 +5,7 @@ export const BRAND = {
   phoneFL: "(305) 808-7777",
   phoneNY: "(718) 465-7777",
   hours: "Available 24 / 7",
-  bookingUrl: "https://SkilledVisits.as.me/",
+  bookingUrl: "https://skilledvisits.xn--lumcrm-5ua.com/book/skilledvisits",
   social: {
     instagram: "https://instagram.com/skilledvisits",
     facebook: "https://facebook.com/skilledvisits",
