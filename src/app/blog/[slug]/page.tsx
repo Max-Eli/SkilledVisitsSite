@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+const SITE_URL = "https://skilledvisits.com";
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPost(slug);
@@ -44,8 +46,57 @@ export default async function BlogPostPage({ params }: Props) {
   const blocks = parseBlogBody(post.body);
   const related = getRecentPosts(3, slug);
 
+  // Article structured data — emitted on every post for SEO.
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: [`${SITE_URL}${post.image}`],
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: { "@type": "Organization", name: "Skilled Visits" },
+    publisher: {
+      "@type": "Organization",
+      name: "Skilled Visits",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/brand/logo.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${post.slug}`,
+    },
+  };
+
+  // FAQPage structured data — only when the post defines structured FAQs.
+  const faqSchema =
+    post.faqs && post.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }
+      : null;
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       <section className="relative overflow-hidden pb-12 pt-12 md:pb-16 md:pt-16">
         <div aria-hidden className="absolute inset-0 -z-10 brand-glow opacity-80" />
         <div className="mx-auto max-w-3xl px-5 md:px-8">

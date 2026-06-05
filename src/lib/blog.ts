@@ -12,9 +12,389 @@ export type BlogPost = {
   // Lines starting with "## " become h2, "### " become h3.
   // Lines starting with "- " are list items (consecutive lines = single list).
   body: string;
+  // Optional structured FAQs. When present, the post page emits an
+  // FAQPage JSON-LD block for SEO in addition to whatever's in the body.
+  faqs?: { q: string; a: string }[];
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "mobile-iv-therapy-near-me",
+    title:
+      "Mobile IV Therapy Near Me: Professional IV Hydration Delivered to Your Door",
+    excerpt:
+      "What mobile IV therapy actually is, how a visit works, where we serve across South Florida, and how to know if it's right for you.",
+    category: "IV Therapy",
+    author: "Skilled Visits Clinical Team",
+    publishedAt: "2026-06-05T09:00:00Z",
+    readTime: "8 min read",
+    image: "/van-side-1.jpg",
+    imageAlt: "Skilled Visits mobile IV van serving South Florida",
+    body: `## Looking for Mobile IV Therapy Near Me?
+
+When you're feeling dehydrated, exhausted, recovering from illness, or simply looking for a convenient way to support your wellness, the last thing you want is to sit in traffic, wait in a crowded urgent care, or spend hours in a waiting room.
+
+[Mobile IV therapy](/services/iv-therapy) brings professional hydration and wellness services directly to your home, hotel, office, yacht, or event location.
+
+At Skilled Visits, our experienced healthcare professionals provide mobile IV therapy services throughout [South Florida](/service-areas), delivering personalized wellness treatments where and when you need them.
+
+Whether you're recovering from a long night out, battling dehydration, experiencing travel fatigue, or simply prioritizing your health, our team makes receiving professional IV hydration simple, convenient, and comfortable.
+
+## What Is Mobile IV Therapy?
+
+Mobile IV therapy is a concierge wellness service that delivers intravenous hydration and wellness treatments directly to your location.
+
+Rather than visiting a clinic, a licensed healthcare professional travels to you with all necessary equipment and supplies.
+
+Treatments are administered through a small intravenous catheter placed into a vein, allowing fluids and wellness ingredients to be delivered directly into the bloodstream.
+
+This service is ideal for individuals seeking:
+
+- Hydration support
+- Recovery after illness
+- Travel recovery
+- Athletic recovery
+- Wellness support
+- Vitamin supplementation
+- Convenient healthcare services
+
+The entire experience takes place in the comfort of your chosen location.
+
+## How Does IV Therapy Work?
+
+IV stands for intravenous, meaning fluids are delivered directly into the bloodstream through a vein.
+
+Because fluids are administered intravenously, hydration occurs efficiently without relying on the digestive system.
+
+Every appointment begins with a medical screening and assessment.
+
+Our nurses evaluate:
+
+- Current symptoms
+- Medical history
+- Medications
+- Allergies
+- Vital signs
+- Treatment appropriateness
+
+Safety is always our highest priority.
+
+Once approved, the IV is started and the infusion begins while you relax comfortably.
+
+Most appointments take approximately 30 to 60 minutes.
+
+## Why Are More People Searching for Mobile IV Therapy Near Me?
+
+Convenience has changed healthcare.
+
+People now expect many services to come directly to them, including:
+
+- Food delivery
+- Grocery delivery
+- Telemedicine
+- Concierge healthcare
+
+Mobile IV therapy follows the same trend.
+
+Rather than spending hours traveling and waiting, clients can receive care in the comfort of:
+
+- Their home
+- Hotel room
+- Office
+- Yacht
+- Vacation rental
+- Event venue
+
+For many busy professionals, travelers, parents, and athletes, convenience is one of the biggest advantages.
+
+## Common Causes of Dehydration
+
+Dehydration occurs when the body loses more fluids than it takes in.
+
+Even mild dehydration can cause noticeable symptoms.
+
+Common causes include:
+
+### Illness
+
+Vomiting, diarrhea, fever, and reduced fluid intake can quickly contribute to dehydration.
+
+### Heat Exposure
+
+South Florida's climate can significantly increase fluid loss through sweating.
+
+### Alcohol Consumption
+
+Alcohol can contribute to dehydration and may worsen symptoms such as fatigue and headaches.
+
+### Travel
+
+Long flights and changes in routine often result in inadequate hydration.
+
+### Intense Exercise
+
+Athletes frequently lose substantial amounts of fluid and electrolytes through sweat.
+
+## Signs You May Be Dehydrated
+
+Common symptoms may include:
+
+- Fatigue
+- Headache
+- Dizziness
+- Dry mouth
+- Increased thirst
+- Muscle cramps
+- Dark urine
+- Weakness
+- Difficulty concentrating
+
+If symptoms are severe or accompanied by concerning medical conditions, emergency medical evaluation may be necessary.
+
+## Mobile IV Therapy vs Drinking Water
+
+One common question we receive is: "Why not just drink water?"
+
+Water is always important and should be your first line of hydration.
+
+However, some individuals experiencing significant fluid losses or difficulty maintaining hydration may seek professional hydration support.
+
+Mobile IV therapy provides fluids directly into the bloodstream under professional supervision.
+
+Every situation is unique, which is why proper medical screening is essential.
+
+## Mobile IV Therapy at Home
+
+Home IV therapy is one of our most requested services.
+
+Many clients prefer receiving treatment in their own environment.
+
+Benefits include:
+
+- Maximum comfort
+- No travel required
+- No waiting rooms
+- Flexible scheduling
+- Personalized attention
+
+Our nurses arrive equipped with all necessary supplies and administer treatment while you relax at home.
+
+## Mobile IV Therapy at Hotels
+
+South Florida welcomes millions of visitors each year.
+
+Many travelers experience:
+
+- Jet lag
+- Dehydration
+- Travel fatigue
+- Heat exhaustion
+- Stomach illness
+
+Instead of searching for an urgent care center in an unfamiliar city, our team can travel directly to your hotel.
+
+We frequently serve clients staying in [Miami Beach, Brickell, Downtown Miami, Sunny Isles Beach, Aventura, Fort Lauderdale, Boca Raton, Delray Beach, and West Palm Beach](/service-areas).
+
+## Mobile IV Therapy for Athletes
+
+Hydration plays a critical role in athletic performance and recovery.
+
+Many athletes prioritize hydration before and after:
+
+- Endurance events
+- Intense training sessions
+- Competitions
+- Travel tournaments
+
+Athletes often appreciate the convenience of receiving professional hydration services without disrupting their training schedule.
+
+## Mobile IV Therapy for Events
+
+Group wellness services have become increasingly popular for:
+
+- Corporate events
+- Wellness retreats
+- Weddings
+- Bachelor parties
+- Bachelorette parties
+- Sporting events
+- Conferences
+
+Our [Mobile IV Lounge](/mobile-iv-lounge) and event services allow guests to receive hydration support in a professional and comfortable setting.
+
+## Our Most Requested IV Drips
+
+Several of our IV protocols come up again and again in client bookings. Each one targets a different goal, and our clinicians can help you choose the right starting point.
+
+- [Immunity Shield](/services/iv-therapy) — vitamin C, zinc, and B-Complex to support your immune system during cold and flu season or before travel.
+- [Hangover Hero](/services/iv-therapy) — aggressive rehydration, B-vitamins, and anti-nausea medication when needed.
+- [Original Myers Cocktail](/services/iv-therapy) — the classic blend of magnesium, calcium, B-vitamins, and vitamin C for everyday energy and wellness.
+- [NAD+ Revive](/services/iv-therapy) — high-dose NAD+ infusion for cellular repair, mental clarity, and longevity protocols.
+- [Pure Hydration](/services/iv-therapy) — straightforward fluid and electrolyte replacement when hydration alone is the goal.
+
+Browse the full menu on our [IV Therapy services page](/services/iv-therapy).
+
+## What Nurses Check Before Starting an IV
+
+At Skilled Visits, every appointment begins with a clinical assessment.
+
+We evaluate:
+
+### Blood Pressure
+
+Abnormal blood pressure readings may require additional evaluation before treatment.
+
+### Heart Rate
+
+Vital signs help determine whether treatment is appropriate.
+
+### Medical History
+
+Certain medical conditions require special consideration.
+
+### Current Symptoms
+
+Understanding the full clinical picture helps ensure safety.
+
+### Medications
+
+Medication interactions and underlying conditions must be considered.
+
+Not every client is automatically a candidate for treatment.
+
+In some cases, we recommend evaluation by an urgent care center or emergency department instead.
+
+Safety always comes first.
+
+## When We May Decline Treatment
+
+One of the most important differences between experienced healthcare professionals and wellness providers is knowing when not to proceed.
+
+Examples may include:
+
+- Severely elevated blood pressure
+- Chest pain
+- Difficulty breathing
+- Signs of stroke
+- Severe dehydration requiring hospital care
+- Unstable medical conditions
+
+When necessary, we recommend a higher level of medical care.
+
+Protecting patient safety will always be more important than completing a treatment.
+
+## Mobile IV Therapy in Miami
+
+Miami residents and visitors frequently seek mobile IV therapy for:
+
+- Travel recovery
+- Wellness support
+- Busy professional schedules
+- Event recovery
+- Athletic recovery
+
+Our team provides service throughout [Miami and surrounding communities](/service-areas).
+
+## Mobile IV Therapy in Fort Lauderdale
+
+Fort Lauderdale's active lifestyle, boating culture, and year-round outdoor activities make hydration support a common request.
+
+We provide mobile IV therapy services throughout [Fort Lauderdale and nearby areas](/service-areas).
+
+## Mobile IV Therapy in Boca Raton
+
+Boca Raton residents appreciate concierge healthcare services that prioritize convenience and professionalism.
+
+Our mobile services bring hydration and wellness support directly to homes, offices, and hotels throughout the area.
+
+## Mobile IV Therapy in Palm Beach County
+
+From Delray Beach to West Palm Beach and Palm Beach Island, Skilled Visits provides mobile wellness services throughout [Palm Beach County](/service-areas).
+
+Whether at home, work, or a hotel, our team comes directly to you.
+
+## Why Choose Skilled Visits?
+
+At Skilled Visits, healthcare is more than a service — it's our profession.
+
+Our team is led by experienced healthcare professionals who prioritize:
+
+- Safety
+- Professionalism
+- Clinical judgment
+- Convenience
+- Exceptional patient experiences
+
+We proudly provide:
+
+- [Mobile IV Therapy](/services/iv-therapy)
+- [Wellness Shots](/services/wellness-shots)
+- [Mobile Blood Draws](/services/blood-draws)
+- Concierge Wellness Services
+- [Mobile IV Lounge Services](/mobile-iv-lounge)
+
+Every visit begins with proper screening, assessment, and individualized care.
+
+## Frequently Asked Questions
+
+### How long does a mobile IV therapy appointment take?
+
+Most appointments take approximately 30 to 60 minutes, depending on the selected treatment.
+
+### Can I receive IV therapy at my hotel?
+
+Yes. We regularly provide services at hotels, residences, offices, and approved event locations throughout South Florida.
+
+### Do I need to leave my house?
+
+No. Our nurses travel directly to your location.
+
+### Are mobile IV services available on weekends?
+
+Yes. Availability varies by schedule and location.
+
+### What areas do you serve?
+
+We serve Miami-Dade, Broward, and Palm Beach counties.
+
+### Is IV therapy safe?
+
+All treatments begin with medical screening and are administered by trained healthcare professionals. Not every client will be a candidate for treatment.
+
+## Schedule Mobile IV Therapy with Skilled Visits
+
+If you've been searching for "Mobile IV Therapy Near Me," Skilled Visits is here to help.
+
+We proudly provide professional [mobile IV therapy](/services/iv-therapy) services throughout [South Florida](/service-areas), bringing healthcare convenience directly to your door.
+
+Whether you're at home, staying in a hotel, recovering after travel, preparing for an event, or simply prioritizing your wellness, our experienced team is ready to deliver exceptional care wherever you are.`,
+    faqs: [
+      {
+        q: "How long does a mobile IV therapy appointment take?",
+        a: "Most appointments take approximately 30 to 60 minutes, depending on the selected treatment.",
+      },
+      {
+        q: "Can I receive IV therapy at my hotel?",
+        a: "Yes. We regularly provide services at hotels, residences, offices, and approved event locations throughout South Florida.",
+      },
+      {
+        q: "Do I need to leave my house?",
+        a: "No. Our nurses travel directly to your location.",
+      },
+      {
+        q: "Are mobile IV services available on weekends?",
+        a: "Yes. Availability varies by schedule and location.",
+      },
+      {
+        q: "What areas do you serve?",
+        a: "We serve Miami-Dade, Broward, and Palm Beach counties.",
+      },
+      {
+        q: "Is IV therapy safe?",
+        a: "All treatments begin with medical screening and are administered by trained healthcare professionals. Not every client will be a candidate for treatment.",
+      },
+    ],
+  },
   {
     slug: "what-is-nad-and-why-its-the-most-talked-about-iv",
     title: "What is NAD+ and why it's the most talked-about IV in wellness",
