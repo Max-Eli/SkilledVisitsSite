@@ -48,6 +48,16 @@ export type Cocktail = {
   infusedIn?: string;
 };
 
+// Slug helper for per-drip landing pages at /services/iv-therapy/<slug>.
+// Non-alphanumerics (including the "+" in NAD+ / Custom+) collapse to a
+// hyphen, then leading/trailing hyphens are trimmed.
+export function cocktailSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export type WellnessShotTier = {
   name: string;
   price: string;
@@ -512,6 +522,10 @@ export const RAPID_TESTS_LIST: RapidTest[] = [
   { name: "Strep" },
   { name: "Drug Screening" },
 ];
+
+export function getCocktailBySlug(slug: string): Cocktail | undefined {
+  return IV_COCKTAILS.find((c) => cocktailSlug(c.name) === slug);
+}
 
 export const SERVICES: Service[] = [
   {

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { BRAND } from "@/lib/content";
 import { AreasWeServe } from "@/components/home/areas-we-serve";
+import { CITY_PAGES } from "@/lib/cities";
 
 export const metadata: Metadata = {
   title: "Service Areas",
@@ -95,6 +96,56 @@ export default function ServiceAreasPage() {
         description="Two regions, one concierge line. Every neighborhood worth knowing — across South Florida and the five boroughs of New York."
         showFooterCard={false}
       />
+
+      {/* Featured cities */}
+      <section className="section-cream pb-20 md:pb-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="eyebrow">Featured Cities</div>
+            <h2 className="font-display mt-5 text-3xl tracking-tight md:text-4xl">
+              Mobile IV therapy{" "}
+              <span className="font-display-italic text-brand-700">
+                by city.
+              </span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[color:var(--muted-strong)]">
+              Dedicated service pages for our most-booked South Florida cities —
+              neighborhoods covered, common use cases, and local FAQs.
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {CITY_PAGES.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/service-areas/${c.slug}`}
+                className="group flex flex-col gap-4 rounded-2xl border border-[color:var(--border)] bg-white p-6 shadow-soft transition hover:-translate-y-0.5 hover:border-brand-500/30 hover:shadow-soft-lg"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700">
+                    <MapPin className="h-4 w-4" strokeWidth={1.7} />
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                    {c.neighborhoods.length}+ areas
+                  </span>
+                </div>
+                <div>
+                  <div className="font-display text-xl tracking-tight text-[color:var(--foreground)] md:text-2xl">
+                    {c.name}
+                  </div>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-[color:var(--muted-strong)]">
+                    {c.intro}
+                  </p>
+                </div>
+                <div className="mt-auto inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-brand-700 transition group-hover:gap-2">
+                  Explore {c.name}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Where we travel — settings strip */}
       <section className="section-cream pb-24 md:pb-32">

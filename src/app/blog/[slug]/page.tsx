@@ -176,6 +176,8 @@ export default async function BlogPostPage({ params }: Props) {
                     ))}
                   </ul>
                 );
+              if (b.type === "blockquote")
+                return <blockquote key={i}>{renderInline(b.text)}</blockquote>;
               return <p key={i}>{renderInline(b.text)}</p>;
             })}
           </div>

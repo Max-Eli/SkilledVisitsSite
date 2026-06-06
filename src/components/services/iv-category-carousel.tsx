@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Cocktail } from "@/lib/content";
-import { BRAND } from "@/lib/content";
+import { cocktailSlug } from "@/lib/content";
 
 export function IVCategoryCarousel({
   category,
@@ -178,12 +178,10 @@ export function IVCategoryCarousel({
                 </div>
 
                 <Link
-                  href={BRAND.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+                  href={`/services/iv-therapy/${cocktailSlug(c.name)}`}
                   className="group/cta mt-auto inline-flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.22em] text-brand-700 transition hover:text-brand-800"
                 >
-                  Book This Drip
+                  View Drip Details
                   <ArrowRight className="h-3 w-3 transition-transform group-hover/cta:translate-x-0.5" />
                 </Link>
               </div>

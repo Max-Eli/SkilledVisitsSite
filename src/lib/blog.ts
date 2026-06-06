@@ -226,11 +226,11 @@ Our [Mobile IV Lounge](/mobile-iv-lounge) and event services allow guests to rec
 
 Several of our IV protocols come up again and again in client bookings. Each one targets a different goal, and our clinicians can help you choose the right starting point.
 
-- [Immunity Shield](/services/iv-therapy) — vitamin C, zinc, and B-Complex to support your immune system during cold and flu season or before travel.
-- [Hangover Hero](/services/iv-therapy) — aggressive rehydration, B-vitamins, and anti-nausea medication when needed.
-- [Original Myers Cocktail](/services/iv-therapy) — the classic blend of magnesium, calcium, B-vitamins, and vitamin C for everyday energy and wellness.
-- [NAD+ Revive](/services/iv-therapy) — high-dose NAD+ infusion for cellular repair, mental clarity, and longevity protocols.
-- [Pure Hydration](/services/iv-therapy) — straightforward fluid and electrolyte replacement when hydration alone is the goal.
+- [Immunity Shield](/services/iv-therapy/immunity-shield) — vitamin C, zinc, and B-Complex to support your immune system during cold and flu season or before travel.
+- [Hangover Hero](/services/iv-therapy/hangover-hero) — aggressive rehydration, B-vitamins, and anti-nausea medication when needed.
+- [Original Myers Cocktail](/services/iv-therapy/original-myers) — the classic blend of magnesium, calcium, B-vitamins, and vitamin C for everyday energy and wellness.
+- [NAD+ Revive](/services/iv-therapy/nad-revive) — high-dose NAD+ infusion for cellular repair, mental clarity, and longevity protocols.
+- [Pure Hydration](/services/iv-therapy/pure-hydration) — straightforward fluid and electrolyte replacement when hydration alone is the goal.
 
 Browse the full menu on our [IV Therapy services page](/services/iv-therapy).
 
@@ -293,25 +293,35 @@ Miami residents and visitors frequently seek mobile IV therapy for:
 - Event recovery
 - Athletic recovery
 
-Our team provides service throughout [Miami and surrounding communities](/service-areas).
+Our team provides service throughout [Miami and surrounding communities](/service-areas/miami).
 
 ## Mobile IV Therapy in Fort Lauderdale
 
 Fort Lauderdale's active lifestyle, boating culture, and year-round outdoor activities make hydration support a common request.
 
-We provide mobile IV therapy services throughout [Fort Lauderdale and nearby areas](/service-areas).
+We provide mobile IV therapy services throughout [Fort Lauderdale and nearby areas](/service-areas/fort-lauderdale).
 
 ## Mobile IV Therapy in Boca Raton
 
 Boca Raton residents appreciate concierge healthcare services that prioritize convenience and professionalism.
 
-Our mobile services bring hydration and wellness support directly to homes, offices, and hotels throughout the area.
+Our mobile services bring [hydration and wellness support directly to homes, offices, and hotels throughout Boca Raton](/service-areas/boca-raton).
 
 ## Mobile IV Therapy in Palm Beach County
 
-From Delray Beach to West Palm Beach and Palm Beach Island, Skilled Visits provides mobile wellness services throughout [Palm Beach County](/service-areas).
+From Delray Beach to West Palm Beach and Palm Beach Island, Skilled Visits provides mobile wellness services throughout [Palm Beach County](/service-areas/palm-beach).
 
 Whether at home, work, or a hotel, our team comes directly to you.
+
+## What Our Clients Say
+
+Real reviews from clients across South Florida who've experienced concierge mobile IV therapy with Skilled Visits.
+
+> "Received an IV therapy last minute before my best friend's wedding. I was literally so sick and vomiting. Rudy came and gave me a liter IV bag with medication that healed me. I'm so glad he came within 30 minutes of me calling." — **Manhattan Laser Spa**
+
+> "I scheduled an appointment for them to come to our home on Friday night after a night out drinking to get an IV for my wife and me. We had an early flight Saturday morning and wanted to feel our best before traveling. They arrived on time, were professional, and provided excellent service. I highly recommend them 100% if you're in the Fort Lauderdale area. Thanks!" — **Igor Charta**
+
+> "Fast and professional. Came to my apartment in Sunny Isles and provided quick liver support IV. 100% recommend. Thanks." — **Вадим Ишутин**
 
 ## Why Choose Skilled Visits?
 
@@ -535,12 +545,14 @@ export function formatBlogDate(iso: string): string {
 }
 
 // Render a simple markdown-flavored body to JSX-friendly blocks.
-// Supports: ## h2, ### h3, "- " list items (groups consecutive), paragraphs, **bold**, [text](url)
+// Supports: ## h2, ### h3, "- " list items (groups consecutive),
+// "> " blockquotes, paragraphs, **bold**, [text](url).
 export type BlogBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "p"; text: string }
-  | { type: "ul"; items: string[] };
+  | { type: "ul"; items: string[] }
+  | { type: "blockquote"; text: string };
 
 export function parseBlogBody(body: string): BlogBlock[] {
   const lines = body.split("\n");
@@ -583,6 +595,12 @@ export function parseBlogBody(body: string): BlogBlock[] {
     if (line.startsWith("- ")) {
       flushParagraph();
       listBuffer.push(line.slice(2).trim());
+      continue;
+    }
+    if (line.startsWith("> ")) {
+      flushParagraph();
+      flushList();
+      blocks.push({ type: "blockquote", text: line.slice(2).trim() });
       continue;
     }
     flushList();
