@@ -292,6 +292,9 @@ export function Footer() {
             <Link href="/terms" className="hover:text-brand-700">
               Terms
             </Link>
+            <Link href="/cancellation" className="hover:text-brand-700">
+              Cancellation
+            </Link>
             <Link href="/referrals" className="hover:text-brand-700">
               Referrals
             </Link>
