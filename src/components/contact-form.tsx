@@ -154,6 +154,25 @@ export function ContactForm({ services }: { services: string[] }) {
             disabled={isPending}
           />
         </label>
+
+        {/* Optional SMS opt-in — unchecked by default per TCPA. */}
+        <label className="md:col-span-2 flex cursor-pointer items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-4">
+          <input
+            type="checkbox"
+            name="smsOptIn"
+            value="yes"
+            disabled={isPending}
+            className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-600"
+          />
+          <span className="text-[12.5px] leading-relaxed text-[color:var(--muted-strong)]">
+            <span className="font-medium text-[color:var(--foreground)]">
+              Optional:
+            </span>{" "}
+            Yes, send me text messages from Skilled Visits about appointments,
+            wellness tips, and special offers. Reply STOP to opt out. Msg &amp;
+            data rates may apply.
+          </span>
+        </label>
       </div>
 
       {/* Honeypot — bots fill this; real users don't see it. */}
@@ -185,8 +204,8 @@ export function ContactForm({ services }: { services: string[] }) {
 
       <div className="mt-8 flex items-center justify-between gap-4">
         <p className="max-w-sm text-xs leading-relaxed text-[color:var(--muted)]">
-          By submitting you agree to be contacted by phone, email, or SMS by a
-          Skilled Visits clinician. Message and data rates may apply. See our{" "}
+          A Skilled Visits clinician may follow up by phone or email using the
+          contact info you provide. See our{" "}
           <Link href="/privacy" className="underline underline-offset-2 hover:text-brand-700">
             Privacy Policy
           </Link>{" "}

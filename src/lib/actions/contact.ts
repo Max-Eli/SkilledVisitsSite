@@ -29,6 +29,7 @@ type Submission = {
   region: string;
   service: string;
   message: string;
+  smsOptIn: boolean;
 };
 
 // ---------------------------------------------------------------------------
@@ -152,6 +153,7 @@ export async function submitContactForm(
       region: ((formData.get("region") ?? "") as string).trim(),
       service: ((formData.get("service") ?? "") as string).trim(),
       message: ((formData.get("message") ?? "") as string).trim(),
+      smsOptIn: formData.get("smsOptIn") === "yes",
     };
 
     // 4) Content heuristics — silent reject for obvious spam patterns.
@@ -324,6 +326,7 @@ function renderEmailHtml(d: Submission): string {
                 ${row("Phone", d.phone)}
                 ${row("Region", d.region)}
                 ${row("Service", d.service)}
+                ${row("SMS Opt-In", d.smsOptIn ? "Yes" : "No")}
               </table>
               <div style="margin-top:24px;padding-top:24px;border-top:1px solid #ebe6f0;">
                 <div style="color:#6b6480;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;">Message</div>
@@ -355,11 +358,12 @@ function renderEmailHtml(d: Submission): string {
 function renderEmailText(d: Submission): string {
   return `New inquiry from skilledvisits.com
 
-Name:    ${d.name}
-Email:   ${d.email}
-Phone:   ${d.phone || "—"}
-Region:  ${d.region || "—"}
-Service: ${d.service || "—"}
+Name:        ${d.name}
+Email:       ${d.email}
+Phone:       ${d.phone || "—"}
+Region:      ${d.region || "—"}
+Service:     ${d.service || "—"}
+SMS Opt-In:  ${d.smsOptIn ? "Yes" : "No"}
 
 Message:
 ${d.message || "—"}
