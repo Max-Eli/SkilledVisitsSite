@@ -234,8 +234,6 @@ export function MobileLoungePromo() {
               </Link>
               <Link
                 href={BRAND.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 rounded-md border border-[color:var(--border-strong)] bg-[color:var(--surface)]/30 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-[color:var(--foreground)] backdrop-blur-sm transition hover:border-brand-500/60 hover:bg-[color:var(--surface)]/60"
               >
                 Book the Lounge

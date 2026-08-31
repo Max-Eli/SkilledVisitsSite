@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { BRAND, NAV_LINKS } from "@/lib/content";
@@ -9,6 +10,7 @@ import { LuxButton } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -43,6 +45,9 @@ export function Nav() {
       window.scrollTo(0, scrollY);
     };
   }, [open]);
+
+  // The booking page embeds the CRM flow full-screen with no site chrome.
+  if (pathname === "/book") return null;
 
   return (
     <>
@@ -86,8 +91,6 @@ export function Nav() {
           <div className="hidden items-center gap-3 lg:flex">
             <LuxButton
               href={BRAND.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               size="sm"
               withArrow
             >
@@ -171,8 +174,6 @@ export function Nav() {
           <div className="flex shrink-0 flex-col gap-3 px-5 pb-10 pt-6">
             <LuxButton
               href={BRAND.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               size="lg"
               withArrow
               onClick={() => setOpen(false)}
