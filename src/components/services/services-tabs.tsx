@@ -140,6 +140,9 @@ export function ServicesTabs() {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             role="tabpanel"
             aria-labelledby={`tab-${active}`}
+            // Each menu carries its own standalone-page top padding; under the
+            // tab bar that reads as dead space, so trim it for this context.
+            className="[&>section]:pt-12 md:[&>section]:pt-14"
           >
             {active === "iv" && <IVMenuList cocktails={IV_COCKTAILS} />}
             {active === "shots" && <WellnessShotsMenu />}

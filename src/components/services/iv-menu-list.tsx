@@ -114,7 +114,7 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 flex flex-col items-center gap-3 px-5 md:mt-16 md:px-8"
+          className="mt-8 flex flex-col items-center gap-3 px-5 md:mt-10 md:px-8"
         >
           <div className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--muted-strong)]">
             Browse by Category
