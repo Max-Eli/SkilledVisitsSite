@@ -66,9 +66,17 @@ export function RapidTestsMenu() {
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 border border-brand-200">
                   <Icon className="h-5 w-5 text-brand-700" strokeWidth={1.75} />
                 </div>
-                <div className="font-display text-xl tracking-tight md:text-2xl">
-                  {test.name}
+                <div className="flex items-baseline justify-between gap-3">
+                  <div className="font-display text-xl tracking-tight md:text-2xl">
+                    {test.name}
+                  </div>
+                  <div className="whitespace-nowrap font-display text-xl leading-none text-brand-700 md:text-2xl">
+                    {test.price}
+                  </div>
                 </div>
+                <p className="-mt-1 text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                  Results same visit
+                </p>
               </motion.div>
             );
           })}

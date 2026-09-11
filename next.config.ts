@@ -15,6 +15,27 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.fbcdn.net" },
     ],
   },
+  // Three drips were renamed on the updated menu. Keep the old per-drip
+  // landing-page URLs working so existing links and search rankings survive.
+  async redirects() {
+    return [
+      {
+        source: "/services/iv-therapy/jet-lag-recovery",
+        destination: "/services/iv-therapy/jet-lag-reset",
+        permanent: true,
+      },
+      {
+        source: "/services/iv-therapy/post-surgery-recovery",
+        destination: "/services/iv-therapy/post-surgery-support",
+        permanent: true,
+      },
+      {
+        source: "/services/iv-therapy/prenatal-support",
+        destination: "/services/iv-therapy/prenatal-care",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

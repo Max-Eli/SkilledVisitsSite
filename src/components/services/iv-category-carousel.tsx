@@ -143,6 +143,12 @@ export function IVCategoryCarousel({
                   <span className="h-1 w-1 rounded-full bg-brand-500" />
                   {c.category}
                 </div>
+                {c.badge && (
+                  <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-gradient-to-b from-brand-500 to-brand-700 px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-white shadow-sm">
+                    <span aria-hidden>★</span>
+                    {c.badge}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -151,7 +157,12 @@ export function IVCategoryCarousel({
                   <h4 className="font-display text-lg leading-tight tracking-tight text-[color:var(--foreground)] md:text-xl">
                     {c.name}
                   </h4>
-                  <div className="font-display text-lg leading-none tracking-tight text-brand-700 md:text-xl">
+                  <div className="whitespace-nowrap font-display text-lg leading-none tracking-tight text-brand-700 md:text-xl">
+                    {c.priceFrom && (
+                      <span className="mr-1 align-middle text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        from
+                      </span>
+                    )}
                     {c.price}
                   </div>
                 </div>
@@ -159,6 +170,27 @@ export function IVCategoryCarousel({
                 <p className="font-display italic text-[12px] leading-snug text-brand-700">
                   {c.tagline}
                 </p>
+
+                {(c.threePack || c.memberRate) && (
+                  <dl className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[11px]">
+                    {c.threePack && (
+                      <div className="flex items-baseline gap-1.5">
+                        <dt className="text-[color:var(--muted)]">3 for</dt>
+                        <dd className="font-medium text-[color:var(--foreground)]">
+                          {c.threePack}
+                        </dd>
+                      </div>
+                    )}
+                    {c.memberRate && (
+                      <div className="flex items-baseline gap-1.5">
+                        <dt className="text-[color:var(--muted)]">Member</dt>
+                        <dd className="font-medium text-brand-700">
+                          {c.memberRate}
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
+                )}
 
                 {/* Benefits */}
                 <div className="mt-1 flex flex-wrap gap-1 border-t border-[color:var(--border)] pt-3">
@@ -176,6 +208,12 @@ export function IVCategoryCarousel({
                     </span>
                   )}
                 </div>
+
+                {c.note && (
+                  <p className="text-[10px] italic leading-snug text-[color:var(--muted)]">
+                    {c.note}
+                  </p>
+                )}
 
                 <Link
                   href={`/services/iv-therapy/${cocktailSlug(c.name)}`}

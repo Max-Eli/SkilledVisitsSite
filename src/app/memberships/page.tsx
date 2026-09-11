@@ -64,53 +64,73 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Essential",
-    price: "$179",
+    price: "$219",
     cadence: "/ month",
-    description: "Routine wellness, made easy.",
+    description: "Monthly maintenance.",
     features: [
-      "1 concierge IV therapy session per month",
-      "10% off enhancements & add-ons",
-      "1 standard wellness shot included monthly",
+      "1 IV credit per month",
+      "1 standard wellness shot per month",
+      "Additional IVs at member rate — $229",
+      "10% member savings on eligible enhancements",
     ],
     ctaLabel: "Choose Essential",
   },
   {
-    name: "Premier",
-    price: "$349",
+    name: "Restore",
+    price: "$429",
     cadence: "/ month",
-    description: "Consistent wellness. Elevated recovery.",
+    description: "Twice-monthly wellness.",
     features: [
-      "2 concierge IV therapy sessions per month",
-      "15% off enhancements & add-ons",
-      "1 signature wellness shot included monthly",
-      "Annual wellness bloodwork panel",
-      "Priority booking access",
+      "2 IV credits per month",
+      "2 standard wellness shots per month",
+      "1 wellness blood panel + provider consult per year",
+      "Additional IVs at member rate — $219",
+      "15% member savings on eligible enhancements",
     ],
-    ctaLabel: "Choose Premier",
+    ctaLabel: "Choose Restore",
     highlight: true,
   },
   {
-    name: "Elite",
-    price: "$599",
+    name: "Signature",
+    price: "$639",
     cadence: "/ month",
-    description: "Peak performance & longevity.",
+    description: "Concierge wellness.",
     features: [
-      "Up to 4 concierge IV therapy sessions per month (or 2 premium)",
-      "20% off enhancements & add-ons",
-      "2 signature wellness shots included monthly",
-      "Semi-annual wellness panel",
-      "Preferred pricing on NAD+ therapy",
-      "Priority after-hours scheduling",
+      "3 IV credits per month",
+      "3 standard or premium wellness shots per month",
+      "2 wellness blood panels + provider consults per year",
+      "Additional IVs at member rate — $199",
+      "20% member savings on eligible enhancements",
+      "Shareable with 1 designated member at the same service address",
     ],
-    ctaLabel: "Choose Elite",
+    ctaLabel: "Choose Signature",
+  },
+  {
+    name: "Longevity",
+    price: "$1,099",
+    cadence: "/ month",
+    description: "Advanced longevity.",
+    features: [
+      "3 IV credits per month",
+      "1 NAD+ Revive (500 mg) per month",
+      "4 standard or premium wellness shots per month",
+      "3 wellness blood panels + provider consults per year",
+      "Additional IVs at member rate — $189",
+      "Additional NAD+ Revive — $499",
+      "25% member savings on eligible enhancements",
+      "Shareable with 1 designated member at the same service address",
+    ],
+    ctaLabel: "Choose Longevity",
   },
 ];
 
 const MEMBERSHIP_BENEFITS = [
-  "Preferred member scheduling",
-  "Access to the Skilled Visits Mobile IV Lounge (based on availability)",
-  "Exclusive member pricing on select enhancements & wellness services",
-  "Access to member-only promotions & seasonal wellness offers",
+  "Priority scheduling",
+  "Member pricing on eligible enhancements",
+  "Unused credits roll over 30 days",
+  "Mobile concierge — we come to you",
+  "IV credits cover any IV up to $299",
+  "Wellness shots redeemed the same day as your IV",
 ];
 
 const ENHANCEMENTS = [
@@ -154,16 +174,20 @@ const FAQS = [
     a: "Book through your member portal or call our concierge line. Sessions, add-ons, and member rates are tracked automatically.",
   },
   {
-    q: "What if I can't use all my sessions in a month?",
-    a: "Unused sessions roll forward up to three months, and your concierge will help plan your cadence around travel and your schedule.",
+    q: "What if I can't use all my credits in a month?",
+    a: "Unused credits roll over for 30 days, and your concierge will help plan your cadence around travel and your schedule.",
   },
   {
     q: "Can I share my membership with family?",
-    a: "No sharing — each plan covers one member only.",
+    a: "Signature and Longevity can be shared with one designated member at the same service address. Essential and Restore cover one member only.",
+  },
+  {
+    q: "What does an IV credit cover?",
+    a: "Any IV priced up to $299. For a premium infusion such as NAD+ Revive, you simply pay the difference.",
   },
   {
     q: "What's the cancellation policy?",
-    a: "Month-to-month. Cancel or pause anytime. No setup fee, no penalty.",
+    a: "There's a three-month minimum, then it continues month to month. Cancel or pause any time after that. No setup fee, no penalty.",
   },
 ];
 
@@ -274,12 +298,12 @@ export default function MembershipsPage() {
             </h2>
             <div className="mx-auto mt-4 h-px w-16 bg-brand-500/80" />
             <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[color:var(--muted-strong)]">
-              Three plans, one standard of care. Upgrade, downgrade, or pause
-              at any time.
+              Four plans, one standard of care. Three-month minimum, then
+              month to month — upgrade or downgrade at any time.
             </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 xl:grid-cols-4">
             {TIERS.map((tier) => (
               <div
                 key={tier.name}

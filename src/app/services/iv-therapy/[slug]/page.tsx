@@ -123,9 +123,40 @@ export default async function DripPage({ params }: Props) {
                   Price
                 </div>
                 <div className="font-display text-2xl tracking-tight text-[color:var(--foreground)]">
+                  {drip.priceFrom && (
+                    <span className="mr-1 align-middle text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                      from
+                    </span>
+                  )}
                   {drip.price}
                 </div>
               </div>
+              {drip.threePack && (
+                <>
+                  <div className="h-10 w-px bg-[color:var(--border)]" />
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
+                      Bundle of 3
+                    </div>
+                    <div className="font-display text-2xl tracking-tight text-[color:var(--foreground)]">
+                      {drip.threePack}
+                    </div>
+                  </div>
+                </>
+              )}
+              {drip.memberRate && (
+                <>
+                  <div className="h-10 w-px bg-[color:var(--border)]" />
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-brand-700">
+                      Member Rate
+                    </div>
+                    <div className="font-display text-2xl tracking-tight text-[color:var(--foreground)]">
+                      {drip.memberRate}
+                    </div>
+                  </div>
+                </>
+              )}
               {drip.infusedIn && (
                 <>
                   <div className="h-10 w-px bg-[color:var(--border)]" />
@@ -140,6 +171,12 @@ export default async function DripPage({ params }: Props) {
                 </>
               )}
             </div>
+
+            {drip.note && (
+              <p className="mt-6 text-[13px] italic leading-relaxed text-[color:var(--muted-strong)]">
+                {drip.note}
+              </p>
+            )}
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Link

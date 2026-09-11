@@ -500,14 +500,14 @@ We're biased — we built a mobile practice on purpose — but the calculation i
     author: "Skilled Visits Clinical Team",
     publishedAt: "2026-03-11T09:00:00Z",
     readTime: "4 min read",
-    image: "/jet-lag-recovery.jpeg",
-    imageAlt: "Jet-Lag Recovery IV bag",
+    image: "/bags/jet-lag-reset.jpg",
+    imageAlt: "Jet-Lag Reset IV bag",
     body: `Long-haul travel does three things to your body: dehydrates you (cabin air is roughly desert humidity), depletes your B-vitamins (stress + altered eating), and disrupts your circadian rhythm (sleep schedule, light exposure).
 
 The pre-travel IV routine our frequent-flyer clients book before transcontinental and trans-Atlantic flights addresses all three.
 
 ## What we typically run
-**Jet-Lag Recovery (1 liter, $249)** is our go-to. The active ingredients:
+**Jet-Lag Reset (1 liter, $249)** is our go-to. The active ingredients:
 
 - Vitamin B-12 — sustained energy without overstimulation
 - Vitamin C and B-Complex — immune and metabolic support

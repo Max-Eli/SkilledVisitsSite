@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { AccentText } from "@/components/ui/accent-text";
 import { BRAND } from "@/lib/content";
 import type { InstagramPost } from "@/lib/instagram";
+import { isProductShot } from "@/lib/utils";
 
 function InstagramGlyph({ className }: { className?: string }) {
   return (
@@ -108,7 +109,7 @@ export function Instagram({ posts }: { posts: InstagramPost[] }) {
                   unoptimized={!isLocal}
                   sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw"
                   className={
-                    isLocal && post.mediaUrl.endsWith(".jpeg")
+                    isLocal && isProductShot(post.mediaUrl)
                       ? "object-contain bg-gradient-to-b from-[color:var(--surface-2)] via-white to-white p-2 transition-transform duration-700 group-hover:scale-[1.05]"
                       : "object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                   }

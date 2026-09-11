@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { isProductShot } from "@/lib/utils";
 import { ArrowRight, ArrowUpRight, Clock } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -152,7 +153,7 @@ export default async function BlogPostPage({ params }: Props) {
                 priority
                 sizes="(min-width: 768px) 768px, 100vw"
                 className={
-                  post.image.endsWith(".jpeg")
+                  isProductShot(post.image)
                     ? "object-contain bg-gradient-to-b from-[color:var(--surface-2)] via-white to-white p-6"
                     : "object-cover"
                 }
@@ -206,7 +207,7 @@ export default async function BlogPostPage({ params }: Props) {
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
                       className={
-                        r.image.endsWith(".jpeg")
+                        isProductShot(r.image)
                           ? "object-contain bg-gradient-to-b from-[color:var(--surface-2)] via-white to-white p-4 transition-transform duration-700 group-hover:scale-[1.04]"
                           : "object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       }

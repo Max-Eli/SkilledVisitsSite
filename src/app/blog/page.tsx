@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { isProductShot } from "@/lib/utils";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -123,7 +124,7 @@ export default function BlogPage() {
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     className={
-                      post.image.endsWith(".jpeg")
+                      isProductShot(post.image)
                         ? "object-contain bg-[color:var(--surface-2)] p-3 transition-transform duration-700 group-hover:scale-[1.04]"
                         : "object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     }
@@ -202,7 +203,7 @@ export default function BlogPage() {
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className={
-                        post.image.endsWith(".jpeg")
+                        isProductShot(post.image)
                           ? "object-contain bg-[color:var(--surface-2)] p-3 transition-transform duration-700 group-hover:scale-[1.04]"
                           : "object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       }

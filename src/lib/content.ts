@@ -32,12 +32,11 @@ export const FOOTER_EXTRA_LINKS = [
 ];
 
 export type CocktailCategory =
-  | "Performance"
   | "Recovery"
   | "Maintenance"
-  | "Detox"
+  | "Women's Health"
   | "Longevity"
-  | "Women's Health";
+  | "Medical Infusions";
 
 export type Cocktail = {
   name: string;
@@ -48,6 +47,16 @@ export type Cocktail = {
   price: string;
   category: CocktailCategory;
   infusedIn?: string;
+  /** Bundle price when three visits are booked together. */
+  threePack?: string;
+  /** Reduced price for active members. */
+  memberRate?: string;
+  /** Menu callout, e.g. "Best Seller". */
+  badge?: string;
+  /** Clearance or prescription requirement shown as fine print. */
+  note?: string;
+  /** Render the price as "from $X" - dosing sets the final figure. */
+  priceFrom?: boolean;
 };
 
 // Slug helper for per-drip landing pages at /services/iv-therapy/<slug>.
@@ -68,19 +77,25 @@ export type WellnessShotTier = {
 };
 
 export type BloodPanelCategory =
-  | "Wellness & Vitamins"
-  | "Cardiovascular & Risk"
-  | "Hormones"
-  | "Specialty & Diagnostics";
+  | "General Health"
+  | "Metabolic & Diabetes"
+  | "Organ Function"
+  | "Thyroid & Hormones"
+  | "Cardiac & Nutrient"
+  | "Screening";
 
 export type BloodPanel = {
   name: string;
   description: string;
   category: BloodPanelCategory;
+  price: string;
+  /** Render as "from $X" - the scope of the panel sets the final figure. */
+  priceFrom?: boolean;
 };
 
 export type RapidTest = {
   name: string;
+  price: string;
 };
 
 export const MENU_PDF = "/skilled-visits-menu.pdf";
@@ -99,16 +114,59 @@ export type Service = {
 // Standard saline volume used by every infusion unless otherwise noted.
 const STD_SALINE = "1 Liter 0.9% Normal Saline";
 
+// Stand-in for drips whose bag artwork hasn't been delivered yet.
+const BAG_PLACEHOLDER = "/bags/placeholder.svg";
+
 export const IV_COCKTAILS: Cocktail[] = [
+  // ---- Recovery ----
   {
-    name: "Athletic Performance",
-    tagline: "Optimize. Perform. Dominate.",
+    name: "Immunity Shield",
+    tagline: "IV armor. Infused to defend.",
     description:
-      "Taurine, L-Carnitine, and an amino blend to boost endurance, accelerate recovery, and replenish the minerals you lose under load.",
-    benefits: ["Taurine", "L-Carnitine", "B-Complex", "Magnesium", "Amino Blend"],
-    image: "/athletic-performance.jpeg",
-    price: "$299",
-    category: "Performance",
+      "Zinc, Vitamin C, B-Complex, and a Glutathione push for immune support before travel, after exposure, or during seasonal stress.",
+    benefits: ["Zinc", "Vitamin C", "B-Complex", "Glutathione Push"],
+    image: "/bags/immunity-shield.jpg",
+    price: "$249",
+    threePack: "$699",
+    badge: "Client Favorite",
+    category: "Recovery",
+    infusedIn: STD_SALINE,
+  },
+  {
+    name: "Jet-Lag Reset",
+    tagline: "A smooth landing for your body.",
+    description:
+      "Vitamin B-12, B-complex, and magnesium to reset circadian fatigue, rehydrate after long-haul travel, and feel grounded fast.",
+    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "Magnesium"],
+    image: "/bags/jet-lag-reset.jpg",
+    price: "$249",
+    threePack: "$699",
+    category: "Recovery",
+    infusedIn: STD_SALINE,
+  },
+  {
+    name: "Stomach Rescue",
+    tagline: "Your tummy's first responder.",
+    description:
+      "B-Complex, Famotidine, Magnesium, and L-Glutamine to settle stomach issues, food poisoning, motion sickness, and gut inflammation.",
+    benefits: ["B-Complex", "Famotidine (Pepcid)", "Magnesium", "L-Glutamine"],
+    image: "/bags/stomach-rescue.jpg",
+    price: "$249",
+    threePack: "$699",
+    category: "Recovery",
+    infusedIn: STD_SALINE,
+  },
+  {
+    name: "Post-Surgery Support",
+    tagline: "Faster healing. Better outcomes.",
+    description:
+      "Zinc, Taurine, Vitamin C, and L-Glutamine to support tissue repair, reduce inflammation, and accelerate post-operative recovery.",
+    benefits: ["Zinc", "Taurine", "Vitamin C", "L-Glutamine"],
+    image: "/bags/post-surgery-support.jpg",
+    price: "$249",
+    threePack: "$699",
+    note: "Requires surgeon clearance",
+    category: "Recovery",
     infusedIn: STD_SALINE,
   },
   {
@@ -116,76 +174,49 @@ export const IV_COCKTAILS: Cocktail[] = [
     tagline: "Save the day after.",
     description:
       "Aggressive hydration paired with Ondansetron for nausea and a B-complex + mineral boost. Reset and back to your day in under an hour.",
-    benefits: ["Vitamin C", "B-Complex", "Ondansetron", "Mineral Blend"],
-    image: "/hangover-hero.jpeg",
+    benefits: ["Vitamin C", "B-Complex", "Ondansetron (Zofran)", "Mineral Blend"],
+    image: "/bags/hangover-hero.jpg",
     price: "$249",
+    threePack: "$699",
+    badge: "Best Seller",
     category: "Recovery",
     infusedIn: STD_SALINE,
   },
   {
-    name: "Jet-Lag Recovery",
-    tagline: "A smooth landing for your body.",
+    name: "Athletic Performance",
+    tagline: "Optimize. Perform. Dominate.",
     description:
-      "Vitamin B-12, B-complex, and magnesium to reset circadian fatigue, rehydrate after long-haul travel, and feel grounded fast.",
-    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "Magnesium"],
-    image: "/jet-lag-recovery.jpeg",
-    price: "$249",
-    category: "Recovery",
-    infusedIn: STD_SALINE,
-  },
-  {
-    name: "Stress Relief",
-    tagline: "The peace potion.",
-    description:
-      "Taurine, magnesium, and a calming amino blend to ease tension, improve sleep quality, and restore nervous-system balance.",
-    benefits: ["Taurine", "B-Complex", "Magnesium", "Amino Blend"],
-    image: "/stress-relief.jpeg",
-    price: "$249",
-    category: "Performance",
-    infusedIn: STD_SALINE,
-  },
-  {
-    name: "Post-Surgery Recovery",
-    tagline: "Faster healing. Better outcomes.",
-    description:
-      "Zinc, Taurine, Vitamin C, and L-Glutamine to support tissue repair, reduce inflammation, and accelerate post-operative recovery.",
-    benefits: ["Zinc", "Taurine", "Vitamin C", "L-Glutamine"],
-    image: "/post-surgery-recovery.jpeg",
-    price: "$249",
+      "Taurine, L-Carnitine, and an amino blend to boost endurance, accelerate recovery, and replenish the minerals you lose under load.",
+    benefits: ["Taurine", "L-Carnitine", "B-Complex", "Magnesium", "Amino Blend"],
+    image: "/bags/athletic-performance.jpg",
+    price: "$299",
+    threePack: "$799",
     category: "Recovery",
     infusedIn: STD_SALINE,
   },
 
-  {
-    name: "Energy Charge",
-    tagline: "Energize from within.",
-    description:
-      "Vitamin B-12, Vitamin C, B-Complex, and L-Carnitine for sustained mental and physical energy — without the caffeine crash.",
-    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "L-Carnitine"],
-    image: "/energy-charge.jpeg",
-    price: "$249",
-    category: "Maintenance",
-    infusedIn: STD_SALINE,
-  },
-  {
-    name: "Original Myers",
-    tagline: "The classic blend.",
-    description:
-      "Vitamin B-12, Calcium, B-Complex, and Magnesium — Myers' original formulation, ideal for daily wellness and whole-body restoration.",
-    benefits: ["Vitamin B-12", "Calcium", "B-Complex", "Magnesium"],
-    image: "/original-myers.jpeg",
-    price: "$299",
-    category: "Maintenance",
-    infusedIn: STD_SALINE,
-  },
+  // ---- Maintenance ----
   {
     name: "Pure Hydration",
     tagline: "Simple replenishment.",
     description:
       "Pure 0.9% Normal Saline for straightforward dehydration, post-flight recovery, or rebalancing fluids without additives.",
     benefits: ["No Vitamins", "0.9% Normal Saline"],
-    image: "/pure-hydration.jpeg",
-    price: "$199",
+    image: "/bags/pure-hydration.jpg",
+    price: "$179",
+    threePack: "$479",
+    category: "Maintenance",
+    infusedIn: STD_SALINE,
+  },
+  {
+    name: "Energy Charge",
+    tagline: "Energize from within.",
+    description:
+      "Vitamin B-12, Vitamin C, B-Complex, and L-Carnitine for sustained mental and physical energy, without the caffeine crash.",
+    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex", "L-Carnitine"],
+    image: "/bags/energy-charge.jpg",
+    price: "$249",
+    threePack: "$699",
     category: "Maintenance",
     infusedIn: STD_SALINE,
   },
@@ -193,7 +224,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     name: "Custom+",
     tagline: "Create your FOURmula.",
     description:
-      "Choose any 4 active nutrients from a curated list to build your own bespoke infusion — designed with your clinician around your goals.",
+      "Choose any 4 of 11 active nutrients to build your own bespoke infusion, designed with your clinician around your goals.",
     benefits: [
       "Vitamin B-12",
       "Vitamin C",
@@ -207,33 +238,36 @@ export const IV_COCKTAILS: Cocktail[] = [
       "Glutamine",
       "Glutathione",
     ],
-    image: "/custom-plus.jpeg",
+    image: "/bags/custom-plus.jpg",
     price: "$249",
-    category: "Maintenance",
-    infusedIn: STD_SALINE,
-  },
-
-  {
-    name: "Immunity Shield",
-    tagline: "IV armor. Infused to defend.",
-    description:
-      "Zinc, Vitamin C, B-Complex, and Glutathione for immune support before travel, after exposure, or during seasonal stress.",
-    benefits: ["Zinc", "Vitamin C", "B-Complex", "Glutathione"],
-    image: "/immunity-shield.jpeg",
-    price: "$249",
+    threePack: "$699",
     category: "Maintenance",
     infusedIn: STD_SALINE,
   },
   {
-    name: "NAD+ Revive",
-    tagline: "Cellular fuel. Mental clarity. Longevity support.",
+    name: "Stress Relief",
+    tagline: "The peace potion.",
     description:
-      "High-dose NAD+ targeting mitochondrial repair, cognitive clarity, and longevity protocols. Our most powerful infusion.",
-    benefits: ["NAD+"],
-    image: "/nad-revive.jpeg",
-    price: "$499",
-    category: "Longevity",
-    infusedIn: "500 mL 0.9% Normal Saline",
+      "Taurine, magnesium, and B-complex to ease tension, improve sleep quality, and restore nervous-system balance.",
+    benefits: ["Taurine", "B-Complex", "Magnesium", "Vitamin C"],
+    image: "/bags/stress-relief.jpg",
+    price: "$249",
+    threePack: "$699",
+    category: "Maintenance",
+    infusedIn: STD_SALINE,
+  },
+  {
+    name: "Original Myers",
+    tagline: "The classic blend.",
+    description:
+      "Vitamin B-12, Vitamin C, Calcium, B-Complex, and Magnesium. The original Myers formulation, ideal for daily wellness and whole-body restoration.",
+    benefits: ["Vitamin B-12", "Vitamin C", "Calcium", "B-Complex", "Magnesium"],
+    image: "/bags/original-myers.jpg",
+    price: "$299",
+    threePack: "$799",
+    badge: "Most Popular",
+    category: "Maintenance",
+    infusedIn: STD_SALINE,
   },
   {
     name: "Ultra Flush",
@@ -246,31 +280,37 @@ export const IV_COCKTAILS: Cocktail[] = [
       "N-Acetylcysteine (NAC)",
       "Alpha Lipoic Acid (ALA)",
     ],
-    image: "/ultra-flush.jpeg",
+    image: "/bags/ultra-flush.jpg",
     price: "$349",
-    category: "Detox",
+    threePack: "$939",
+    category: "Maintenance",
     infusedIn: "2 Liters 0.9% Normal Saline",
   },
+
+  // ---- Women's Health ----
   {
-    name: "Stomach Rescue",
-    tagline: "Your tummy first responder.",
+    name: "Prenatal Care",
+    tagline: "Gentle wellness for two.",
     description:
-      "B-Complex, Famotidine, Magnesium, and L-Glutamine to settle stomach issues, food poisoning, motion sickness, and gut inflammation.",
-    benefits: ["B-Complex", "Famotidine", "Magnesium", "L-Glutamine"],
-    image: "/stomach-rescue.jpeg",
-    price: "$249",
-    category: "Detox",
+      "Vitamin B-12, Vitamin C, and B-Complex at gentle dosing, in a pregnancy-safe formulation focused on hydration and prenatal micronutrients.",
+    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex"],
+    image: "/bags/prenatal-care.jpg",
+    price: "$229",
+    threePack: "$619",
+    note: "Requires OB/GYN clearance",
+    category: "Women's Health",
     infusedIn: STD_SALINE,
   },
-
   {
     name: "Her Beauty",
     tagline: "The drip behind her glow.",
     description:
-      "Biotin, Vitamin C, B-Complex, and Glutathione for collagen support, skin clarity, and a luminous complexion — favorite before events.",
+      "Biotin, Vitamin C, B-Complex, and Glutathione for collagen support, skin clarity, and a luminous complexion. A favorite before events.",
     benefits: ["Biotin", "Vitamin C", "B-Complex", "Glutathione"],
-    image: "/her-beauty.jpeg",
+    image: "/bags/her-beauty.jpg",
     price: "$249",
+    threePack: "$699",
+    badge: "Most Gifted",
     category: "Women's Health",
     infusedIn: STD_SALINE,
   },
@@ -280,249 +320,300 @@ export const IV_COCKTAILS: Cocktail[] = [
     description:
       "Vitamin B-12, Calcium, B-Complex, and Magnesium designed to ease cramps, fatigue, and other cycle-related symptoms.",
     benefits: ["Vitamin B-12", "Calcium", "B-Complex", "Magnesium"],
-    image: "/her-monthly.jpeg",
+    image: "/bags/her-monthly.jpg",
     price: "$249",
+    threePack: "$699",
     category: "Women's Health",
     infusedIn: STD_SALINE,
   },
+
+  // ---- Longevity ----
   {
-    name: "Prenatal Support",
-    tagline: "Gentle wellness for two.",
+    name: "NAD+ Revive",
+    tagline: "Cellular fuel. Mental clarity. Longevity support.",
     description:
-      "Vitamin B-12, Vitamin C, and B-Complex in a pregnancy-safe formulation focused on hydration and prenatal micronutrients. Always cleared with your OB.",
-    benefits: ["Vitamin B-12", "Vitamin C", "B-Complex"],
-    image: "/prenatal-support.jpeg",
-    price: "$199",
-    category: "Women's Health",
+      "500 mg of NAD+ infused slowly, targeting mitochondrial repair, cognitive clarity, and longevity protocols. Our most powerful infusion, and it runs 3 to 4 hours.",
+    benefits: ["NAD+ 500 mg"],
+    image: "/bags/nad-revive.jpg",
+    price: "$599",
+    threePack: "$1,619",
+    memberRate: "$499",
+    category: "Longevity",
+    infusedIn: "500 mL 0.9% Normal Saline",
+  },
+  {
+    name: "Niagen Boost",
+    tagline: "Advanced cellular support.",
+    description:
+      "500 mg of NR (Nicotinamide Riboside), an NAD+ precursor, for cellular energy and longevity support with a shorter infusion time.",
+    benefits: ["Nicotinamide Riboside 500 mg"],
+    image: BAG_PLACEHOLDER,
+    price: "$799",
+    threePack: "$2,149",
+    memberRate: "$649",
+    category: "Longevity",
+    infusedIn: STD_SALINE,
+  },
+
+  // ---- Medical Infusions ----
+  {
+    name: "Iron Sucrose (Venofer)",
+    tagline: "Prescription iron repletion.",
+    description:
+      "50 to 200 mg of iron sucrose for diagnosed iron deficiency, with dosing based on provider evaluation and laboratory results.",
+    benefits: ["Iron Sucrose 50-200 mg"],
+    image: BAG_PLACEHOLDER,
+    price: "$499",
+    priceFrom: true,
+    note: "Prescription only, requires provider evaluation",
+    category: "Medical Infusions",
     infusedIn: STD_SALINE,
   },
 ];
 
 export const COCKTAIL_CATEGORIES: CocktailCategory[] = [
-  "Performance",
   "Recovery",
   "Maintenance",
-  "Detox",
-  "Longevity",
   "Women's Health",
+  "Longevity",
+  "Medical Infusions",
 ];
 
+/** Standalone intramuscular injections - no drip required. */
 export const WELLNESS_SHOT_TIERS: WellnessShotTier[] = [
   {
     name: "Standard",
-    price: "$29",
-    ingredients: ["Vitamin B-12", "Vitamin C", "B-Complex", "Magnesium", "Zinc"],
-  },
-  {
-    name: "Signature",
     price: "$49",
     ingredients: [
-      "Biotin",
-      "L-Carnitine",
-      "Amino Acids",
-      "Taurine",
-      "Calcium",
-      "Vitamin D3",
+      "Vitamin B-12",
+      "Vitamin C",
+      "B-Complex",
+      "Glutathione",
+      "Biotin (low concentration)",
     ],
   },
   {
-    name: "Premier",
-    price: "$99",
-    note: "High dose",
+    name: "Premium",
+    price: "$79",
     ingredients: [
-      "NAD+",
-      "Preserved Acetylcysteine",
-      "Glutamine",
+      "L-Carnitine",
+      "Vitamin D3",
+      "Mineral Blend",
+      "Tres Aminos",
+      "Tri-Immune Boost",
+      "Biotin (high concentration)",
+    ],
+  },
+  {
+    name: "Medications",
+    price: "$49",
+    note: "Administered only under provider order following evaluation",
+    ingredients: [
+      "Toradol (Ketorolac)",
+      "Ondansetron (Zofran)",
+      "Diphenhydramine (Benadryl)",
+    ],
+  },
+];
+
+/** Boosts that can be layered onto any infusion. */
+export const IV_ADD_ON_TIERS: WellnessShotTier[] = [
+  {
+    name: "Standard",
+    price: "$29",
+    ingredients: [
+      "Vitamin B-12",
+      "Vitamin C",
+      "B-Complex",
+      "Biotin (low concentration)",
+      "Magnesium",
+      "Zinc",
       "Glutathione",
+    ],
+  },
+  {
+    name: "Premium",
+    price: "$49",
+    ingredients: [
+      "Biotin (high concentration)",
+      "Mineral Blend",
+      "Calcium",
+      "Amino Blend",
+      "Tres Aminos",
+      "Taurine",
+      "L-Carnitine",
+      "Glutamine",
+      "NAC (Preserved Acetylcysteine)",
+      "Alpha Lipoic Acid",
+      "Tri-Immune Boost",
     ],
   },
   {
     name: "Medications",
     price: "$29",
-    ingredients: ["Toradol (Ketorolac)", "Famotidine", "Ondansetron"],
+    note: "Administered only under provider order following evaluation",
+    ingredients: [
+      "Toradol (Ketorolac)",
+      "Ondansetron (Zofran)",
+      "Famotidine (Pepcid)",
+      "Diphenhydramine (Benadryl)",
+    ],
   },
 ];
 
+/** Specialty injections, priced individually. */
+export const SPECIALTY_SHOTS = [
+  { name: "Niagen", dose: "100 mg", price: "$199" },
+  { name: "NAD+", dose: "100 mg", price: "$129" },
+];
+
+/** Additional fluids, added to any drip. */
+export const EXTRA_FLUID_BAGS = [
+  { name: "250 mL", detail: "Added hydration boost", price: "$29" },
+  { name: "500 mL", detail: "Extended hydration", price: "$49" },
+];
+
+export const VISIT_MINIMUM_NOTE =
+  "Mobile service requires a $150 minimum visit total. Multiple clients and treatments may be combined to meet the minimum. A redeemed membership credit satisfies the minimum.";
+
 export const BLOOD_PANEL_CATEGORIES: BloodPanelCategory[] = [
-  "Wellness & Vitamins",
-  "Cardiovascular & Risk",
-  "Hormones",
-  "Specialty & Diagnostics",
+  "General Health",
+  "Metabolic & Diabetes",
+  "Organ Function",
+  "Thyroid & Hormones",
+  "Cardiac & Nutrient",
+  "Screening",
 ];
 
 export const BLOOD_PANELS: BloodPanel[] = [
-  // ── Wellness & Vitamins ─────────────────────────────────────────────
+  // ---- General Health ----
   {
-    name: "Complete Blood Count (CBC)",
-    description:
-      "Red and white blood cells, hemoglobin, and platelets — a foundational health snapshot.",
-    category: "Wellness & Vitamins",
+    name: "Complete Blood Count",
+    description: "Measures red & white blood cells, hemoglobin & platelets.",
+    category: "General Health",
+    price: "$39",
   },
   {
-    name: "Comprehensive Metabolic Panel (CMP)",
-    description:
-      "14-marker panel covering kidney and liver function, electrolytes, and blood sugar.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Basic Metabolic Panel (BMP)",
-    description:
-      "8 essential markers — kidneys, electrolytes, and glucose. A concise CMP subset.",
-    category: "Wellness & Vitamins",
+    name: "Comprehensive Metabolic",
+    description: "Measures glucose, electrolytes, kidney & liver function.",
+    category: "General Health",
+    price: "$39",
   },
   {
     name: "Lipid Panel",
-    description:
-      "Total, LDL, and HDL cholesterol plus triglycerides for cardiovascular health.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Hemoglobin A1C",
-    description:
-      "3-month average blood sugar — a key diabetes and prediabetes screen.",
-    category: "Wellness & Vitamins",
+    description: "Measures total cholesterol, LDL, HDL & triglycerides.",
+    category: "General Health",
+    price: "$39",
   },
   {
     name: "Urinalysis",
-    description:
-      "Routine urine screen for kidney function, hydration, and infection.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Vitamin D (25-Hydroxy)",
-    description:
-      "Vitamin D status — energy, immunity, and bone health.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Vitamin B12",
-    description:
-      "B12 levels — nerve function and red blood cell formation.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Iron Panel",
-    description:
-      "Iron, ferritin, and TIBC — anemia and iron-overload screening.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Magnesium",
-    description:
-      "Cellular energy, sleep, muscle, and cardiovascular support.",
-    category: "Wellness & Vitamins",
-  },
-  {
-    name: "Folate (B9)",
-    description:
-      "Folate levels — methylation and red blood cell production.",
-    category: "Wellness & Vitamins",
-  },
-
-  // ── Cardiovascular & Risk ──────────────────────────────────────────
-  {
-    name: "hs-CRP",
-    description:
-      "High-sensitivity inflammation marker tied to cardiovascular risk.",
-    category: "Cardiovascular & Risk",
-  },
-  {
-    name: "Homocysteine",
-    description:
-      "Amino acid linked to vascular health and methylation status.",
-    category: "Cardiovascular & Risk",
-  },
-  {
-    name: "Lipoprotein (a)",
-    description:
-      "Genetic cholesterol particle — an independent cardiovascular risk marker.",
-    category: "Cardiovascular & Risk",
-  },
-  {
-    name: "Apolipoprotein B",
-    description:
-      "Total atherogenic particle count for refined cardiovascular risk.",
-    category: "Cardiovascular & Risk",
-  },
-
-  // ── Hormones ────────────────────────────────────────────────────────
-  {
-    name: "Thyroid Panel",
-    description:
-      "TSH, free T3, and free T4 — metabolism, energy, and body temperature.",
-    category: "Hormones",
-  },
-  {
-    name: "Male Hormone Panel",
-    description:
-      "Total and free testosterone, estradiol, SHBG, and PSA.",
-    category: "Hormones",
-  },
-  {
-    name: "Female Hormone Panel",
-    description:
-      "Estradiol, progesterone, FSH, LH, prolactin, and testosterone.",
-    category: "Hormones",
-  },
-  {
-    name: "Cortisol",
-    description:
-      "Adrenal stress hormone — energy, sleep, and recovery.",
-    category: "Hormones",
-  },
-  {
-    name: "DHEA-S",
-    description:
-      "Adrenal precursor hormone — sex hormone production and vitality.",
-    category: "Hormones",
-  },
-
-  // ── Specialty & Diagnostics ─────────────────────────────────────────
-  {
-    name: "STI / STD Panel",
-    description:
-      "HIV, syphilis, hepatitis B & C, gonorrhea, and chlamydia.",
-    category: "Specialty & Diagnostics",
-  },
-  {
-    name: "Heavy Metal Panel",
-    description:
-      "Lead, mercury, arsenic, and cadmium — toxic exposure screening.",
-    category: "Specialty & Diagnostics",
-  },
-  {
-    name: "Food Sensitivity Panel",
-    description:
-      "IgG reactivity to 90+ common foods for diet-driven inflammation.",
-    category: "Specialty & Diagnostics",
+    description: "Tests urine for protein, glucose, blood & infection.",
+    category: "General Health",
+    price: "$39",
   },
   {
     name: "Allergy Panel",
-    description:
-      "Environmental and food IgE allergens — symptoms and reactions.",
-    category: "Specialty & Diagnostics",
+    description: "Tests IgE reactions to environmental & food allergens.",
+    category: "General Health",
+    price: "$199",
+    priceFrom: true,
+  },
+
+  // ---- Metabolic & Diabetes ----
+  {
+    name: "Hemoglobin A1c",
+    description: "Measures your average blood sugar over the past 90 days.",
+    category: "Metabolic & Diabetes",
+    price: "$49",
   },
   {
-    name: "Drug Screening",
+    name: "Glucose & Insulin",
     description:
-      "Multi-substance screen — 5-panel, 10-panel, or custom configuration.",
-    category: "Specialty & Diagnostics",
+      "Measures fasting glucose & insulin to detect insulin resistance.",
+    category: "Metabolic & Diabetes",
+    price: "$79",
+  },
+
+  // ---- Organ Function ----
+  {
+    name: "Hepatic Panel",
+    description: "Measures liver enzymes: AST, ALT, ALP & bilirubin.",
+    category: "Organ Function",
+    price: "$39",
   },
   {
-    name: "Pregnancy (β-hCG)",
-    description:
-      "Quantitative beta-hCG for early detection or pregnancy confirmation.",
-    category: "Specialty & Diagnostics",
+    name: "Renal Panel",
+    description: "Measures BUN, creatinine & eGFR filtration rate.",
+    category: "Organ Function",
+    price: "$39",
+  },
+
+  // ---- Thyroid & Hormones ----
+  {
+    name: "Thyroid Panel",
+    description: "Measures TSH, Free T4 & Free T3 thyroid hormones.",
+    category: "Thyroid & Hormones",
+    price: "$199",
+  },
+  {
+    name: "Female Hormone Panel",
+    description: "Measures FSH, LH, estradiol, progesterone & prolactin.",
+    category: "Thyroid & Hormones",
+    price: "$299",
+  },
+  {
+    name: "Male Hormone Panel",
+    description: "Measures total & free testosterone, SHBG & estradiol.",
+    category: "Thyroid & Hormones",
+    price: "$449",
+  },
+
+  // ---- Cardiac & Nutrient ----
+  {
+    name: "Inflammation Panel",
+    description: "Measures CRP & ESR inflammation levels.",
+    category: "Cardiac & Nutrient",
+    price: "$99",
+  },
+  {
+    name: "Vitamins & Iron",
+    description: "Measures vitamin D, B12, folate, iron & ferritin.",
+    category: "Cardiac & Nutrient",
+    price: "$249",
+  },
+  {
+    name: "Advanced Cardiac",
+    description: "Measures ApoB, Lp(a) & hs-CRP heart-risk markers.",
+    category: "Cardiac & Nutrient",
+    price: "$299",
+  },
+
+  // ---- Screening ----
+  {
+    name: "STI Panel",
+    description: "Confidential, comprehensive screening.",
+    category: "Screening",
+    price: "$199",
+    priceFrom: true,
+  },
+  {
+    name: "Heavy Metals",
+    description: "Measures lead, mercury & arsenic exposure.",
+    category: "Screening",
+    price: "$299",
   },
 ];
 
-export const BLOOD_WORK_FEE = "$125 Service Fee";
+export const BLOOD_WORK_FEE = "$149 Mobile Draw & Provider Service";
+
+export const BLOOD_WORK_DISCLAIMER =
+  "Our $149 mobile draw fee covers the provider visit, blood collection, and submission to Quest Diagnostics, with results typically available within one week. With active insurance, the lab analysis itself is usually covered (any co-pay or deductible is your responsibility). Without insurance, the prices listed above apply per panel.";
 
 export const RAPID_TESTS_LIST: RapidTest[] = [
-  { name: "Covid" },
-  { name: "Influenza A&B" },
-  { name: "Strep" },
-  { name: "Drug Screening" },
+  { name: "COVID-19", price: "$99" },
+  { name: "Influenza A&B", price: "$99" },
+  { name: "Strep A", price: "$99" },
+  { name: "Drug Screening", price: "$149" },
 ];
 
 export function getCocktailBySlug(slug: string): Cocktail | undefined {
@@ -539,9 +630,9 @@ export const SERVICES: Service[] = [
     image: "/iv.png",
     category: "IV",
     highlights: [
-      "Energy • Myers • Hangover • NAD+",
-      "Immune • Hydration • Beauty",
-      "Detox • Athletic Recovery",
+      "18 formulations from $179",
+      "Recovery • Maintenance • Women's Health",
+      "Longevity: NAD+ Revive & Niagen Boost",
     ],
     cocktails: IV_COCKTAILS,
   },
@@ -553,7 +644,11 @@ export const SERVICES: Service[] = [
       "Intramuscular vitamin and amino-acid shots for sustained energy, sharper focus, and metabolic support. Ideal as a standalone visit or paired with your IV protocol.",
     image: "/wellnessshot.png",
     category: "Wellness",
-    highlights: ["B-12 • Lipo-Mino", "Glutathione • Vitamin D", "Amino blends"],
+    highlights: [
+      "Standard & Premium shots from $49",
+      "IV add-ons from $29",
+      "Specialty: NAD+ & Niagen injections",
+    ],
   },
   {
     slug: "rapid-tests",
@@ -563,17 +658,25 @@ export const SERVICES: Service[] = [
       "Rapid-turnaround testing administered in-home by licensed professionals — discreet, comfortable, and back to you without the waiting room.",
     image: "/rapidtesting.png",
     category: "Diagnostic",
-    highlights: ["COVID-19 PCR & antigen", "Strep • Flu • RSV", "STI panels"],
+    highlights: [
+      "Results the same visit",
+      "COVID-19 • Influenza A&B • Strep A — $99",
+      "Drug screening — $149",
+    ],
   },
   {
     slug: "blood-draws",
     name: "Blood Draws",
     tagline: "Lab-grade panels, drawn in your living room.",
     description:
-      "Mobile phlebotomy for comprehensive wellness panels, hormone work, and physician-ordered labs. Transported to accredited partner labs with chain-of-custody care.",
+      "Mobile phlebotomy for comprehensive wellness panels, hormone work, and physician-ordered labs. Collected at your location by a licensed provider and submitted to Quest Diagnostics, with results typically available within one week.",
     image: "/blooddraw.png",
     category: "Diagnostic",
-    highlights: ["Executive wellness panels", "Hormone testing", "Physician-ordered labs"],
+    highlights: [
+      "Mobile draw & provider service — $149",
+      "Panels from $39",
+      "Hormones, cardiac, nutrient & screening",
+    ],
   },
   {
     slug: "virtual-consultation",

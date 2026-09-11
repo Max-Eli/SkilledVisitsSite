@@ -27,21 +27,21 @@ const FEE_OPTIONS = [
     label: BLOOD_WORK_FEE,
     title: "Concierge Service Fee",
     body:
-      "Covers the in-home draw, expert handling, and chain-of-custody transport to the lab.",
+      "Covers the provider visit, blood collection, and submission to Quest Diagnostics — results typically within one week.",
   },
   {
     icon: ShieldCheck,
     label: "Insurance",
     title: "Lab Analysis Only",
     body:
-      "Most major insurance plans are accepted for the laboratory analysis itself.",
+      "With active insurance the lab analysis itself is usually covered; any co-pay or deductible is your responsibility.",
   },
   {
     icon: Wallet,
     label: "Cash Pay",
     title: "Transparent Pricing",
     body:
-      "Prefer to skip insurance entirely? An all-cash option is available on request.",
+      "Without insurance, the per-panel prices listed below apply. No surprises.",
   },
 ];
 
@@ -340,9 +340,19 @@ export function BloodPanelsMenu() {
                           <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-500/30 bg-brand-50 text-brand-700 transition group-hover:border-brand-500/60 group-hover:bg-brand-100">
                             <FlaskConical className="h-4 w-4" strokeWidth={1.7} />
                           </span>
-                          <div>
-                            <div className="font-display text-[15px] leading-tight tracking-tight text-[color:var(--foreground)] md:text-base">
-                              {panel.name}
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-baseline justify-between gap-3">
+                              <div className="font-display text-[15px] leading-tight tracking-tight text-[color:var(--foreground)] md:text-base">
+                                {panel.name}
+                              </div>
+                              <div className="whitespace-nowrap font-display text-[15px] leading-none text-brand-700 md:text-base">
+                                {panel.priceFrom && (
+                                  <span className="mr-1 align-middle text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                                    from
+                                  </span>
+                                )}
+                                {panel.price}
+                              </div>
                             </div>
                             <p className="mt-1.5 text-[12.5px] leading-relaxed text-[color:var(--muted-strong)]">
                               {panel.description}
