@@ -19,6 +19,70 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: 'your-blood-test-results-just-came-back-now-what',
+    title: 'Your Blood Test Results Just Came Back. Now What?',
+    excerpt: 'A clear breakdown of mobile blood draw results: how long they take, who reads them, panel pricing, and what the $149 concierge fee actually covers.',
+    category: 'Concierge Care',
+    author: 'Skilled Visits Clinical Team',
+    publishedAt: '2026-10-01T16:32:14Z',
+    readTime: '3 min read',
+    image: '/van-side-2.jpg',
+    imageAlt: 'Skilled Visits — Concierge Care',
+    body: `
+The results land in your inbox a few days after the draw. Most people scroll straight to anything flagged in red, then sit there wondering what it means.
+
+The licensed nurse who came to your home, hotel, or office handled the draw. Reading the results is a different job, done by a different person. Your results are yours first. A physician reviews them where it's relevant to your care, as part of our physician oversight.
+
+## From your arm to Quest to your inbox
+
+Before anything is scheduled, you get a virtual consultation with a licensed clinician. They review your history and your goals and help you decide what's worth ordering. That conversation happens first.
+
+On visit day, the nurse draws your blood wherever you are and starts chain-of-custody handling immediately. The sample is transported to Quest Diagnostics with documented handling at each step. Quest runs the analysis. We're not interpreting raw lab data ourselves.
+
+Results are typically back within a week. That's slower than a same-day rapid test, because a comprehensive panel goes through a full clinical lab, not a cartridge read during the visit.
+
+## The panels, and what they cost
+
+A **Complete Blood Count** ($39) looks at your red cells, white cells, and platelets.
+
+A **Comprehensive Metabolic Panel** ($39) covers blood sugar, kidney and liver markers, and electrolyte balance in one draw.
+
+A **Lipid Panel** ($39) checks cholesterol and triglycerides. A **Thyroid Panel** ($199) checks the hormones tied to metabolism and energy.
+
+**Female Hormone Panel** ($299) and **Male Hormone Panel** ($449) look at the reproductive and metabolic hormones specific to each.
+
+**Inflammation Panel** ($99) measures general inflammatory markers. **Vitamins & Iron Panel** ($249) checks nutrient status. **Advanced Cardiac Panel** ($299) goes deeper than a standard lipid panel. **Heavy Metals Panel** ($299) screens for metal exposure. **STI Panel** (from $199) is handled with the same chain-of-custody and discretion as every other draw.
+
+Urinalysis, Hepatic Panel, and Renal Panel are also $39 each. Allergy Panel starts from $199.
+
+## Why we don't recommend ordering everything at once
+
+The right panel depends on your history and what you're actually trying to find out. Someone managing a known thyroid issue and someone chasing a vague sense of fatigue are not looking for the same thing, even if both feel "off."
+
+Some panels pair well together. Others are redundant for your situation. The virtual consultation exists to sort that out before you book, so the protocol matches you instead of the price list.
+
+## What the $149 covers
+
+The $149 concierge provider fee covers the nurse traveling to you, the blood collection, and submission of your sample to Quest. It's the visit and the clinical labor — not the lab analysis itself.
+
+Per-panel pricing is separate. A CBC is $39. A Thyroid Panel is $199. You pay for the draw once, then for whichever panels you choose.
+
+The concierge provider fee is not something insurance covers, and any co-pay or deductible on the lab side is still your responsibility. We'd rather you know that going in than find out from a billing statement.
+
+Every mobile visit also carries a $150 minimum visit total. It's combinable across multiple people or treatments at the same stop, so a draw paired with an IV clears it easily.
+
+## If your doctor ordered something else
+
+If your physician has ordered a panel that isn't listed above, we can accommodate that through the same clinician-first process. Mobile phlebotomy across our South Florida and New York City service areas follows the conversation you've already had with your doctor — not a fixed list.
+`,
+    faqs: [
+      { q: 'How long does it take to get my blood test results back?', a: 'Results are typically back within a week, since a comprehensive panel goes through a full clinical lab at Quest Diagnostics rather than a same-day cartridge read. This is slower than a rapid test but covers much more detailed analysis.' },
+      { q: 'Who actually reads and interprets my results?', a: 'The nurse who draws your blood handles the collection and chain-of-custody, but Quest Diagnostics runs the lab analysis. A physician reviews your results where it\'s relevant to your care, as part of the service\'s physician oversight.' },
+      { q: 'What does the $149 fee cover, and is that the full cost?', a: 'The $149 concierge provider fee covers the nurse\'s travel, the blood collection, and submission of your sample to Quest Diagnostics. Panel pricing is separate and added on top, so a CBC is an additional $39 and a Thyroid Panel is an additional $199.' },
+      { q: 'Does insurance cover the cost of mobile blood draws?', a: 'No, the concierge provider fee is not covered by insurance, and any co-pay or deductible on the lab side remains your responsibility. This is disclosed upfront so there are no surprises on a billing statement later.' },
+      { q: 'Can I just order every panel to be thorough?', a: 'It\'s not recommended, since the right panel depends on your specific history and goals rather than running everything available. A virtual consultation with a licensed clinician happens before booking to match the protocol to your situation instead of the full price list.' },
+    ],
+  },  {
     slug: "mobile-iv-therapy-near-me",
     title:
       "Mobile IV Therapy Near Me: Professional IV Hydration Delivered to Your Door",
