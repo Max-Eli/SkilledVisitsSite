@@ -19,6 +19,78 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: 'iv-therapy-in-miami-what-happens-when-the-nurse-comes-to-you',
+    title: 'IV Therapy in Miami: What Happens When the Nurse Comes to You',
+    excerpt: 'How Miami mobile IV therapy actually works: clinician screening, drip options for hangovers, jet lag, illness, and the $150 visit minimum explained.',
+    category: 'IV Therapy',
+    author: 'Skilled Visits Clinical Team',
+    publishedAt: '2026-10-02T18:04:07Z',
+    readTime: '4 min read',
+    image: '/hangover-hero.jpeg',
+    imageAlt: 'Skilled Visits — IV Therapy',
+    body: `
+A nurse arriving with a saline bag involves more than picking a drip off a menu. There's a screening step before anything gets started, and a reason one formulation gets chosen over another. Here's how a mobile visit works, start to finish.
+
+## Booking a Visit
+
+We come to you: home, hotel, office, yacht, or our own Mobile IV Lounge if you'd rather not have a clinical visit in your living room. Licensed nurses handle the visit. We hold a 5.0 Google rating.
+
+Every mobile visit requires a $150 minimum total, combinable across people and treatments. Three friends in the same hotel suite each booking a $249 drip clear that easily. A single $49 wellness shot booked alone won't, so it's worth checking the math before you call.
+
+## Who Books IV Therapy in Miami
+
+The drip menu is built around real situations, not a vague wellness catalog.
+
+Hangover Hero ($249) pairs fluid replacement with an anti-nausea medication for event recovery. Jet-Lag Reset ($249) is formulated for travelers who landed with no interest in sleeping off the flight first. Athletic Performance ($299) is recovery support for after a hard session, not a pre-workout.
+
+Illness recovery is its own category. Immunity Shield ($249) and Stomach Rescue ($249) are built for people already feeling it — a stomach bug, a cold that's dragging on. Post-Surgery Support ($249) is narrower: it requires surgeon clearance before we'll administer it.
+
+Pure Hydration ($179) is the simplest option on the menu. No additives, just fluid, for straightforward heat exposure or dehydration after a day on the water.
+
+## How the Visit Actually Runs
+
+Before anyone shows up, you have a virtual consultation with a licensed clinician. History, current medications, and your goal for the visit get reviewed here. This is the step where the clinician confirms whether the drip you think you want is the one you should have.
+
+Standard drips run on a 1-liter saline base. The nurse arrives, confirms what was discussed in the consultation, starts the line, and the infusion runs its course while you do whatever you were already doing.
+
+NAD+ Revive is the exception. It runs on a smaller 500 mL base but takes considerably longer — typically 90 to 120 minutes, sometimes more — because NAD+ is dose-sensitive. The clinician starts slow and adjusts based on how your body responds during the infusion. It isn't a drip to book on a whim between meetings.
+
+If you'd rather not have any of this happen at home, the Mobile IV Lounge is built for exactly that. Same clinical visit, more discreet setting.
+
+The $150 minimum still applies, though a redeemed membership credit satisfies it on its own for repeat clients.
+
+## Where We Come To You
+
+Our coverage runs the length of South Florida: Miami, Miami Beach, South Beach, Brickell, Coral Gables, Coconut Grove, Key Biscayne, Wynwood, and Doral on one end; Aventura, Sunny Isles, Bal Harbour, and Surfside just north of that. Keep going up the coast and we're in Fort Lauderdale, Hollywood, Hallandale, Pompano Beach, and Deerfield Beach, then Boca Raton, Delray Beach, Boynton Beach, West Palm Beach, Palm Beach, Jupiter, and Palm Beach Gardens. We also serve New York City. Full detail lives on our [service areas page](/service-areas).
+
+## Choosing Between Drips
+
+Sort the menu by what you're solving for. If there's a specific event behind the booking — a rough night, a long flight, a hard workout, a surgeon-cleared recovery — that's the Recovery line: Hangover Hero, Jet-Lag Reset, Athletic Performance, Immunity Shield, Stomach Rescue, Post-Surgery Support. If there's no specific trigger and you're booking as general upkeep, that's Maintenance territory: Original Myers, Ultra Flush, Energy Charge, Stress Relief, Pure Hydration, Custom+.
+
+Custom+ ($249) stands apart. It's for the person who doesn't want a fixed formulation and would rather pick 4 of 11 available nutrients themselves, with the clinician weighing in on which four make sense together.
+
+Add-ons follow the same logic, with one firm line: medication add-ons — Toradol, Zofran, Famotidine, Benadryl — are never a self-serve checkbox. Those go in only under a provider's order after evaluation, which is also true of the medicated wellness shots.
+
+## Why NAD+ Isn't a Default Pick
+
+NAD+ Revive is our most expensive infusion at $499, and it isn't right for every health profile. It goes through the same clinician screening of medications and history as everything else before it's ever booked. If you're new to IV therapy, there are good reasons to start with a lower-tier protocol instead of reaching for the most intensive one on the menu first.
+
+We also think there's an honest comparison between mobile IV and clinic IV worth having — one most providers won't offer. We go deeper on both the NAD+ science and the mobile-vs-clinic trade-offs in their own posts.
+
+## Booking
+
+A virtual consultation with a licensed clinician comes first, then a visit scheduled around your day. The $150 minimum applies per visit, not per person, so it's easy to combine across guests if you're booking for a group. If you find yourself booking often, ask about the membership program.
+
+See the full menu on our [IV therapy page](/services/iv-therapy), check coverage on [service areas](/service-areas), or [book](/book) directly.
+`,
+    faqs: [
+      { q: 'Is there a minimum to book a mobile IV visit?', a: 'Yes, every visit requires a $150 minimum total, which can be combined across multiple people and treatments at the same location. A single wellness shot booked alone often won\'t meet that minimum, so it\'s worth checking the math before booking.' },
+      { q: 'Do I need a consultation before the nurse arrives?', a: 'Yes, every booking starts with a virtual consultation with a licensed clinician who reviews your history, current medications, and goal for the visit. This is also where the clinician confirms whether the drip you want is actually the right one for you.' },
+      { q: 'How long does an IV infusion take?', a: 'Standard drips run on a 1-liter saline base and take as long as a typical infusion runs while you go about your day. NAD+ Revive is the exception, running 90 to 120 minutes or more on a smaller 500 mL base because it\'s dose-sensitive and requires the clinician to start slow and adjust.' },
+      { q: 'Can I get medications like Toradol or Zofran added to my drip?', a: 'Medication add-ons including Toradol, Zofran, Famotidine, and Benadryl are never self-serve checkboxes. They\'re only administered under a provider\'s order after evaluation, the same standard that applies to medicated wellness shots.' },
+      { q: 'Where does the mobile service operate?', a: 'Coverage runs the length of South Florida from Miami and Miami Beach up through Fort Lauderdale, Boca Raton, and West Palm Beach, plus New York City. Full detail is on the service areas page.' },
+    ],
+  },  {
     slug: 'your-blood-test-results-just-came-back-now-what',
     title: 'Your Blood Test Results Just Came Back. Now What?',
     excerpt: 'A clear breakdown of mobile blood draw results: how long they take, who reads them, panel pricing, and what the $149 concierge fee actually covers.',
