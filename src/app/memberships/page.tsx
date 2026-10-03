@@ -127,6 +127,7 @@ const TIERS: Tier[] = [
 const MEMBERSHIP_BENEFITS = [
   "Priority scheduling",
   "Member pricing on eligible enhancements",
+  "Red Light + PEMF on request at any member visit",
   "Unused credits roll over 30 days",
   "Mobile concierge — we come to you",
   "Credits redeem for any drip — longevity & medical infusions at member rates",
