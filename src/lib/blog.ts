@@ -73,7 +73,7 @@ Add-ons follow the same logic, with one firm line: medication add-ons — Torado
 
 ## Why NAD+ Isn't a Default Pick
 
-NAD+ Revive is our most expensive infusion at $499, and it isn't right for every health profile. It goes through the same clinician screening of medications and history as everything else before it's ever booked. If you're new to IV therapy, there are good reasons to start with a lower-tier protocol instead of reaching for the most intensive one on the menu first.
+NAD+ Revive is one of our most advanced infusions at $599, or $449 at the member rate, and it isn't right for every health profile. It goes through the same clinician screening of medications and history as everything else before it's ever booked. If you're new to IV therapy, there are good reasons to start with a lower-tier protocol instead of reaching for the most intensive one on the menu first.
 
 We also think there's an honest comparison between mobile IV and clinic IV worth having — one most providers won't offer. We go deeper on both the NAD+ science and the mobile-vs-clinic trade-offs in their own posts.
 
@@ -567,7 +567,7 @@ Our NAD+ Revive is delivered in a 500 mL saline base over a longer infusion wind
 Most clients report a feeling of mental sharpness during and shortly after the visit, with deeper effects building over a series. We often recommend an initial sequence rather than a one-off.
 
 ## Is it for everyone?
-No. NAD+ isn't appropriate for every health profile, and your clinician will review your medications and history before booking. It's also our most expensive infusion at $499 — there are good reasons to start with a lower-tier protocol if you're new to IV therapy.
+No. NAD+ isn't appropriate for every health profile, and your clinician will review your medications and history before booking. It's also one of our most advanced infusions at $599, or $449 at the member rate — there are good reasons to start with a lower-tier protocol if you're new to IV therapy.
 
 If you're curious whether it's right for you, schedule a virtual consultation and we'll talk through it.`,
   },

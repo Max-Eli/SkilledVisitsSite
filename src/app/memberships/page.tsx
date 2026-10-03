@@ -64,27 +64,27 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     name: "Essential",
-    price: "$219",
+    price: "$215",
     cadence: "/ month",
     description: "Monthly maintenance.",
     features: [
       "1 IV credit per month",
       "1 standard wellness shot per month",
-      "Additional IVs at member rate — $229",
+      "Additional IVs at member rate — $215",
       "10% member savings on eligible enhancements",
     ],
     ctaLabel: "Choose Essential",
   },
   {
     name: "Restore",
-    price: "$429",
+    price: "$430",
     cadence: "/ month",
     description: "Twice-monthly wellness.",
     features: [
       "2 IV credits per month",
       "2 standard wellness shots per month",
       "1 wellness blood panel + provider consult per year",
-      "Additional IVs at member rate — $219",
+      "Additional IVs at member rate — $215",
       "15% member savings on eligible enhancements",
     ],
     ctaLabel: "Choose Restore",
@@ -92,14 +92,14 @@ const TIERS: Tier[] = [
   },
   {
     name: "Signature",
-    price: "$639",
+    price: "$645",
     cadence: "/ month",
     description: "Concierge wellness.",
     features: [
       "3 IV credits per month",
       "3 standard or premium wellness shots per month",
       "2 wellness blood panels + provider consults per year",
-      "Additional IVs at member rate — $199",
+      "Additional IVs at member rate — $215",
       "20% member savings on eligible enhancements",
       "Shareable with 1 designated member at the same service address",
     ],
@@ -107,7 +107,7 @@ const TIERS: Tier[] = [
   },
   {
     name: "Longevity",
-    price: "$1,099",
+    price: "$1,094",
     cadence: "/ month",
     description: "Advanced longevity.",
     features: [
@@ -115,8 +115,8 @@ const TIERS: Tier[] = [
       "1 NAD+ Revive (500 mg) per month",
       "4 standard or premium wellness shots per month",
       "3 wellness blood panels + provider consults per year",
-      "Additional IVs at member rate — $189",
-      "Additional NAD+ Revive — $499",
+      "Additional IVs at member rate — $215",
+      "Additional NAD+ Revive — $449",
       "25% member savings on eligible enhancements",
       "Shareable with 1 designated member at the same service address",
     ],
@@ -129,7 +129,7 @@ const MEMBERSHIP_BENEFITS = [
   "Member pricing on eligible enhancements",
   "Unused credits roll over 30 days",
   "Mobile concierge — we come to you",
-  "IV credits cover any IV up to $299",
+  "Credits redeem for any drip — longevity & medical infusions at member rates",
   "Wellness shots redeemed the same day as your IV",
 ];
 
@@ -183,7 +183,7 @@ const FAQS = [
   },
   {
     q: "What does an IV credit cover?",
-    a: "Any IV priced up to $299. For a premium infusion such as NAD+ Revive, you simply pay the difference.",
+    a: "Any drip on the menu. Longevity infusions such as NAD+ Revive and medical infusions are billed at your member rate.",
   },
   {
     q: "What's the cancellation policy?",
