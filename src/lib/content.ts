@@ -114,9 +114,6 @@ export type Service = {
 // Standard saline volume used by every infusion unless otherwise noted.
 const STD_SALINE = "1 Liter 0.9% Normal Saline";
 
-// Stand-in for drips whose bag artwork hasn't been delivered yet.
-const BAG_PLACEHOLDER = "/bags/placeholder.svg";
-
 export const IV_COCKTAILS: Cocktail[] = [
   // ---- Recovery ----
   {
@@ -364,7 +361,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     description:
       "500 mg of NR (Nicotinamide Riboside), an NAD+ precursor, for cellular energy and longevity support with a shorter infusion time.",
     benefits: ["Nicotinamide Riboside 500 mg"],
-    image: BAG_PLACEHOLDER,
+    image: "/bags/niagen-boost.jpg",
     price: "$799",
     threePack: "$2,159",
     memberRate: "$599",
@@ -379,7 +376,7 @@ export const IV_COCKTAILS: Cocktail[] = [
     description:
       "50 to 200 mg of iron sucrose for diagnosed iron deficiency, with dosing based on provider evaluation and laboratory results.",
     benefits: ["Iron Sucrose 50-200 mg"],
-    image: BAG_PLACEHOLDER,
+    image: "/bags/iron-sucrose.jpg",
     price: "$499",
     priceFrom: true,
     note: "Prescription only, requires provider evaluation",
