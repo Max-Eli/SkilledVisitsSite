@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Download, Check } from "lucide-react";
 import type { Cocktail, CocktailCategory } from "@/lib/content";
 import { COCKTAIL_CATEGORIES, MENU_PDF } from "@/lib/content";
-import { IVCategoryCarousel } from "@/components/services/iv-category-carousel";
+import { IVCategoryGrid } from "@/components/services/iv-category-grid";
 
 type IVFilter = "All" | CocktailCategory;
 
@@ -47,10 +47,10 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
     selected === "All"
       ? cocktails
       : grouped.find((g) => g.category === selected)?.items ?? [];
-  const activeIndex =
+  const visibleGroups =
     selected === "All"
-      ? 0
-      : grouped.findIndex((g) => g.category === selected);
+      ? grouped
+      : grouped.filter((g) => g.category === selected);
 
   return (
     <section className="relative py-24 md:py-32">
@@ -222,7 +222,7 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
           </div>
         </motion.div>
 
-        {/* Active category carousel */}
+        {/* Every drip in the selection, laid out down the page */}
         <div className="mt-10 md:mt-12">
           <AnimatePresence mode="wait">
             <motion.div
@@ -231,12 +231,16 @@ export function IVMenuList({ cocktails }: { cocktails: Cocktail[] }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col gap-16 md:gap-20"
             >
-              <IVCategoryCarousel
-                category={selectedLabel}
-                items={activeItems}
-                groupIndex={activeIndex}
-              />
+              {visibleGroups.map((g) => (
+                <IVCategoryGrid
+                  key={g.category}
+                  category={g.category}
+                  items={g.items}
+                  groupIndex={grouped.indexOf(g)}
+                />
+              ))}
             </motion.div>
           </AnimatePresence>
         </div>
