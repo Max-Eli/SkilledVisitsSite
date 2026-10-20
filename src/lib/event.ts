@@ -23,6 +23,11 @@ export type EventHost = {
 
 export type CurrentEvent = {
   name: string;
+  /**
+   * The name broken into display lines, mirroring how the flyer stacks it.
+   * Omit to print the name on one line.
+   */
+  titleLines?: string[];
   /** Short line under the title, e.g. "A Halloween girls night". */
   tagline: string;
   /** Optional aside printed next to the tagline. */
@@ -37,12 +42,23 @@ export type CurrentEvent = {
   venue: EventVenue;
   /** CRM intake + consent link. Changes with every event. */
   intakeUrl: string;
-  /** What our nurses are offering on site. */
-  onSite: { title: string; body: string }[];
+  /**
+   * Poster palette, taken from the event's own flyer so the page reads as
+   * part of the invite rather than a generic landing page.
+   */
+  theme: {
+    /** Poster background. */
+    ink: string;
+    /** Type and rules printed on it. */
+    paper: string;
+    /** Decorative motif drawn in the poster corners. */
+    motif: "halloween" | "none";
+  };
 };
 
 export const CURRENT_EVENT: CurrentEvent = {
   name: "Ghouls Night Out",
+  titleLines: ["Ghouls", "Night Out"],
   tagline: "A Halloween girls night",
   note: "Boyfriends welcome",
   description:
@@ -53,7 +69,7 @@ export const CURRENT_EVENT: CurrentEvent = {
     instagram: "https://instagram.com/skysocialstudioo",
   },
   date: "Friday, October 23",
-  time: "6:00 - 9:00 PM",
+  time: "6:00 – 9:00 PM",
   venue: {
     name: "Twisted Tonic Rooftop",
     address: "723 N Lincoln Ln",
@@ -62,18 +78,9 @@ export const CURRENT_EVENT: CurrentEvent = {
   },
   intakeUrl:
     "https://skilledvisits.xn--lumcrm-5ua.com/event/LAmWX3BU7dqK3D2DBYh0bJNosXtz0BI6ur9ZWS_A220",
-  onSite: [
-    {
-      title: "IV therapy",
-      body: "Hydration and vitamin drips mixed on site and run by a licensed nurse.",
-    },
-    {
-      title: "Wellness shots",
-      body: "Quick intramuscular shots when you want the boost without the drip.",
-    },
-    {
-      title: "A clinician on hand",
-      body: "Every guest is screened before treatment, and we answer questions on the spot.",
-    },
-  ],
+  theme: {
+    ink: "#6b1120",
+    paper: "#f7f1e6",
+    motif: "halloween",
+  },
 };
