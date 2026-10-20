@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { BRAND } from "@/lib/content";
@@ -46,7 +47,7 @@ function Spider({
     <svg
       aria-hidden
       viewBox={`0 0 40 ${drop + 34}`}
-      className={`pointer-events-none absolute top-0 w-[34px] md:w-[46px] ${className}`}
+      className={`pointer-events-none absolute w-[34px] md:w-[46px] ${className}`}
       fill="none"
       stroke="var(--paper)"
       strokeWidth="1.1"
@@ -114,27 +115,39 @@ export default function ScanPage() {
         style={themeVars}
         className="relative isolate -mt-20 overflow-hidden bg-[color:var(--ink)] text-[color:var(--paper)] md:-mt-24"
       >
-        <CheckerBand className="top-0" />
+        <CheckerBand className="top-20 md:top-24" />
         <CheckerBand className="bottom-0" />
 
         {EVENT.theme.motif === "halloween" && (
           <>
-            <Spider className="right-[14%] md:right-[22%]" drop={120} />
-            <Spider className="right-[6%] md:right-[13%]" drop={66} />
+            <Spider className="right-[14%] top-20 md:right-[22%] md:top-24" drop={120} />
+            <Spider className="right-[6%] top-20 md:right-[13%] md:top-24" drop={66} />
           </>
         )}
 
-        <div className="mx-auto max-w-4xl px-6 pb-20 pt-28 text-center md:pb-28 md:pt-40">
+        <div className="mx-auto max-w-4xl px-6 pb-20 pt-32 text-center md:pb-28 md:pt-44">
+          {/* The night, co-signed: host in their script, our mark reversed out */}
           <Reveal>
-            <p className="font-display-italic text-[26px] leading-none md:text-4xl">
-              {EVENT.host.name}
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.06}>
-            <p className="mt-3 text-[10px] uppercase tracking-[0.42em] opacity-55">
-              Presents
-            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+              <span className="font-display-italic text-[24px] leading-none md:text-[32px]">
+                {EVENT.host.name}
+              </span>
+              <span
+                aria-hidden
+                className="text-lg font-light leading-none opacity-45 md:text-xl"
+              >
+                &times;
+              </span>
+              <Image
+                src="/brand/logo.svg"
+                alt={BRAND.name}
+                width={220}
+                height={50}
+                className="h-8 w-auto md:h-10"
+                style={{ filter: "brightness(0) invert(1)" }}
+                priority
+              />
+            </div>
           </Reveal>
 
           <Reveal delay={0.12}>

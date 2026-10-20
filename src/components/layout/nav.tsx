@@ -46,9 +46,8 @@ export function Nav() {
     };
   }, [open]);
 
-  // The booking page embeds the CRM flow full-screen with no site chrome,
-  // and /scan is an event invite that guests reach by QR code.
-  if (pathname === "/book" || pathname === "/scan") return null;
+  // The booking page embeds the CRM flow full-screen with no site chrome.
+  if (pathname === "/book") return null;
 
   return (
     <>
