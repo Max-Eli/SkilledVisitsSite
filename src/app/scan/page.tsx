@@ -128,18 +128,18 @@ export default function ScanPage() {
         <div className="mx-auto max-w-4xl px-6 pb-20 pt-32 text-center md:pb-28 md:pt-44">
           {/* The night, co-signed: host in their script, our mark reversed out */}
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
               <a
                 href={EVENT.host.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-display-italic text-[24px] leading-none transition-opacity hover:opacity-80 md:text-[32px]"
+                className="font-display-italic text-[27px] leading-none transition-opacity hover:opacity-80 md:text-[42px]"
               >
                 {EVENT.host.name}
               </a>
               <span
                 aria-hidden
-                className="text-lg font-light leading-none opacity-45 md:text-xl"
+                className="text-xl font-light leading-none opacity-45 md:text-2xl"
               >
                 &times;
               </span>
@@ -148,7 +148,7 @@ export default function ScanPage() {
                 alt={BRAND.name}
                 width={220}
                 height={50}
-                className="h-8 w-auto md:h-10"
+                className="h-9 w-auto md:h-14"
                 style={{ filter: "brightness(0) invert(1)" }}
                 priority
               />
