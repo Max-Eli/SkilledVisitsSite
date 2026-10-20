@@ -129,9 +129,14 @@ export default function ScanPage() {
           {/* The night, co-signed: host in their script, our mark reversed out */}
           <Reveal>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-              <span className="font-display-italic text-[24px] leading-none md:text-[32px]">
+              <a
+                href={EVENT.host.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display-italic text-[24px] leading-none transition-opacity hover:opacity-80 md:text-[32px]"
+              >
                 {EVENT.host.name}
-              </span>
+              </a>
               <span
                 aria-hidden
                 className="text-lg font-light leading-none opacity-45 md:text-xl"
@@ -203,8 +208,8 @@ export default function ScanPage() {
 
       {/* The practical half */}
       <section className="section-cream py-20 md:py-28">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-14 px-5 md:grid-cols-12 md:gap-16 md:px-8">
-          <div className="md:col-span-7">
+        <div className="mx-auto max-w-3xl px-5 md:px-8">
+          <div>
             <Reveal>
               <h2 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">
                 Why we need the form
@@ -237,70 +242,19 @@ export default function ScanPage() {
                 <CheckInButton />
               </div>
             </Reveal>
+            <Reveal delay={0.32}>
+              <p className="mt-7 text-[13px] text-[color:var(--muted)]">
+                Can&apos;t find us or something&apos;s not working?{" "}
+                <a
+                  href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
+                  className="text-brand-700 underline underline-offset-4 transition hover:text-brand-800"
+                >
+                  {BRAND.phoneFL}
+                </a>
+              </p>
+            </Reveal>
           </div>
 
-          <aside className="md:col-span-5">
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-[color:var(--border)] bg-white p-8 shadow-soft">
-                <dl className="flex flex-col gap-6 text-[15px]">
-                  <div>
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                      Where
-                    </dt>
-                    <dd className="font-display mt-1.5 text-xl tracking-tight">
-                      {EVENT.venue.name}
-                    </dd>
-                    <dd className="mt-1 text-[color:var(--muted-strong)]">
-                      {EVENT.venue.address}
-                      {EVENT.venue.locality && (
-                        <>
-                          <br />
-                          {EVENT.venue.locality}
-                        </>
-                      )}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                      When
-                    </dt>
-                    <dd className="mt-1.5 text-[color:var(--foreground)]">
-                      {EVENT.date}
-                      <br />
-                      {EVENT.time}
-                    </dd>
-                  </div>
-                </dl>
-
-                <div className="lux-divider my-7" />
-
-                <div className="flex flex-col gap-3 text-sm">
-                  <a
-                    href={EVENT.venue.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand-700 underline underline-offset-4 transition hover:text-brand-800"
-                  >
-                    Open in maps
-                  </a>
-                  <a
-                    href={`tel:${BRAND.phoneFL.replace(/\D/g, "")}`}
-                    className="text-[color:var(--muted-strong)] transition hover:text-brand-700"
-                  >
-                    Questions tonight? {BRAND.phoneFL}
-                  </a>
-                  <a
-                    href={EVENT.host.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[color:var(--muted-strong)] transition hover:text-brand-700"
-                  >
-                    {EVENT.host.handle}
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-          </aside>
         </div>
       </section>
 
